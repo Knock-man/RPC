@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -rdynamic CMakeFiles/app.dir/rocket/common/config.cpp.o CMakeFiles/app.dir/rocket/common/log.cpp.o CMakeFiles/app.dir/rocket/common/util.cpp.o CMakeFiles/app.dir/testcases/test_log.cc.o -o /home/xbj/projects/RPC/bin/app  -lpthread -ltinyxml 
