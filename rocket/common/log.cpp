@@ -80,7 +80,7 @@ namespace rocket
         std::stringstream ss;
         ss << "[" << LogLevelToString(m_level) << "]\t"
            << "[" << time_str << "]\t"
-           << "[pid:" << m_pid << " tid:" << m_thread_id << "]\t";
+           << "[" << m_pid << ":" << m_thread_id << "]\t";
 
         return ss.str();
     }

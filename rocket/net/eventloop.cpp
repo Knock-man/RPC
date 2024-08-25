@@ -65,6 +65,9 @@ namespace rocket
         }
 
         initWakeUpFdEvent(); // 初始化wakeup_fd
+
+        initTimer();
+
         INFOLOG("success create event loop in thread %d", m_loop_threadId);
         t_current_eventloop = this;
     }
@@ -76,6 +79,11 @@ namespace rocket
         {
             delete m_wakeup_fd_event;
             m_wakeup_fd_event = NULL;
+        }
+        if (m_timer)
+        {
+            delete m_timer;
+            m_timer = NULL;
         }
     }
 
@@ -103,6 +111,17 @@ namespace rocket
         addEpollEvent(m_wakeup_fd_event); // 挂到红黑树上
     }
 
+    void EventLoop::addTimerEvent(TimerEvent::s_ptr event)
+    {
+        m_timer->addTimerEvent(event);
+    }
+
+    // 初始化定时器套接字
+    void EventLoop::initTimer()
+    {
+        m_timer = new Timer();
+        addEpollEvent(m_timer);
+    }
     // 事件循环
     void EventLoop::loop()
     {
@@ -125,6 +144,10 @@ namespace rocket
                     cb();
                 }
             }
+
+            // 如果有定时任务需要执行，那么执行
+            // 1怎么判断定时任务需要执行?(now() > TimeEvent.arrtive_time)
+            // 2 arrtive_time 如何让eventloop监听
 
             // epoll_wait循环监听事件
             int timeout = g_epoll_max_timeout;

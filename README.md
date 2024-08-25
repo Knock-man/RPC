@@ -31,15 +31,15 @@ Thread id
 [Level][%y-%m-%d %H:%M:%s.%ms]\t[pid:thread_id]\t[file_name:line][%msg]
 ```  
 
-Logger 日志器  
-1.提供打印日志的方法  
+Logger 日志器    
+1.提供打印日志的方法    
 2.设置日志输出的路径  
 
 ### Reator
-Reator，又可以称为EventLoop,它本质是一个事件循环模型
+Reator，又可以称为EventLoop,它本质是一个事件循环模型  
 
-Reactor，它的核心逻辑是一个loop循环，使用伪代码描述如下：
-```C++{.line-number}
+Reactor，它的核心逻辑是一个loop循环，使用伪代码描述如下：  
+```C++{.line-number}  
 void loop()
 {
     while(!stop)
@@ -76,3 +76,27 @@ void loop()
 }
 
 ```
+### TimeEvent 定时任务  
+1.指定时间点 arrive_time  
+2.时间间隔interval，单位ms  
+3.is_repeated 周期性  
+4.is_cancled //取消标志  
+5.task  
+
+cancel() //取消定时器  
+cancleRepeated() //取消重复  
+
+### Timer  
+定时器，他是一个TimeEvent 的集合  
+Timer 继承 FdEvent
+```
+addTimerEvent();  添加定时任务
+deleteTimerEvet(); //删除定时任务
+
+onTimer(); //当发生了 IO 事件之和，需要执行的方法
+
+reserArriveTime()
+
+mutimap 存储 TimerEvent <key(arrivetime),TimerEvent>
+```
+

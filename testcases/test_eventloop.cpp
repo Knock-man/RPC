@@ -4,11 +4,13 @@
 #include <arpa/inet.h>
 #include <fstream>
 #include <string.h>
+#include <memory>
 #include <unistd.h>
 #include <filesystem>
 #include "../rocket/common/log.h"
 #include "../rocket/common/config.h"
 #include "../rocket/net/eventloop.h"
+#include "../rocket/net/timer_event.h"
 using namespace std;
 
 int main()
@@ -27,7 +29,7 @@ int main()
 
     sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
-    addr.sin_port = htons(12146);
+    addr.sin_port = htons(21031);
     addr.sin_family = AF_INET;
     inet_aton("127.0.0.1", &addr.sin_addr);
 
@@ -56,6 +58,12 @@ int main()
         DEBUGLOG("success get client fd[%d] peer addr:[%s:%d]", clientfd, inet_ntoa(peer_adr.sin_addr), ntohs(peer_adr.sin_port));
     });
     eventloop->addEpollEvent(&event); // 套接字挂到树上
+
+    int i = 0;
+    rocket::TimerEvent::s_ptr timer_event = std::make_shared<rocket::TimerEvent>(
+        1000, true, [&i]()
+        { INFOLOG("%d 次触发定时事件", i++); });
+    eventloop->addTimerEvent(timer_event);
     eventloop->loop();
     return 0;
 }

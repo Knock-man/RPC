@@ -249,6 +249,54 @@ rocket/net/fd_event.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event.cpp.s
 .PHONY : rocket/net/fd_event.cpp.s
 
+rocket/net/timer.o: rocket/net/timer.cpp.o
+.PHONY : rocket/net/timer.o
+
+# target to build an object file
+rocket/net/timer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer.cpp.o
+.PHONY : rocket/net/timer.cpp.o
+
+rocket/net/timer.i: rocket/net/timer.cpp.i
+.PHONY : rocket/net/timer.i
+
+# target to preprocess a source file
+rocket/net/timer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer.cpp.i
+.PHONY : rocket/net/timer.cpp.i
+
+rocket/net/timer.s: rocket/net/timer.cpp.s
+.PHONY : rocket/net/timer.s
+
+# target to generate assembly for a file
+rocket/net/timer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer.cpp.s
+.PHONY : rocket/net/timer.cpp.s
+
+rocket/net/timer_event.o: rocket/net/timer_event.cpp.o
+.PHONY : rocket/net/timer_event.o
+
+# target to build an object file
+rocket/net/timer_event.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer_event.cpp.o
+.PHONY : rocket/net/timer_event.cpp.o
+
+rocket/net/timer_event.i: rocket/net/timer_event.cpp.i
+.PHONY : rocket/net/timer_event.i
+
+# target to preprocess a source file
+rocket/net/timer_event.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer_event.cpp.i
+.PHONY : rocket/net/timer_event.cpp.i
+
+rocket/net/timer_event.s: rocket/net/timer_event.cpp.s
+.PHONY : rocket/net/timer_event.s
+
+# target to generate assembly for a file
+rocket/net/timer_event.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer_event.cpp.s
+.PHONY : rocket/net/timer_event.cpp.s
+
 rocket/net/wakeup_fd_event.o: rocket/net/wakeup_fd_event.cpp.o
 .PHONY : rocket/net/wakeup_fd_event.o
 
@@ -345,6 +393,12 @@ help:
 	@echo "... rocket/net/fd_event.o"
 	@echo "... rocket/net/fd_event.i"
 	@echo "... rocket/net/fd_event.s"
+	@echo "... rocket/net/timer.o"
+	@echo "... rocket/net/timer.i"
+	@echo "... rocket/net/timer.s"
+	@echo "... rocket/net/timer_event.o"
+	@echo "... rocket/net/timer_event.i"
+	@echo "... rocket/net/timer_event.s"
 	@echo "... rocket/net/wakeup_fd_event.o"
 	@echo "... rocket/net/wakeup_fd_event.i"
 	@echo "... rocket/net/wakeup_fd_event.s"

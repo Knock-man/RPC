@@ -6,6 +6,7 @@
 
 #include "fd_event.h"
 #include "wakeup_fd_event.h"
+#include "timer.h"
 
 namespace rocket
 {
@@ -30,10 +31,14 @@ namespace rocket
 
         void addTask(std::function<void()> cb, bool is_wake_up = false);
 
+        void addTimerEvent(TimerEvent::s_ptr event);
+
     private:
         void dealWakeup();
 
         void initWakeUpFdEvent();
+
+        void initTimer();
 
     private:
         pid_t m_loop_threadId; // eventloop线程id
@@ -49,5 +54,7 @@ namespace rocket
         std::set<int> m_listen_fds; // 监听套接字集合
 
         std::queue<std::function<void()>> m_pending_task; // 待执行的任务队列
+
+        Timer *m_timer{NULL};
     };
 }
