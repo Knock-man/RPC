@@ -1,8 +1,6 @@
 #include "config.h"
 #include <tinyxml.h>
-#include <mutex>
 #include <fstream>
-#include "config.h"
 #include "util.h"
 #include "iostream"
 
@@ -65,5 +63,4 @@ namespace rocket
 
         m_log_level = log_level_str;
     }
-
 }

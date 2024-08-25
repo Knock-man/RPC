@@ -1,8 +1,8 @@
-#pragma once
+#ifndef CONFIG_H
+#define CONFIG_H
 
 #include <unordered_map>
 #include <string>
-
 namespace rocket
 {
     class Config
@@ -23,3 +23,4 @@ namespace rocket
     };
 
 }
+#endif

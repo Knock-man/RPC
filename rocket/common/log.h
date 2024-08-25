@@ -2,7 +2,6 @@
 #include <string>
 #include <memory>
 #include <queue>
-#include <mutex>
 #include "config.h"
 #include "util.h"
 #include <iostream>

@@ -5,7 +5,6 @@ namespace rocket
 {
     static int g_pid = 0;
     static thread_local int g_thread_id = 0;
-
     pid_t getPid()
     {
         if (g_pid == 0)

@@ -1,5 +1,5 @@
-CMakeFiles/app.dir/testcases/test_log.cc.o: \
- /home/xbj/projects/RPC/testcases/test_log.cc /usr/include/stdc-predef.h \
+CMakeFiles/app.dir/testcases/test_log.cpp.o: \
+ /home/xbj/projects/RPC/testcases/test_log.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -158,7 +158,7 @@ CMakeFiles/app.dir/testcases/test_log.cc.o: \
  /usr/include/c++/13/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
- /usr/include/c++/13/bits/fstream.tcc \
+ /usr/include/c++/13/bits/fstream.tcc /usr/include/c++/13/filesystem \
  /home/xbj/projects/RPC/testcases/../rocket/common/log.h \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/bits/stl_uninitialized.h \
@@ -178,9 +178,7 @@ CMakeFiles/app.dir/testcases/test_log.cc.o: \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc /usr/include/c++/13/bits/stl_heap.h \
- /usr/include/c++/13/bits/stl_queue.h /usr/include/c++/13/mutex \
- /usr/include/c++/13/bits/std_mutex.h \
- /usr/include/c++/13/bits/unique_lock.h \
+ /usr/include/c++/13/bits/stl_queue.h \
  /home/xbj/projects/RPC/testcases/../rocket/common/config.h \
  /usr/include/c++/13/unordered_map \
  /usr/include/c++/13/bits/unordered_map.h \
@@ -195,4 +193,7 @@ CMakeFiles/app.dir/testcases/test_log.cc.o: \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h
+ /usr/include/linux/close_range.h /usr/include/c++/13/mutex \
+ /usr/include/c++/13/bits/std_mutex.h \
+ /usr/include/c++/13/bits/unique_lock.h \
+ /home/xbj/projects/RPC/testcases/../rocket/common/config.h
