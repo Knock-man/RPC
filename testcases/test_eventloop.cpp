@@ -12,6 +12,7 @@
 #include "../rocket/net/eventloop.h"
 #include "../rocket/net/timer_event.h"
 #include "../rocket/net/io_thread.h"
+#include "../rocket/net/io_thread_group.h"
 using namespace std;
 
 void test_io_thread()
@@ -34,7 +35,7 @@ int main()
 
     sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
-    addr.sin_port = htons(8787);
+    addr.sin_port = htons(11031);
     addr.sin_family = AF_INET;
     inet_aton("127.0.0.1", &addr.sin_addr);
 
@@ -68,11 +69,21 @@ int main()
         1000, true, [&i]()
         { INFOLOG("%d 次触发定时事件", i++); });
 
-    rocket::IOThread io_thread;
-    io_thread.getEventLoop()->addEpollEvent(&event);      // 添加连接监听
-    io_thread.getEventLoop()->addTimerEvent(timer_event); // 添加超时监听
-    io_thread.start();
-    io_thread.join();
+    // rocket::IOThread io_thread;
+    // io_thread.getEventLoop()->addEpollEvent(&event);      // 添加连接监听
+    // io_thread.getEventLoop()->addTimerEvent(timer_event); // 添加超时监听
+    // io_thread.start();
+    // io_thread.join();
+    rocket::IOThreadGroup io_thread_group(2);
+    rocket::IOThread *io_thread = io_thread_group.getIOThread();
+    io_thread->getEventLoop()->addEpollEvent(&event);
+    io_thread->getEventLoop()->addTimerEvent(timer_event);
+
+    rocket::IOThread *io_thread2 = io_thread_group.getIOThread();
+    io_thread2->getEventLoop()->addTimerEvent(timer_event);
+
+    io_thread_group.start();
+    io_thread_group.join();
 
     return 0;
 }

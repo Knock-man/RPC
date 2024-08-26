@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/app.dir/rocket/net/fd_event.cpp.o.d"
   "CMakeFiles/app.dir/rocket/net/io_thread.cpp.o"
   "CMakeFiles/app.dir/rocket/net/io_thread.cpp.o.d"
+  "CMakeFiles/app.dir/rocket/net/io_thread_group.cpp.o"
+  "CMakeFiles/app.dir/rocket/net/io_thread_group.cpp.o.d"
   "CMakeFiles/app.dir/rocket/net/timer.cpp.o"
   "CMakeFiles/app.dir/rocket/net/timer.cpp.o.d"
   "CMakeFiles/app.dir/rocket/net/timer_event.cpp.o"
