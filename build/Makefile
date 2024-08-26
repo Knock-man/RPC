@@ -249,6 +249,30 @@ rocket/net/fd_event.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event.cpp.s
 .PHONY : rocket/net/fd_event.cpp.s
 
+rocket/net/io_thread.o: rocket/net/io_thread.cpp.o
+.PHONY : rocket/net/io_thread.o
+
+# target to build an object file
+rocket/net/io_thread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/io_thread.cpp.o
+.PHONY : rocket/net/io_thread.cpp.o
+
+rocket/net/io_thread.i: rocket/net/io_thread.cpp.i
+.PHONY : rocket/net/io_thread.i
+
+# target to preprocess a source file
+rocket/net/io_thread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/io_thread.cpp.i
+.PHONY : rocket/net/io_thread.cpp.i
+
+rocket/net/io_thread.s: rocket/net/io_thread.cpp.s
+.PHONY : rocket/net/io_thread.s
+
+# target to generate assembly for a file
+rocket/net/io_thread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/io_thread.cpp.s
+.PHONY : rocket/net/io_thread.cpp.s
+
 rocket/net/timer.o: rocket/net/timer.cpp.o
 .PHONY : rocket/net/timer.o
 
@@ -393,6 +417,9 @@ help:
 	@echo "... rocket/net/fd_event.o"
 	@echo "... rocket/net/fd_event.i"
 	@echo "... rocket/net/fd_event.s"
+	@echo "... rocket/net/io_thread.o"
+	@echo "... rocket/net/io_thread.i"
+	@echo "... rocket/net/io_thread.s"
 	@echo "... rocket/net/timer.o"
 	@echo "... rocket/net/timer.i"
 	@echo "... rocket/net/timer.s"

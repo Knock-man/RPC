@@ -11,13 +11,18 @@
 #include "../rocket/common/config.h"
 #include "../rocket/net/eventloop.h"
 #include "../rocket/net/timer_event.h"
+#include "../rocket/net/io_thread.h"
 using namespace std;
 
+void test_io_thread()
+{
+}
 int main()
 {
 
     rocket::Config::SetGlobalConfig("rocket.xml");
 
+    test_io_thread();
     rocket::EventLoop *eventloop = new rocket::EventLoop();
 
     int listedfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -29,7 +34,7 @@ int main()
 
     sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
-    addr.sin_port = htons(21031);
+    addr.sin_port = htons(8787);
     addr.sin_family = AF_INET;
     inet_aton("127.0.0.1", &addr.sin_addr);
 
@@ -57,13 +62,17 @@ int main()
         inet_ntoa(peer_adr.sin_addr);
         DEBUGLOG("success get client fd[%d] peer addr:[%s:%d]", clientfd, inet_ntoa(peer_adr.sin_addr), ntohs(peer_adr.sin_port));
     });
-    eventloop->addEpollEvent(&event); // 套接字挂到树上
 
     int i = 0;
     rocket::TimerEvent::s_ptr timer_event = std::make_shared<rocket::TimerEvent>(
         1000, true, [&i]()
         { INFOLOG("%d 次触发定时事件", i++); });
-    eventloop->addTimerEvent(timer_event);
-    eventloop->loop();
+
+    rocket::IOThread io_thread;
+    io_thread.getEventLoop()->addEpollEvent(&event);      // 添加连接监听
+    io_thread.getEventLoop()->addTimerEvent(timer_event); // 添加超时监听
+    io_thread.start();
+    io_thread.join();
+
     return 0;
 }

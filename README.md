@@ -100,3 +100,17 @@ reserArriveTime()
 mutimap 存储 TimerEvent <key(arrivetime),TimerEvent>
 ```
 
+### IO线程
+创建一个IO线程，他会帮我们执行:
+1、创建一个新线程(pthread_create)
+2、在新的线程里面 创建一个EventLoop，完成初始化
+3、开启loop
+```
+class {
+    pthread_t m_thread;
+    pid_t m_thread_id;
+    EventLoop event_loop;
+
+}
+```
+

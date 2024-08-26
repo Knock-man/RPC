@@ -17,9 +17,10 @@ namespace rocket
         void OnTimer(); // 当发生IO事件后,eventloop 会执行这个回调函数
 
     private:
-        void resetArriveTime();
+        void resetArriveTime(); // 重置发生时间
 
     private:
+        // 定时队列 <时间戳，定时事件>
         std::multimap<int64_t, TimerEvent::s_ptr> m_pending_events;
     };
 }

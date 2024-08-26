@@ -8,10 +8,11 @@ namespace rocket
 {
     Timer::Timer() : FdEvent()
     {
+        // 创建定时fd  时间到了变为可变事件
         m_fd = timerfd_create(CLOCK_MONOTONIC, TFD_NONBLOCK | TFD_CLOEXEC);
         DEBUGLOG("time fd = %d", m_fd);
 
-        // 把fd的可读事件放到了 eventloop 上监听
+        // 设置可读事件 绑定读事件处理函数
         listen(FdEvent::IN_EVENT, std::bind(&Timer::OnTimer, this));
     }
 
@@ -24,14 +25,13 @@ namespace rocket
         bool is_reset_timerfd = false; // 是否重写设置超时时间(防止加入的任务时间已经过时，但没有处理)
         {
             std::lock_guard<std::mutex> lock(mtx);
-
-            if (m_pending_events.empty())
+            if (m_pending_events.empty()) // 定时队列为空，重置定时时间
             {
                 is_reset_timerfd = true;
             }
             else
             {
-                // 当前插入事件的发生时间 早于 定时队列所有事件的发生时间，需要重置发生时间
+                // 当前插入事件的发生时间 早于 定时队列所有事件的发生时间，需要重置发生时间(防止已经超时未处理)
                 auto it = m_pending_events.begin();
                 if ((*it).second->getArriveTime() > time_event->getArriveTime())
                 {
@@ -41,7 +41,7 @@ namespace rocket
             m_pending_events.emplace(time_event->getArriveTime(), time_event);
         }
 
-        if (is_reset_timerfd) // 重新设置超时时间
+        if (is_reset_timerfd) // 重置超时时间
         {
             resetArriveTime();
         }
@@ -68,9 +68,10 @@ namespace rocket
         DEBUGLOG("success delete TimeEvent at arrive time %lld", time_event->getArriveTime());
     }
 
+    // 定时器到期处理函数 取出所有超时的任务，进行处理(重复性定时任务需要再次加入定时队列中)
     void Timer::OnTimer()
     {
-        // 处理缓冲区数据，防止下一次继续触发可读事件
+        // 读取缓冲区数据，防止下一次继续触发可读事件
         char buf[8];
         while (1)
         {
@@ -98,7 +99,7 @@ namespace rocket
                         tasks.push_back(std::make_pair((*it).second->getArriveTime(), (*it).second->getCallBack()));
                     }
                 }
-                else // 事件还未到期,可以跳出遍历了
+                else // 事件还未到期,跳出遍历
                 {
                     break;
                 }
@@ -111,14 +112,14 @@ namespace rocket
         // 需要把周期定时的Event 再次添加定时队列中进去
         for (auto i = tmps.begin(); i != tmps.end(); ++i)
         {
-            if ((*i)->isRepeated())
+            if ((*i)->isRepeated()) // 是周期性任务
             {
-                (*i)->resetArriveTime();
-                addTimerEvent(*i);
+                (*i)->resetArriveTime(); // 重置该任务发生时间
+                addTimerEvent(*i);       // 添加进定时队列(会重新排序)
             }
         }
 
-        resetArriveTime();
+        resetArriveTime(); // 重置定时器套接字可读时间
 
         // 执行到期定时任务
         for (auto i : tasks)
@@ -140,14 +141,15 @@ namespace rocket
         }
         if (!tmp.size())
             return;
-        int64_t nowTime = getNowMs();
+
+        int64_t nowTime = getNowMs(); // 获取当前时间戳
 
         auto it = tmp.begin();
         int64_t inteval = 0;
 
         if (it->second->getArriveTime() > nowTime) // 最近的定时任务还没有到期
         {
-            inteval = it->second->getArriveTime() - nowTime; // 间隔设为距离第一个任务时间点的间隔
+            inteval = it->second->getArriveTime() - nowTime; // 发生间隔设为距离第一个任务时间戳的间隔
         }
         else // 最近的定时任务已经到期了，但还没有执行，立马触发epoll_wait，拯救过期任务
         {
@@ -164,7 +166,7 @@ namespace rocket
         memset(&value, 0, sizeof(value));
         value.it_value = ts;
 
-        int rt = timerfd_settime(m_fd, 0, &value, NULL); // 到期fd变为可读事件
+        int rt = timerfd_settime(m_fd, 0, &value, NULL); // 重新设置定时器描述符可读时间
         if (rt != 0)
         {
             ERRORLOG("timerfd_settime error,error=%d,error=%s", errno, strerror(errno));

@@ -12,26 +12,27 @@ namespace rocket
 
         TimerEvent(int interval, bool is_repeated, std::function<void()> cb);
 
+        // 获取发生事件
         int64_t getArriveTime() const
         {
             return m_arrive_time;
         }
-
+        // 设置取消
         void setCancled(bool value)
         {
             m_is_cancled = value;
         }
-
+        // 是否取消
         bool isCancled() const
         {
             return m_is_cancled;
         }
-
+        // 是否重复
         bool isRepeated() const
         {
             return m_is_repeated;
         }
-
+        // 获取回调
         std::function<void()> getCallBack() const
         {
             return m_task;
@@ -45,6 +46,6 @@ namespace rocket
         bool m_is_repeated{false}; // 周期性
         bool m_is_cancled{false};  // 取消标志
 
-        std::function<void()> m_task; // 任务对象
+        std::function<void()> m_task; // 任务
     };
 }
