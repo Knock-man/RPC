@@ -4,7 +4,7 @@
 #include "../rocket/common/log.h"
 namespace rocket
 {
-    TcpBuffer::TcpBuffer(int size)
+    TcpBuffer::TcpBuffer(int size) : m_size(size)
     {
         m_buffer.resize(size);
     }
@@ -22,7 +22,7 @@ namespace rocket
     // 返回可写字节数
     int TcpBuffer::writeAble()
     {
-        m_size - m_write_index;
+        return m_size - m_write_index;
     }
 
     int TcpBuffer::readIndex()
@@ -44,6 +44,7 @@ namespace rocket
             resizeBuffer(new_size);
         }
         memcpy(&m_buffer[m_write_index], buf, size);
+        m_write_index += size;
     }
 
     void TcpBuffer::readFromBuffer(std::vector<char> &re, int size)
@@ -116,7 +117,7 @@ namespace rocket
             ERRORLOG("moveReadIndex error, invalid size %d, old_read_index %d, buffer size %d", size, m_read_index, m_buffer.size());
             return;
         }
-        m_read_index = j;
+        m_write_index = j;
         adjustBuffer();
     }
 }

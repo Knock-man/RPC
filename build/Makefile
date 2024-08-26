@@ -249,6 +249,30 @@ rocket/net/fd_event.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event.cpp.s
 .PHONY : rocket/net/fd_event.cpp.s
 
+rocket/net/fd_event_group.o: rocket/net/fd_event_group.cpp.o
+.PHONY : rocket/net/fd_event_group.o
+
+# target to build an object file
+rocket/net/fd_event_group.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event_group.cpp.o
+.PHONY : rocket/net/fd_event_group.cpp.o
+
+rocket/net/fd_event_group.i: rocket/net/fd_event_group.cpp.i
+.PHONY : rocket/net/fd_event_group.i
+
+# target to preprocess a source file
+rocket/net/fd_event_group.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event_group.cpp.i
+.PHONY : rocket/net/fd_event_group.cpp.i
+
+rocket/net/fd_event_group.s: rocket/net/fd_event_group.cpp.s
+.PHONY : rocket/net/fd_event_group.s
+
+# target to generate assembly for a file
+rocket/net/fd_event_group.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event_group.cpp.s
+.PHONY : rocket/net/fd_event_group.cpp.s
+
 rocket/net/io_thread.o: rocket/net/io_thread.cpp.o
 .PHONY : rocket/net/io_thread.o
 
@@ -369,6 +393,30 @@ rocket/net/tcp/tcp_buffer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.s
 .PHONY : rocket/net/tcp/tcp_buffer.cpp.s
 
+rocket/net/tcp/tcp_connection.o: rocket/net/tcp/tcp_connection.cpp.o
+.PHONY : rocket/net/tcp/tcp_connection.o
+
+# target to build an object file
+rocket/net/tcp/tcp_connection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_connection.cpp.o
+.PHONY : rocket/net/tcp/tcp_connection.cpp.o
+
+rocket/net/tcp/tcp_connection.i: rocket/net/tcp/tcp_connection.cpp.i
+.PHONY : rocket/net/tcp/tcp_connection.i
+
+# target to preprocess a source file
+rocket/net/tcp/tcp_connection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_connection.cpp.i
+.PHONY : rocket/net/tcp/tcp_connection.cpp.i
+
+rocket/net/tcp/tcp_connection.s: rocket/net/tcp/tcp_connection.cpp.s
+.PHONY : rocket/net/tcp/tcp_connection.s
+
+# target to generate assembly for a file
+rocket/net/tcp/tcp_connection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_connection.cpp.s
+.PHONY : rocket/net/tcp/tcp_connection.cpp.s
+
 rocket/net/tcp/tcp_server.o: rocket/net/tcp/tcp_server.cpp.o
 .PHONY : rocket/net/tcp/tcp_server.o
 
@@ -464,6 +512,30 @@ rocket/net/wakeup_fd_event.s: rocket/net/wakeup_fd_event.cpp.s
 rocket/net/wakeup_fd_event.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/wakeup_fd_event.cpp.s
 .PHONY : rocket/net/wakeup_fd_event.cpp.s
+
+testcases/test_client.o: testcases/test_client.cpp.o
+.PHONY : testcases/test_client.o
+
+# target to build an object file
+testcases/test_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_client.cpp.o
+.PHONY : testcases/test_client.cpp.o
+
+testcases/test_client.i: testcases/test_client.cpp.i
+.PHONY : testcases/test_client.i
+
+# target to preprocess a source file
+testcases/test_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_client.cpp.i
+.PHONY : testcases/test_client.cpp.i
+
+testcases/test_client.s: testcases/test_client.cpp.s
+.PHONY : testcases/test_client.s
+
+# target to generate assembly for a file
+testcases/test_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_client.cpp.s
+.PHONY : testcases/test_client.cpp.s
 
 testcases/test_eventloop.o: testcases/test_eventloop.cpp.o
 .PHONY : testcases/test_eventloop.o
@@ -561,6 +633,9 @@ help:
 	@echo "... rocket/net/fd_event.o"
 	@echo "... rocket/net/fd_event.i"
 	@echo "... rocket/net/fd_event.s"
+	@echo "... rocket/net/fd_event_group.o"
+	@echo "... rocket/net/fd_event_group.i"
+	@echo "... rocket/net/fd_event_group.s"
 	@echo "... rocket/net/io_thread.o"
 	@echo "... rocket/net/io_thread.i"
 	@echo "... rocket/net/io_thread.s"
@@ -576,6 +651,9 @@ help:
 	@echo "... rocket/net/tcp/tcp_buffer.o"
 	@echo "... rocket/net/tcp/tcp_buffer.i"
 	@echo "... rocket/net/tcp/tcp_buffer.s"
+	@echo "... rocket/net/tcp/tcp_connection.o"
+	@echo "... rocket/net/tcp/tcp_connection.i"
+	@echo "... rocket/net/tcp/tcp_connection.s"
 	@echo "... rocket/net/tcp/tcp_server.o"
 	@echo "... rocket/net/tcp/tcp_server.i"
 	@echo "... rocket/net/tcp/tcp_server.s"
@@ -588,6 +666,9 @@ help:
 	@echo "... rocket/net/wakeup_fd_event.o"
 	@echo "... rocket/net/wakeup_fd_event.i"
 	@echo "... rocket/net/wakeup_fd_event.s"
+	@echo "... testcases/test_client.o"
+	@echo "... testcases/test_client.i"
+	@echo "... testcases/test_client.s"
 	@echo "... testcases/test_eventloop.o"
 	@echo "... testcases/test_eventloop.i"
 	@echo "... testcases/test_eventloop.s"

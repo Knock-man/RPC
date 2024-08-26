@@ -18,9 +18,13 @@ namespace rocket
 
         ~FdEvent();
 
+        void setNonBlock();
+
         std::function<void()> handler(TriggerEvent event_type);
 
         void listen(TriggerEvent event_type, std::function<void()> callback);
+
+        void cancle(TriggerEvent event_type);
 
         int getFd() const
         {

@@ -23,6 +23,8 @@
     {                                                                                              \
         ERRORLOG("failed epoll_ctl when add fd, errno=%d, errno info=%s", errno, strerror(errno)); \
     }                                                                                              \
+    if (op == EPOLL_CTL_ADD)                                                                       \
+        m_listen_fds.insert(event->getFd());                                                       \
     DEBUGLOG("epoll_ctl Add event success, fd[%d]", event->getFd())
 
 // epoll中删除套接字
@@ -39,6 +41,7 @@
     {                                                                                         \
         ERRORLOG("failed epoll_ctl when add fd, errno=%d, errno=%s", errno, strerror(errno)); \
     }                                                                                         \
+    m_listen_fds.erase(event->getFd());                                                       \
     DEBUGLOG("epoll_ctl delete event success, fd[%d]", event->getFd());
 
 namespace rocket

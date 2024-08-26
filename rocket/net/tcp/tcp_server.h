@@ -1,8 +1,10 @@
 #pragma once
+#include <set>
 #include "tcp_acceptor.h"
 #include "net_addr.h"
 #include "../eventloop.h"
 #include "../io_thread_group.h"
+#include "rocket/net/tcp/tcp_connection.h"
 namespace rocket
 {
     class TcpServer
@@ -31,5 +33,7 @@ namespace rocket
         FdEvent *m_listen_fd_event;
 
         int m_client_counts{0};
+
+        std::set<TcpConection::s_ptr> m_client;
     };
 }
