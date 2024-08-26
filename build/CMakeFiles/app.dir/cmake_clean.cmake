@@ -15,6 +15,12 @@ file(REMOVE_RECURSE
   "CMakeFiles/app.dir/rocket/net/io_thread.cpp.o.d"
   "CMakeFiles/app.dir/rocket/net/io_thread_group.cpp.o"
   "CMakeFiles/app.dir/rocket/net/io_thread_group.cpp.o.d"
+  "CMakeFiles/app.dir/rocket/net/tcp/net_addr.cpp.o"
+  "CMakeFiles/app.dir/rocket/net/tcp/net_addr.cpp.o.d"
+  "CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.o"
+  "CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.o.d"
+  "CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.o"
+  "CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.o.d"
   "CMakeFiles/app.dir/rocket/net/timer.cpp.o"
   "CMakeFiles/app.dir/rocket/net/timer.cpp.o.d"
   "CMakeFiles/app.dir/rocket/net/timer_event.cpp.o"
@@ -25,6 +31,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/app.dir/testcases/test_eventloop.cpp.o.d"
   "CMakeFiles/app.dir/testcases/test_log.cpp.o"
   "CMakeFiles/app.dir/testcases/test_log.cpp.o.d"
+  "CMakeFiles/app.dir/testcases/test_tcp.cpp.o"
+  "CMakeFiles/app.dir/testcases/test_tcp.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

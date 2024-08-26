@@ -9,12 +9,14 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/rocket/common)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/rocket/net)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/rocket/net/tcp)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/conf)
 
 file(GLOB SRC ${CMAKE_CURRENT_SOURCE_DIR}/rocket/common/*.c*)
 file(GLOB NET ${CMAKE_CURRENT_SOURCE_DIR}/rocket/net/*.c*)
+file(GLOB TCP ${CMAKE_CURRENT_SOURCE_DIR}/rocket/net/tcp/*.c*)
 file(GLOB TEST ${CMAKE_CURRENT_SOURCE_DIR}/testcases/*.c*)
 
-add_executable(app ${SRC} ${NET} ${TEST})
+add_executable(app ${SRC} ${NET} ${TCP} ${TEST})
 
 target_link_libraries(app pthread tinyxml)

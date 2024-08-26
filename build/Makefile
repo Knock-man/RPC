@@ -297,6 +297,78 @@ rocket/net/io_thread_group.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/io_thread_group.cpp.s
 .PHONY : rocket/net/io_thread_group.cpp.s
 
+rocket/net/tcp/net_addr.o: rocket/net/tcp/net_addr.cpp.o
+.PHONY : rocket/net/tcp/net_addr.o
+
+# target to build an object file
+rocket/net/tcp/net_addr.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/net_addr.cpp.o
+.PHONY : rocket/net/tcp/net_addr.cpp.o
+
+rocket/net/tcp/net_addr.i: rocket/net/tcp/net_addr.cpp.i
+.PHONY : rocket/net/tcp/net_addr.i
+
+# target to preprocess a source file
+rocket/net/tcp/net_addr.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/net_addr.cpp.i
+.PHONY : rocket/net/tcp/net_addr.cpp.i
+
+rocket/net/tcp/net_addr.s: rocket/net/tcp/net_addr.cpp.s
+.PHONY : rocket/net/tcp/net_addr.s
+
+# target to generate assembly for a file
+rocket/net/tcp/net_addr.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/net_addr.cpp.s
+.PHONY : rocket/net/tcp/net_addr.cpp.s
+
+rocket/net/tcp/tcp_acceptor.o: rocket/net/tcp/tcp_acceptor.cpp.o
+.PHONY : rocket/net/tcp/tcp_acceptor.o
+
+# target to build an object file
+rocket/net/tcp/tcp_acceptor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.o
+.PHONY : rocket/net/tcp/tcp_acceptor.cpp.o
+
+rocket/net/tcp/tcp_acceptor.i: rocket/net/tcp/tcp_acceptor.cpp.i
+.PHONY : rocket/net/tcp/tcp_acceptor.i
+
+# target to preprocess a source file
+rocket/net/tcp/tcp_acceptor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.i
+.PHONY : rocket/net/tcp/tcp_acceptor.cpp.i
+
+rocket/net/tcp/tcp_acceptor.s: rocket/net/tcp/tcp_acceptor.cpp.s
+.PHONY : rocket/net/tcp/tcp_acceptor.s
+
+# target to generate assembly for a file
+rocket/net/tcp/tcp_acceptor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.s
+.PHONY : rocket/net/tcp/tcp_acceptor.cpp.s
+
+rocket/net/tcp/tcp_buffer.o: rocket/net/tcp/tcp_buffer.cpp.o
+.PHONY : rocket/net/tcp/tcp_buffer.o
+
+# target to build an object file
+rocket/net/tcp/tcp_buffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.o
+.PHONY : rocket/net/tcp/tcp_buffer.cpp.o
+
+rocket/net/tcp/tcp_buffer.i: rocket/net/tcp/tcp_buffer.cpp.i
+.PHONY : rocket/net/tcp/tcp_buffer.i
+
+# target to preprocess a source file
+rocket/net/tcp/tcp_buffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.i
+.PHONY : rocket/net/tcp/tcp_buffer.cpp.i
+
+rocket/net/tcp/tcp_buffer.s: rocket/net/tcp/tcp_buffer.cpp.s
+.PHONY : rocket/net/tcp/tcp_buffer.s
+
+# target to generate assembly for a file
+rocket/net/tcp/tcp_buffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.s
+.PHONY : rocket/net/tcp/tcp_buffer.cpp.s
+
 rocket/net/timer.o: rocket/net/timer.cpp.o
 .PHONY : rocket/net/timer.o
 
@@ -417,6 +489,30 @@ testcases/test_log.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_log.cpp.s
 .PHONY : testcases/test_log.cpp.s
 
+testcases/test_tcp.o: testcases/test_tcp.cpp.o
+.PHONY : testcases/test_tcp.o
+
+# target to build an object file
+testcases/test_tcp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_tcp.cpp.o
+.PHONY : testcases/test_tcp.cpp.o
+
+testcases/test_tcp.i: testcases/test_tcp.cpp.i
+.PHONY : testcases/test_tcp.i
+
+# target to preprocess a source file
+testcases/test_tcp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_tcp.cpp.i
+.PHONY : testcases/test_tcp.cpp.i
+
+testcases/test_tcp.s: testcases/test_tcp.cpp.s
+.PHONY : testcases/test_tcp.s
+
+# target to generate assembly for a file
+testcases/test_tcp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_tcp.cpp.s
+.PHONY : testcases/test_tcp.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -447,6 +543,15 @@ help:
 	@echo "... rocket/net/io_thread_group.o"
 	@echo "... rocket/net/io_thread_group.i"
 	@echo "... rocket/net/io_thread_group.s"
+	@echo "... rocket/net/tcp/net_addr.o"
+	@echo "... rocket/net/tcp/net_addr.i"
+	@echo "... rocket/net/tcp/net_addr.s"
+	@echo "... rocket/net/tcp/tcp_acceptor.o"
+	@echo "... rocket/net/tcp/tcp_acceptor.i"
+	@echo "... rocket/net/tcp/tcp_acceptor.s"
+	@echo "... rocket/net/tcp/tcp_buffer.o"
+	@echo "... rocket/net/tcp/tcp_buffer.i"
+	@echo "... rocket/net/tcp/tcp_buffer.s"
 	@echo "... rocket/net/timer.o"
 	@echo "... rocket/net/timer.i"
 	@echo "... rocket/net/timer.s"
@@ -462,6 +567,9 @@ help:
 	@echo "... testcases/test_log.o"
 	@echo "... testcases/test_log.i"
 	@echo "... testcases/test_log.s"
+	@echo "... testcases/test_tcp.o"
+	@echo "... testcases/test_tcp.i"
+	@echo "... testcases/test_tcp.s"
 .PHONY : help
 
 
