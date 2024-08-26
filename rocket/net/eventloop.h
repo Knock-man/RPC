@@ -40,6 +40,10 @@ namespace rocket
         // 添加定时事件
         void addTimerEvent(TimerEvent::s_ptr event);
 
+    public:
+        // 获取当前线程的eventloop
+        static EventLoop *GetCurrentEventLoop();
+
     private:
         void dealWakeup();
 

@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.o.d"
   "CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.o"
   "CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.o.d"
+  "CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o"
+  "CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o.d"
   "CMakeFiles/app.dir/rocket/net/timer.cpp.o"
   "CMakeFiles/app.dir/rocket/net/timer.cpp.o.d"
   "CMakeFiles/app.dir/rocket/net/timer_event.cpp.o"

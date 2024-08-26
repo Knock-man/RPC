@@ -369,6 +369,30 @@ rocket/net/tcp/tcp_buffer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.s
 .PHONY : rocket/net/tcp/tcp_buffer.cpp.s
 
+rocket/net/tcp/tcp_server.o: rocket/net/tcp/tcp_server.cpp.o
+.PHONY : rocket/net/tcp/tcp_server.o
+
+# target to build an object file
+rocket/net/tcp/tcp_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o
+.PHONY : rocket/net/tcp/tcp_server.cpp.o
+
+rocket/net/tcp/tcp_server.i: rocket/net/tcp/tcp_server.cpp.i
+.PHONY : rocket/net/tcp/tcp_server.i
+
+# target to preprocess a source file
+rocket/net/tcp/tcp_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.i
+.PHONY : rocket/net/tcp/tcp_server.cpp.i
+
+rocket/net/tcp/tcp_server.s: rocket/net/tcp/tcp_server.cpp.s
+.PHONY : rocket/net/tcp/tcp_server.s
+
+# target to generate assembly for a file
+rocket/net/tcp/tcp_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.s
+.PHONY : rocket/net/tcp/tcp_server.cpp.s
+
 rocket/net/timer.o: rocket/net/timer.cpp.o
 .PHONY : rocket/net/timer.o
 
@@ -552,6 +576,9 @@ help:
 	@echo "... rocket/net/tcp/tcp_buffer.o"
 	@echo "... rocket/net/tcp/tcp_buffer.i"
 	@echo "... rocket/net/tcp/tcp_buffer.s"
+	@echo "... rocket/net/tcp/tcp_server.o"
+	@echo "... rocket/net/tcp/tcp_server.i"
+	@echo "... rocket/net/tcp/tcp_server.s"
 	@echo "... rocket/net/timer.o"
 	@echo "... rocket/net/timer.i"
 	@echo "... rocket/net/timer.s"

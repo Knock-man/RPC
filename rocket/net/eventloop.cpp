@@ -186,6 +186,15 @@ namespace rocket
     {
         m_wakeup_fd_event->wakeup();
     }
+    EventLoop *EventLoop::GetCurrentEventLoop()
+    {
+        if (t_current_eventloop)
+        {
+            return t_current_eventloop;
+        }
+        t_current_eventloop = new EventLoop();
+        return t_current_eventloop;
+    }
     void EventLoop::dealWakeup()
     {
     }

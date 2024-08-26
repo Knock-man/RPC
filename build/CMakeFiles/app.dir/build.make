@@ -251,10 +251,24 @@ CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xbj/projects/RPC/rocket/net/tcp/tcp_buffer.cpp -o CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.s
 
+CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o: /home/xbj/projects/RPC/rocket/net/tcp/tcp_server.cpp
+CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o -MF CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o.d -o CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o -c /home/xbj/projects/RPC/rocket/net/tcp/tcp_server.cpp
+
+CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xbj/projects/RPC/rocket/net/tcp/tcp_server.cpp > CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.i
+
+CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xbj/projects/RPC/rocket/net/tcp/tcp_server.cpp -o CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.s
+
 CMakeFiles/app.dir/testcases/test_eventloop.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/testcases/test_eventloop.cpp.o: /home/xbj/projects/RPC/testcases/test_eventloop.cpp
 CMakeFiles/app.dir/testcases/test_eventloop.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/app.dir/testcases/test_eventloop.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/app.dir/testcases/test_eventloop.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/testcases/test_eventloop.cpp.o -MF CMakeFiles/app.dir/testcases/test_eventloop.cpp.o.d -o CMakeFiles/app.dir/testcases/test_eventloop.cpp.o -c /home/xbj/projects/RPC/testcases/test_eventloop.cpp
 
 CMakeFiles/app.dir/testcases/test_eventloop.cpp.i: cmake_force
@@ -268,7 +282,7 @@ CMakeFiles/app.dir/testcases/test_eventloop.cpp.s: cmake_force
 CMakeFiles/app.dir/testcases/test_log.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/testcases/test_log.cpp.o: /home/xbj/projects/RPC/testcases/test_log.cpp
 CMakeFiles/app.dir/testcases/test_log.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/app.dir/testcases/test_log.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/app.dir/testcases/test_log.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/testcases/test_log.cpp.o -MF CMakeFiles/app.dir/testcases/test_log.cpp.o.d -o CMakeFiles/app.dir/testcases/test_log.cpp.o -c /home/xbj/projects/RPC/testcases/test_log.cpp
 
 CMakeFiles/app.dir/testcases/test_log.cpp.i: cmake_force
@@ -282,7 +296,7 @@ CMakeFiles/app.dir/testcases/test_log.cpp.s: cmake_force
 CMakeFiles/app.dir/testcases/test_tcp.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/testcases/test_tcp.cpp.o: /home/xbj/projects/RPC/testcases/test_tcp.cpp
 CMakeFiles/app.dir/testcases/test_tcp.cpp.o: CMakeFiles/app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/app.dir/testcases/test_tcp.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/app.dir/testcases/test_tcp.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/app.dir/testcases/test_tcp.cpp.o -MF CMakeFiles/app.dir/testcases/test_tcp.cpp.o.d -o CMakeFiles/app.dir/testcases/test_tcp.cpp.o -c /home/xbj/projects/RPC/testcases/test_tcp.cpp
 
 CMakeFiles/app.dir/testcases/test_tcp.cpp.i: cmake_force
@@ -308,6 +322,7 @@ app_OBJECTS = \
 "CMakeFiles/app.dir/rocket/net/tcp/net_addr.cpp.o" \
 "CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.o" \
 "CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.o" \
+"CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o" \
 "CMakeFiles/app.dir/testcases/test_eventloop.cpp.o" \
 "CMakeFiles/app.dir/testcases/test_log.cpp.o" \
 "CMakeFiles/app.dir/testcases/test_tcp.cpp.o"
@@ -328,12 +343,13 @@ app_EXTERNAL_OBJECTS =
 /home/xbj/projects/RPC/bin/app: CMakeFiles/app.dir/rocket/net/tcp/net_addr.cpp.o
 /home/xbj/projects/RPC/bin/app: CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.o
 /home/xbj/projects/RPC/bin/app: CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.o
+/home/xbj/projects/RPC/bin/app: CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o
 /home/xbj/projects/RPC/bin/app: CMakeFiles/app.dir/testcases/test_eventloop.cpp.o
 /home/xbj/projects/RPC/bin/app: CMakeFiles/app.dir/testcases/test_log.cpp.o
 /home/xbj/projects/RPC/bin/app: CMakeFiles/app.dir/testcases/test_tcp.cpp.o
 /home/xbj/projects/RPC/bin/app: CMakeFiles/app.dir/build.make
 /home/xbj/projects/RPC/bin/app: CMakeFiles/app.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable /home/xbj/projects/RPC/bin/app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable /home/xbj/projects/RPC/bin/app"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/app.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
