@@ -117,24 +117,38 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named app
+# Target rules for targets named server
 
 # Build rule for target.
-app: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 app
-.PHONY : app
+server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server
+.PHONY : server
 
 # fast build rule for target.
-app/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/build
-.PHONY : app/fast
+server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
+.PHONY : server/fast
+
+#=============================================================================
+# Target rules for targets named client
+
+# Build rule for target.
+client: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client
+.PHONY : client
+
+# fast build rule for target.
+client/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+.PHONY : client/fast
 
 rocket/common/config.o: rocket/common/config.cpp.o
 .PHONY : rocket/common/config.o
 
 # target to build an object file
 rocket/common/config.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/common/config.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/config.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/config.cpp.o
 .PHONY : rocket/common/config.cpp.o
 
 rocket/common/config.i: rocket/common/config.cpp.i
@@ -142,7 +156,8 @@ rocket/common/config.i: rocket/common/config.cpp.i
 
 # target to preprocess a source file
 rocket/common/config.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/common/config.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/config.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/config.cpp.i
 .PHONY : rocket/common/config.cpp.i
 
 rocket/common/config.s: rocket/common/config.cpp.s
@@ -150,7 +165,8 @@ rocket/common/config.s: rocket/common/config.cpp.s
 
 # target to generate assembly for a file
 rocket/common/config.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/common/config.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/config.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/config.cpp.s
 .PHONY : rocket/common/config.cpp.s
 
 rocket/common/log.o: rocket/common/log.cpp.o
@@ -158,7 +174,8 @@ rocket/common/log.o: rocket/common/log.cpp.o
 
 # target to build an object file
 rocket/common/log.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/common/log.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/log.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/log.cpp.o
 .PHONY : rocket/common/log.cpp.o
 
 rocket/common/log.i: rocket/common/log.cpp.i
@@ -166,7 +183,8 @@ rocket/common/log.i: rocket/common/log.cpp.i
 
 # target to preprocess a source file
 rocket/common/log.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/common/log.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/log.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/log.cpp.i
 .PHONY : rocket/common/log.cpp.i
 
 rocket/common/log.s: rocket/common/log.cpp.s
@@ -174,7 +192,8 @@ rocket/common/log.s: rocket/common/log.cpp.s
 
 # target to generate assembly for a file
 rocket/common/log.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/common/log.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/log.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/log.cpp.s
 .PHONY : rocket/common/log.cpp.s
 
 rocket/common/util.o: rocket/common/util.cpp.o
@@ -182,7 +201,8 @@ rocket/common/util.o: rocket/common/util.cpp.o
 
 # target to build an object file
 rocket/common/util.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/common/util.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/util.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/util.cpp.o
 .PHONY : rocket/common/util.cpp.o
 
 rocket/common/util.i: rocket/common/util.cpp.i
@@ -190,7 +210,8 @@ rocket/common/util.i: rocket/common/util.cpp.i
 
 # target to preprocess a source file
 rocket/common/util.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/common/util.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/util.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/util.cpp.i
 .PHONY : rocket/common/util.cpp.i
 
 rocket/common/util.s: rocket/common/util.cpp.s
@@ -198,7 +219,8 @@ rocket/common/util.s: rocket/common/util.cpp.s
 
 # target to generate assembly for a file
 rocket/common/util.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/common/util.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/util.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/util.cpp.s
 .PHONY : rocket/common/util.cpp.s
 
 rocket/net/eventloop.o: rocket/net/eventloop.cpp.o
@@ -206,7 +228,8 @@ rocket/net/eventloop.o: rocket/net/eventloop.cpp.o
 
 # target to build an object file
 rocket/net/eventloop.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/eventloop.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/eventloop.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/eventloop.cpp.o
 .PHONY : rocket/net/eventloop.cpp.o
 
 rocket/net/eventloop.i: rocket/net/eventloop.cpp.i
@@ -214,7 +237,8 @@ rocket/net/eventloop.i: rocket/net/eventloop.cpp.i
 
 # target to preprocess a source file
 rocket/net/eventloop.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/eventloop.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/eventloop.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/eventloop.cpp.i
 .PHONY : rocket/net/eventloop.cpp.i
 
 rocket/net/eventloop.s: rocket/net/eventloop.cpp.s
@@ -222,7 +246,8 @@ rocket/net/eventloop.s: rocket/net/eventloop.cpp.s
 
 # target to generate assembly for a file
 rocket/net/eventloop.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/eventloop.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/eventloop.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/eventloop.cpp.s
 .PHONY : rocket/net/eventloop.cpp.s
 
 rocket/net/fd_event.o: rocket/net/fd_event.cpp.o
@@ -230,7 +255,8 @@ rocket/net/fd_event.o: rocket/net/fd_event.cpp.o
 
 # target to build an object file
 rocket/net/fd_event.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/fd_event.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/fd_event.cpp.o
 .PHONY : rocket/net/fd_event.cpp.o
 
 rocket/net/fd_event.i: rocket/net/fd_event.cpp.i
@@ -238,7 +264,8 @@ rocket/net/fd_event.i: rocket/net/fd_event.cpp.i
 
 # target to preprocess a source file
 rocket/net/fd_event.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/fd_event.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/fd_event.cpp.i
 .PHONY : rocket/net/fd_event.cpp.i
 
 rocket/net/fd_event.s: rocket/net/fd_event.cpp.s
@@ -246,7 +273,8 @@ rocket/net/fd_event.s: rocket/net/fd_event.cpp.s
 
 # target to generate assembly for a file
 rocket/net/fd_event.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/fd_event.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/fd_event.cpp.s
 .PHONY : rocket/net/fd_event.cpp.s
 
 rocket/net/fd_event_group.o: rocket/net/fd_event_group.cpp.o
@@ -254,7 +282,8 @@ rocket/net/fd_event_group.o: rocket/net/fd_event_group.cpp.o
 
 # target to build an object file
 rocket/net/fd_event_group.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event_group.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/fd_event_group.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/fd_event_group.cpp.o
 .PHONY : rocket/net/fd_event_group.cpp.o
 
 rocket/net/fd_event_group.i: rocket/net/fd_event_group.cpp.i
@@ -262,7 +291,8 @@ rocket/net/fd_event_group.i: rocket/net/fd_event_group.cpp.i
 
 # target to preprocess a source file
 rocket/net/fd_event_group.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event_group.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/fd_event_group.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/fd_event_group.cpp.i
 .PHONY : rocket/net/fd_event_group.cpp.i
 
 rocket/net/fd_event_group.s: rocket/net/fd_event_group.cpp.s
@@ -270,7 +300,8 @@ rocket/net/fd_event_group.s: rocket/net/fd_event_group.cpp.s
 
 # target to generate assembly for a file
 rocket/net/fd_event_group.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/fd_event_group.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/fd_event_group.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/fd_event_group.cpp.s
 .PHONY : rocket/net/fd_event_group.cpp.s
 
 rocket/net/io_thread.o: rocket/net/io_thread.cpp.o
@@ -278,7 +309,8 @@ rocket/net/io_thread.o: rocket/net/io_thread.cpp.o
 
 # target to build an object file
 rocket/net/io_thread.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/io_thread.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/io_thread.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/io_thread.cpp.o
 .PHONY : rocket/net/io_thread.cpp.o
 
 rocket/net/io_thread.i: rocket/net/io_thread.cpp.i
@@ -286,7 +318,8 @@ rocket/net/io_thread.i: rocket/net/io_thread.cpp.i
 
 # target to preprocess a source file
 rocket/net/io_thread.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/io_thread.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/io_thread.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/io_thread.cpp.i
 .PHONY : rocket/net/io_thread.cpp.i
 
 rocket/net/io_thread.s: rocket/net/io_thread.cpp.s
@@ -294,7 +327,8 @@ rocket/net/io_thread.s: rocket/net/io_thread.cpp.s
 
 # target to generate assembly for a file
 rocket/net/io_thread.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/io_thread.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/io_thread.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/io_thread.cpp.s
 .PHONY : rocket/net/io_thread.cpp.s
 
 rocket/net/io_thread_group.o: rocket/net/io_thread_group.cpp.o
@@ -302,7 +336,8 @@ rocket/net/io_thread_group.o: rocket/net/io_thread_group.cpp.o
 
 # target to build an object file
 rocket/net/io_thread_group.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/io_thread_group.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/io_thread_group.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/io_thread_group.cpp.o
 .PHONY : rocket/net/io_thread_group.cpp.o
 
 rocket/net/io_thread_group.i: rocket/net/io_thread_group.cpp.i
@@ -310,7 +345,8 @@ rocket/net/io_thread_group.i: rocket/net/io_thread_group.cpp.i
 
 # target to preprocess a source file
 rocket/net/io_thread_group.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/io_thread_group.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/io_thread_group.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/io_thread_group.cpp.i
 .PHONY : rocket/net/io_thread_group.cpp.i
 
 rocket/net/io_thread_group.s: rocket/net/io_thread_group.cpp.s
@@ -318,7 +354,8 @@ rocket/net/io_thread_group.s: rocket/net/io_thread_group.cpp.s
 
 # target to generate assembly for a file
 rocket/net/io_thread_group.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/io_thread_group.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/io_thread_group.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/io_thread_group.cpp.s
 .PHONY : rocket/net/io_thread_group.cpp.s
 
 rocket/net/tcp/net_addr.o: rocket/net/tcp/net_addr.cpp.o
@@ -326,7 +363,8 @@ rocket/net/tcp/net_addr.o: rocket/net/tcp/net_addr.cpp.o
 
 # target to build an object file
 rocket/net/tcp/net_addr.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/net_addr.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/net_addr.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/net_addr.cpp.o
 .PHONY : rocket/net/tcp/net_addr.cpp.o
 
 rocket/net/tcp/net_addr.i: rocket/net/tcp/net_addr.cpp.i
@@ -334,7 +372,8 @@ rocket/net/tcp/net_addr.i: rocket/net/tcp/net_addr.cpp.i
 
 # target to preprocess a source file
 rocket/net/tcp/net_addr.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/net_addr.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/net_addr.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/net_addr.cpp.i
 .PHONY : rocket/net/tcp/net_addr.cpp.i
 
 rocket/net/tcp/net_addr.s: rocket/net/tcp/net_addr.cpp.s
@@ -342,7 +381,8 @@ rocket/net/tcp/net_addr.s: rocket/net/tcp/net_addr.cpp.s
 
 # target to generate assembly for a file
 rocket/net/tcp/net_addr.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/net_addr.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/net_addr.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/net_addr.cpp.s
 .PHONY : rocket/net/tcp/net_addr.cpp.s
 
 rocket/net/tcp/tcp_acceptor.o: rocket/net/tcp/tcp_acceptor.cpp.o
@@ -350,7 +390,8 @@ rocket/net/tcp/tcp_acceptor.o: rocket/net/tcp/tcp_acceptor.cpp.o
 
 # target to build an object file
 rocket/net/tcp/tcp_acceptor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_acceptor.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_acceptor.cpp.o
 .PHONY : rocket/net/tcp/tcp_acceptor.cpp.o
 
 rocket/net/tcp/tcp_acceptor.i: rocket/net/tcp/tcp_acceptor.cpp.i
@@ -358,7 +399,8 @@ rocket/net/tcp/tcp_acceptor.i: rocket/net/tcp/tcp_acceptor.cpp.i
 
 # target to preprocess a source file
 rocket/net/tcp/tcp_acceptor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_acceptor.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_acceptor.cpp.i
 .PHONY : rocket/net/tcp/tcp_acceptor.cpp.i
 
 rocket/net/tcp/tcp_acceptor.s: rocket/net/tcp/tcp_acceptor.cpp.s
@@ -366,7 +408,8 @@ rocket/net/tcp/tcp_acceptor.s: rocket/net/tcp/tcp_acceptor.cpp.s
 
 # target to generate assembly for a file
 rocket/net/tcp/tcp_acceptor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_acceptor.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_acceptor.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_acceptor.cpp.s
 .PHONY : rocket/net/tcp/tcp_acceptor.cpp.s
 
 rocket/net/tcp/tcp_buffer.o: rocket/net/tcp/tcp_buffer.cpp.o
@@ -374,7 +417,8 @@ rocket/net/tcp/tcp_buffer.o: rocket/net/tcp/tcp_buffer.cpp.o
 
 # target to build an object file
 rocket/net/tcp/tcp_buffer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_buffer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_buffer.cpp.o
 .PHONY : rocket/net/tcp/tcp_buffer.cpp.o
 
 rocket/net/tcp/tcp_buffer.i: rocket/net/tcp/tcp_buffer.cpp.i
@@ -382,7 +426,8 @@ rocket/net/tcp/tcp_buffer.i: rocket/net/tcp/tcp_buffer.cpp.i
 
 # target to preprocess a source file
 rocket/net/tcp/tcp_buffer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_buffer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_buffer.cpp.i
 .PHONY : rocket/net/tcp/tcp_buffer.cpp.i
 
 rocket/net/tcp/tcp_buffer.s: rocket/net/tcp/tcp_buffer.cpp.s
@@ -390,15 +435,44 @@ rocket/net/tcp/tcp_buffer.s: rocket/net/tcp/tcp_buffer.cpp.s
 
 # target to generate assembly for a file
 rocket/net/tcp/tcp_buffer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_buffer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_buffer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_buffer.cpp.s
 .PHONY : rocket/net/tcp/tcp_buffer.cpp.s
+
+rocket/net/tcp/tcp_client.o: rocket/net/tcp/tcp_client.cpp.o
+.PHONY : rocket/net/tcp/tcp_client.o
+
+# target to build an object file
+rocket/net/tcp/tcp_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_client.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_client.cpp.o
+.PHONY : rocket/net/tcp/tcp_client.cpp.o
+
+rocket/net/tcp/tcp_client.i: rocket/net/tcp/tcp_client.cpp.i
+.PHONY : rocket/net/tcp/tcp_client.i
+
+# target to preprocess a source file
+rocket/net/tcp/tcp_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_client.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_client.cpp.i
+.PHONY : rocket/net/tcp/tcp_client.cpp.i
+
+rocket/net/tcp/tcp_client.s: rocket/net/tcp/tcp_client.cpp.s
+.PHONY : rocket/net/tcp/tcp_client.s
+
+# target to generate assembly for a file
+rocket/net/tcp/tcp_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_client.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_client.cpp.s
+.PHONY : rocket/net/tcp/tcp_client.cpp.s
 
 rocket/net/tcp/tcp_connection.o: rocket/net/tcp/tcp_connection.cpp.o
 .PHONY : rocket/net/tcp/tcp_connection.o
 
 # target to build an object file
 rocket/net/tcp/tcp_connection.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_connection.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_connection.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_connection.cpp.o
 .PHONY : rocket/net/tcp/tcp_connection.cpp.o
 
 rocket/net/tcp/tcp_connection.i: rocket/net/tcp/tcp_connection.cpp.i
@@ -406,7 +480,8 @@ rocket/net/tcp/tcp_connection.i: rocket/net/tcp/tcp_connection.cpp.i
 
 # target to preprocess a source file
 rocket/net/tcp/tcp_connection.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_connection.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_connection.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_connection.cpp.i
 .PHONY : rocket/net/tcp/tcp_connection.cpp.i
 
 rocket/net/tcp/tcp_connection.s: rocket/net/tcp/tcp_connection.cpp.s
@@ -414,7 +489,8 @@ rocket/net/tcp/tcp_connection.s: rocket/net/tcp/tcp_connection.cpp.s
 
 # target to generate assembly for a file
 rocket/net/tcp/tcp_connection.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_connection.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_connection.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_connection.cpp.s
 .PHONY : rocket/net/tcp/tcp_connection.cpp.s
 
 rocket/net/tcp/tcp_server.o: rocket/net/tcp/tcp_server.cpp.o
@@ -422,7 +498,8 @@ rocket/net/tcp/tcp_server.o: rocket/net/tcp/tcp_server.cpp.o
 
 # target to build an object file
 rocket/net/tcp/tcp_server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_server.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_server.cpp.o
 .PHONY : rocket/net/tcp/tcp_server.cpp.o
 
 rocket/net/tcp/tcp_server.i: rocket/net/tcp/tcp_server.cpp.i
@@ -430,7 +507,8 @@ rocket/net/tcp/tcp_server.i: rocket/net/tcp/tcp_server.cpp.i
 
 # target to preprocess a source file
 rocket/net/tcp/tcp_server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_server.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_server.cpp.i
 .PHONY : rocket/net/tcp/tcp_server.cpp.i
 
 rocket/net/tcp/tcp_server.s: rocket/net/tcp/tcp_server.cpp.s
@@ -438,7 +516,8 @@ rocket/net/tcp/tcp_server.s: rocket/net/tcp/tcp_server.cpp.s
 
 # target to generate assembly for a file
 rocket/net/tcp/tcp_server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/tcp/tcp_server.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/tcp/tcp_server.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/tcp/tcp_server.cpp.s
 .PHONY : rocket/net/tcp/tcp_server.cpp.s
 
 rocket/net/timer.o: rocket/net/timer.cpp.o
@@ -446,7 +525,8 @@ rocket/net/timer.o: rocket/net/timer.cpp.o
 
 # target to build an object file
 rocket/net/timer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/timer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/timer.cpp.o
 .PHONY : rocket/net/timer.cpp.o
 
 rocket/net/timer.i: rocket/net/timer.cpp.i
@@ -454,7 +534,8 @@ rocket/net/timer.i: rocket/net/timer.cpp.i
 
 # target to preprocess a source file
 rocket/net/timer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/timer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/timer.cpp.i
 .PHONY : rocket/net/timer.cpp.i
 
 rocket/net/timer.s: rocket/net/timer.cpp.s
@@ -462,7 +543,8 @@ rocket/net/timer.s: rocket/net/timer.cpp.s
 
 # target to generate assembly for a file
 rocket/net/timer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/timer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/timer.cpp.s
 .PHONY : rocket/net/timer.cpp.s
 
 rocket/net/timer_event.o: rocket/net/timer_event.cpp.o
@@ -470,7 +552,8 @@ rocket/net/timer_event.o: rocket/net/timer_event.cpp.o
 
 # target to build an object file
 rocket/net/timer_event.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer_event.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/timer_event.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/timer_event.cpp.o
 .PHONY : rocket/net/timer_event.cpp.o
 
 rocket/net/timer_event.i: rocket/net/timer_event.cpp.i
@@ -478,7 +561,8 @@ rocket/net/timer_event.i: rocket/net/timer_event.cpp.i
 
 # target to preprocess a source file
 rocket/net/timer_event.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer_event.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/timer_event.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/timer_event.cpp.i
 .PHONY : rocket/net/timer_event.cpp.i
 
 rocket/net/timer_event.s: rocket/net/timer_event.cpp.s
@@ -486,7 +570,8 @@ rocket/net/timer_event.s: rocket/net/timer_event.cpp.s
 
 # target to generate assembly for a file
 rocket/net/timer_event.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/timer_event.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/timer_event.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/timer_event.cpp.s
 .PHONY : rocket/net/timer_event.cpp.s
 
 rocket/net/wakeup_fd_event.o: rocket/net/wakeup_fd_event.cpp.o
@@ -494,7 +579,8 @@ rocket/net/wakeup_fd_event.o: rocket/net/wakeup_fd_event.cpp.o
 
 # target to build an object file
 rocket/net/wakeup_fd_event.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/wakeup_fd_event.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/wakeup_fd_event.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.o
 .PHONY : rocket/net/wakeup_fd_event.cpp.o
 
 rocket/net/wakeup_fd_event.i: rocket/net/wakeup_fd_event.cpp.i
@@ -502,7 +588,8 @@ rocket/net/wakeup_fd_event.i: rocket/net/wakeup_fd_event.cpp.i
 
 # target to preprocess a source file
 rocket/net/wakeup_fd_event.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/wakeup_fd_event.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/wakeup_fd_event.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.i
 .PHONY : rocket/net/wakeup_fd_event.cpp.i
 
 rocket/net/wakeup_fd_event.s: rocket/net/wakeup_fd_event.cpp.s
@@ -510,7 +597,8 @@ rocket/net/wakeup_fd_event.s: rocket/net/wakeup_fd_event.cpp.s
 
 # target to generate assembly for a file
 rocket/net/wakeup_fd_event.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/rocket/net/wakeup_fd_event.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/wakeup_fd_event.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.s
 .PHONY : rocket/net/wakeup_fd_event.cpp.s
 
 testcases/test_client.o: testcases/test_client.cpp.o
@@ -518,7 +606,7 @@ testcases/test_client.o: testcases/test_client.cpp.o
 
 # target to build an object file
 testcases/test_client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_client.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/testcases/test_client.cpp.o
 .PHONY : testcases/test_client.cpp.o
 
 testcases/test_client.i: testcases/test_client.cpp.i
@@ -526,7 +614,7 @@ testcases/test_client.i: testcases/test_client.cpp.i
 
 # target to preprocess a source file
 testcases/test_client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_client.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/testcases/test_client.cpp.i
 .PHONY : testcases/test_client.cpp.i
 
 testcases/test_client.s: testcases/test_client.cpp.s
@@ -534,63 +622,15 @@ testcases/test_client.s: testcases/test_client.cpp.s
 
 # target to generate assembly for a file
 testcases/test_client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_client.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/testcases/test_client.cpp.s
 .PHONY : testcases/test_client.cpp.s
-
-testcases/test_eventloop.o: testcases/test_eventloop.cpp.o
-.PHONY : testcases/test_eventloop.o
-
-# target to build an object file
-testcases/test_eventloop.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_eventloop.cpp.o
-.PHONY : testcases/test_eventloop.cpp.o
-
-testcases/test_eventloop.i: testcases/test_eventloop.cpp.i
-.PHONY : testcases/test_eventloop.i
-
-# target to preprocess a source file
-testcases/test_eventloop.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_eventloop.cpp.i
-.PHONY : testcases/test_eventloop.cpp.i
-
-testcases/test_eventloop.s: testcases/test_eventloop.cpp.s
-.PHONY : testcases/test_eventloop.s
-
-# target to generate assembly for a file
-testcases/test_eventloop.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_eventloop.cpp.s
-.PHONY : testcases/test_eventloop.cpp.s
-
-testcases/test_log.o: testcases/test_log.cpp.o
-.PHONY : testcases/test_log.o
-
-# target to build an object file
-testcases/test_log.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_log.cpp.o
-.PHONY : testcases/test_log.cpp.o
-
-testcases/test_log.i: testcases/test_log.cpp.i
-.PHONY : testcases/test_log.i
-
-# target to preprocess a source file
-testcases/test_log.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_log.cpp.i
-.PHONY : testcases/test_log.cpp.i
-
-testcases/test_log.s: testcases/test_log.cpp.s
-.PHONY : testcases/test_log.s
-
-# target to generate assembly for a file
-testcases/test_log.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_log.cpp.s
-.PHONY : testcases/test_log.cpp.s
 
 testcases/test_tcp.o: testcases/test_tcp.cpp.o
 .PHONY : testcases/test_tcp.o
 
 # target to build an object file
 testcases/test_tcp.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_tcp.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/testcases/test_tcp.cpp.o
 .PHONY : testcases/test_tcp.cpp.o
 
 testcases/test_tcp.i: testcases/test_tcp.cpp.i
@@ -598,7 +638,7 @@ testcases/test_tcp.i: testcases/test_tcp.cpp.i
 
 # target to preprocess a source file
 testcases/test_tcp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_tcp.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/testcases/test_tcp.cpp.i
 .PHONY : testcases/test_tcp.cpp.i
 
 testcases/test_tcp.s: testcases/test_tcp.cpp.s
@@ -606,7 +646,7 @@ testcases/test_tcp.s: testcases/test_tcp.cpp.s
 
 # target to generate assembly for a file
 testcases/test_tcp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/testcases/test_tcp.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/testcases/test_tcp.cpp.s
 .PHONY : testcases/test_tcp.cpp.s
 
 # Help Target
@@ -617,7 +657,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... app"
+	@echo "... client"
+	@echo "... server"
 	@echo "... rocket/common/config.o"
 	@echo "... rocket/common/config.i"
 	@echo "... rocket/common/config.s"
@@ -651,6 +692,9 @@ help:
 	@echo "... rocket/net/tcp/tcp_buffer.o"
 	@echo "... rocket/net/tcp/tcp_buffer.i"
 	@echo "... rocket/net/tcp/tcp_buffer.s"
+	@echo "... rocket/net/tcp/tcp_client.o"
+	@echo "... rocket/net/tcp/tcp_client.i"
+	@echo "... rocket/net/tcp/tcp_client.s"
 	@echo "... rocket/net/tcp/tcp_connection.o"
 	@echo "... rocket/net/tcp/tcp_connection.i"
 	@echo "... rocket/net/tcp/tcp_connection.s"
@@ -669,12 +713,6 @@ help:
 	@echo "... testcases/test_client.o"
 	@echo "... testcases/test_client.i"
 	@echo "... testcases/test_client.s"
-	@echo "... testcases/test_eventloop.o"
-	@echo "... testcases/test_eventloop.i"
-	@echo "... testcases/test_eventloop.s"
-	@echo "... testcases/test_log.o"
-	@echo "... testcases/test_log.i"
-	@echo "... testcases/test_log.s"
 	@echo "... testcases/test_tcp.o"
 	@echo "... testcases/test_tcp.i"
 	@echo "... testcases/test_tcp.s"

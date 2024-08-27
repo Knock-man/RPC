@@ -40,6 +40,8 @@ namespace rocket
         // 添加定时事件
         void addTimerEvent(TimerEvent::s_ptr event);
 
+        bool isLooping();
+
     public:
         // 获取当前线程的eventloop
         static EventLoop *GetCurrentEventLoop();
@@ -67,5 +69,7 @@ namespace rocket
         std::queue<std::function<void()>> m_pending_task; // 待执行的任务队列
 
         Timer *m_timer{NULL}; // 定时器
+
+        bool m_is_looping{false};
     };
 }

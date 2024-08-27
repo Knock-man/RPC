@@ -5,8 +5,8 @@
 #include "tcp_connection.h"
 namespace rocket
 {
-    TcpConection::TcpConection(IOThread *io_thread, int fd, int buffer_size, NetAddr::s_ptr peer_addr)
-        : m_io_thread(io_thread), m_peer_addr(peer_addr), m_state(NotConenct), m_fd{fd}
+    TcpConection::TcpConection(EventLoop *event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr)
+        : m_event_loop(event_loop), m_peer_addr(peer_addr), m_state(NotConenct), m_fd{fd}
     {
         m_in_buffer = std::make_shared<TcpBuffer>(buffer_size);
         m_out_buffer = std::make_shared<TcpBuffer>(buffer_size);
@@ -16,7 +16,7 @@ namespace rocket
         m_fd_event->setNonBlock(); // 设置非阻塞
         m_fd_event->listen(FdEvent::IN_EVENT, std::bind(&TcpConection::onRead, this));
 
-        io_thread->getEventLoop()->addEpollEvent(m_fd_event);
+        m_event_loop->addEpollEvent(m_fd_event);
     }
     TcpConection::~TcpConection()
     {
@@ -105,7 +105,7 @@ namespace rocket
         m_out_buffer->writeToBuffer(msg.c_str(), msg.length());
 
         m_fd_event->listen(FdEvent::OUT_EVENT, std::bind(&TcpConection::onWrite, this));
-        m_io_thread->getEventLoop()->addEpollEvent(m_fd_event);
+        m_event_loop->addEpollEvent(m_fd_event);
     }
 
     void TcpConection::onWrite()
@@ -148,7 +148,7 @@ namespace rocket
         if (is_write_all)
         {
             m_fd_event->cancle(FdEvent::OUT_EVENT);
-            m_io_thread->getEventLoop()->addEpollEvent(m_fd_event);
+            m_event_loop->addEpollEvent(m_fd_event);
         }
     }
 
@@ -170,7 +170,7 @@ namespace rocket
         m_fd_event->cancle(FdEvent::IN_EVENT);
         m_fd_event->cancle(FdEvent::OUT_EVENT);
         // 从event_loop摘下
-        m_io_thread->getEventLoop()->deleteEpollEvent(m_fd_event);
+        m_event_loop->deleteEpollEvent(m_fd_event);
 
         m_state = Closed;
     }
@@ -187,6 +187,11 @@ namespace rocket
         // 发送 FIN 报文，触发了四次挥手的第一个阶段
         // 当fd发生可读事件，但是可读的数据为0，即 对端发送了FIN报文
         ::shutdown(m_fd, SHUT_RDWR);
+    }
+
+    void TcpConection::setConectionType(TcpConnectionType type)
+    {
+        m_connection_type = type;
     }
 
 } // namespace rocket

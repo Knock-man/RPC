@@ -128,6 +128,7 @@ namespace rocket
     // 事件循环
     void EventLoop::loop()
     {
+        m_is_looping = true;
         while (!m_stop_flag)
         {
             // 任务队列去任务执行
@@ -256,5 +257,9 @@ namespace rocket
         {
             wakeup();
         }
+    }
+    bool EventLoop::isLooping()
+    {
+        return m_is_looping;
     }
 }

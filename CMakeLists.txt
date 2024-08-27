@@ -15,8 +15,13 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/conf)
 file(GLOB SRC ${CMAKE_CURRENT_SOURCE_DIR}/rocket/common/*.c*)
 file(GLOB NET ${CMAKE_CURRENT_SOURCE_DIR}/rocket/net/*.c*)
 file(GLOB TCP ${CMAKE_CURRENT_SOURCE_DIR}/rocket/net/tcp/*.c*)
-file(GLOB TEST ${CMAKE_CURRENT_SOURCE_DIR}/testcases/*.c*)
+file(GLOB TEST_server ${CMAKE_CURRENT_SOURCE_DIR}/testcases/test_tcp.cpp)
 
-add_executable(app ${SRC} ${NET} ${TCP} ${TEST})
+file(GLOB TEST_client ${CMAKE_CURRENT_SOURCE_DIR}/testcases/test_client.cpp)
 
-target_link_libraries(app pthread tinyxml)
+add_executable(server ${SRC} ${NET} ${TCP} ${TEST_server})
+
+add_executable(client ${SRC} ${NET} ${TCP} ${TEST_client})
+
+target_link_libraries(server pthread tinyxml)
+target_link_libraries(client pthread tinyxml)

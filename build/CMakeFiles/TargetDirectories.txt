@@ -1,3 +1,4 @@
-/home/xbj/projects/RPC/build/CMakeFiles/app.dir
+/home/xbj/projects/RPC/build/CMakeFiles/server.dir
+/home/xbj/projects/RPC/build/CMakeFiles/client.dir
 /home/xbj/projects/RPC/build/CMakeFiles/edit_cache.dir
 /home/xbj/projects/RPC/build/CMakeFiles/rebuild_cache.dir
