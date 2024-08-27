@@ -1,3 +1,4 @@
+
 #pragma once
 #include <memory>
 #include <queue>
@@ -53,7 +54,7 @@ namespace rocket
         void pushReadMessage(const std::string &req_id, std::function<void(AbstractProtocol::s_ptr)>);
 
     private:
-        EventLoop *m_event_loop{NULL};
+        EventLoop *m_event_loop{NULL}; // 该连接对应的event_loop
 
         NetAddr::s_ptr m_local_addr; // 本地的地址
         NetAddr::s_ptr m_peer_addr;  // 对端服务器地址
@@ -62,7 +63,7 @@ namespace rocket
         TcpBuffer::s_ptr m_out_buffer; // 发送缓冲区
 
         FdEvent *m_fd_event{NULL};
-        AbstractCoder *m_coder{NULL};
+        AbstractCoder *m_coder{NULL}; // 编解码器
         TcpState m_state;
 
         int m_fd{0};

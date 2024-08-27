@@ -29,6 +29,7 @@ namespace rocket
         fcntl(m_fd, F_SETFL, flag | O_NONBLOCK);
     }
 
+    // 获取该fd读写事件对于的事件处理器
     std::function<void()> FdEvent::handler(TriggerEvent event_type)
     {
         if (event_type == TriggerEvent::IN_EVENT)
@@ -41,6 +42,7 @@ namespace rocket
         }
     }
 
+    // 绑定该fd读写事件对应的事件处理器
     void FdEvent::listen(TriggerEvent event_type, std::function<void()> callback)
     {
         if (event_type == TriggerEvent::IN_EVENT)
@@ -55,6 +57,8 @@ namespace rocket
         }
         m_listen_events.data.ptr = this;
     }
+
+    // 取消该fd对应读写事件对应的监听
     void FdEvent::cancle(TriggerEvent event_type)
     {
         if (event_type == TriggerEvent::IN_EVENT)

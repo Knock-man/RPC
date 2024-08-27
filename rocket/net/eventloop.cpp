@@ -69,7 +69,7 @@ namespace rocket
 
         initWakeUpFdEvent(); // 初始化wakeup_fd
 
-        initTimer();
+        initTimer(); // 初始化定时器
 
         INFOLOG("success create event loop in thread %d", m_loop_threadId);
         t_current_eventloop = this;
@@ -114,6 +114,7 @@ namespace rocket
         addEpollEvent(m_wakeup_fd_event); // 挂到红黑树上
     }
 
+    // 添加定时事件
     void EventLoop::addTimerEvent(TimerEvent::s_ptr event)
     {
         m_timer->addTimerEvent(event);
@@ -125,21 +126,21 @@ namespace rocket
         m_timer = new Timer();
         addEpollEvent(m_timer);
     }
+
     // 事件循环
     void EventLoop::loop()
     {
         m_is_looping = true;
         while (!m_stop_flag)
         {
-            // 任务队列去任务执行
+            // 任务队列取任务执行
             std::queue<std::function<void()>> tmp_tasks;
             {
                 std::lock_guard<std::mutex> lock(mtx);
-                // tmp_tasks = m_pending_task;
                 m_pending_task.swap(tmp_tasks);
             }
 
-            while (!tmp_tasks.empty())
+            while (!tmp_tasks.empty()) // 挨个执行任务
             {
                 std::function<void()> cb = tmp_tasks.front();
                 tmp_tasks.pop();
@@ -155,7 +156,7 @@ namespace rocket
 
             // epoll_wait循环监听事件
             int timeout = g_epoll_max_timeout;
-            epoll_event result_events[g_epoll_max_events];
+            epoll_event result_events[g_epoll_max_events]; // events数组
             DEBUGLOG("now begin to epoll_wait");
             int rt = epoll_wait(m_epoll_fd, result_events, g_epoll_max_events, g_epoll_max_timeout);
             DEBUGLOG("now end to epoll_wait,rt=%d", rt);
@@ -163,7 +164,7 @@ namespace rocket
             {
                 ERRORLOG("epoll_wait error, error=", errno);
             }
-            else
+            else // 有感兴趣事件发生
             {
                 for (int i = 0; i < rt; ++i)
                 {
@@ -186,10 +187,13 @@ namespace rocket
         }
     }
 
+    // 唤醒wakeup_fd
     void EventLoop::wakeup()
     {
         m_wakeup_fd_event->wakeup();
     }
+
+    // 获得当前线程的event_loop()
     EventLoop *EventLoop::GetCurrentEventLoop()
     {
         if (t_current_eventloop)
@@ -207,7 +211,7 @@ namespace rocket
     {
         m_stop_flag = true;
     }
-    // epoll_ctl 添加
+    // epoll_ctl 添加/修改事件
     void EventLoop::addEpollEvent(FdEvent *event)
     {
         if (isInLoopThread()) // 在当前线程，直接执行
@@ -246,7 +250,7 @@ namespace rocket
         return getThreadId() == m_loop_threadId;
     }
 
-    // 想任务队列中添加任务
+    // 向任务队列中添加任务
     void EventLoop::addTask(std::function<void()> cb, bool is_wake_up /*==fasle*/)
     {
         {

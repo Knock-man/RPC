@@ -9,20 +9,21 @@ namespace rocket
     TcpConection::TcpConection(EventLoop *event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr, TcpConnectionType type /*= TcpConectionByServer*/)
         : m_event_loop(event_loop), m_peer_addr(peer_addr), m_state(NotConenct), m_fd{fd}, m_connection_type(type)
     {
+        // 创建用户读写缓冲区
         m_in_buffer = std::make_shared<TcpBuffer>(buffer_size);
         m_out_buffer = std::make_shared<TcpBuffer>(buffer_size);
 
-        // 该连接对应的事件
+        // 该连接通信套接字的fd_event
         m_fd_event = FdEventGroup::getFdEventGroup()->getFdEvent(fd);
         m_fd_event->setNonBlock(); // 设置非阻塞
 
-        // 客户端 在需要读message的时候再去监听
+        // 客户端 在需要读 message 的时候再去监听读时间，只有服务器连接客户端之后通信套接字读写事件到要监听
         if (m_connection_type == TcpConectionByServer)
         {
             listenRead(); // 监听可读事件
         }
 
-        m_coder = new StringCoder();
+        m_coder = new StringCoder(); // 创建一个编解码器
     }
     TcpConection::~TcpConection()
     {
@@ -33,6 +34,7 @@ namespace rocket
         }
     }
 
+    // 当通信套接字变为可读之后 调用此事件处理器
     void TcpConection::onRead()
     {
         // 1.从socket缓冲区调用系统的read 函数读取
@@ -95,8 +97,11 @@ namespace rocket
         // TODO 简单的echo,后面补充RPC协议解析
         excute();
     }
+
+    // 处理读取数据
     void TcpConection::excute()
     {
+        // 服务器处理完读取数据之后，将数据存到用户输出缓冲区，立马注册可写事件，触发onWrite()事件处理器
         if (m_connection_type == TcpConectionByServer)
         {
             // 将 RPC 请求执行业务逻辑，获取 RPC 响应，再把 RPC 响应发送回去
@@ -117,9 +122,9 @@ namespace rocket
 
             m_out_buffer->writeToBuffer(msg.c_str(), msg.length());
 
-            listenWrite();
+            listenWrite(); // 服务器监听可写事件
         }
-        else
+        else // 客户端将接收数据 解码 解码之后调用对应回调函数(解码后协议作为入参)
         {
             // 从buffer 里 decode 的到 message 对象，判断是否为req_id 相等，相等则读成功，执行其回调
             std::vector<AbstractProtocol::s_ptr> reuslt; // 临时协议数组
@@ -130,12 +135,13 @@ namespace rocket
                 auto it = m_read_dones.find(req_id);
                 if (it != m_read_dones.end())
                 {
-                    it->second(reuslt[i]); // 获取result[i]的智能指针
+                    it->second(reuslt[i]); // 调用req_id序号对应的回调  解码后协议作为入参
                 }
             }
         }
     }
 
+    // 当套接字变为可写之后 调用此事件处理器
     void TcpConection::onWrite()
     {
         // 将当前 out_buffer 里面的数据全部发送给client
@@ -145,6 +151,7 @@ namespace rocket
             return;
         }
 
+        // 客户端数据需要先编码为字节流存入发送缓冲区再发送
         if (m_connection_type == TcpConectionByClient)
         {
             // 1.将message ecode得到字节流
@@ -187,13 +194,13 @@ namespace rocket
                 break;
             }
         }
-        if (is_write_all)
+        if (is_write_all) // 写完，关闭可写事件
         {
             m_fd_event->cancle(FdEvent::OUT_EVENT);
             m_event_loop->addEpollEvent(m_fd_event);
         }
 
-        // 对于客户端，发送完数据之后需要调用回调
+        // 对于客户端，发送完数据之后调用回调函数(协议作为入参) 通知用户
         if (m_connection_type == TcpConectionByClient)
         {
             for (size_t i = 0; i < m_write_dones.size(); i++)
@@ -212,6 +219,8 @@ namespace rocket
     {
         return m_state;
     }
+
+    // 取消fd读写事件，再从红黑树摘下
     void TcpConection::clear()
     {
         // 服务器处理一些关闭连接后的清理动作
@@ -227,6 +236,7 @@ namespace rocket
         m_state = Closed;
     }
 
+    // 主动关闭服务器
     void TcpConection::shutdown()
     {
         if (m_state == Closed || m_state == NotConenct)
@@ -241,28 +251,33 @@ namespace rocket
         ::shutdown(m_fd, SHUT_RDWR);
     }
 
+    // 设置连接类型
     void TcpConection::setConectionType(TcpConnectionType type)
     {
         m_connection_type = type;
     }
 
+    // 该连接套接字监听读事件，注册事件处理器，挂到红黑树上
     void TcpConection::listenWrite()
     {
         m_fd_event->listen(FdEvent::OUT_EVENT, std::bind(&TcpConection::onWrite, this));
         m_event_loop->addEpollEvent(m_fd_event);
     }
 
+    // 该连接套接字监听写事件，注册事件处理器，挂到红黑树上
     void TcpConection::listenRead()
     {
         m_fd_event->listen(FdEvent::IN_EVENT, std::bind(&TcpConection::onRead, this));
         m_event_loop->addEpollEvent(m_fd_event);
     }
 
+    // 提交读事件请求，注册回调(参数为读取到的协议体)
     void TcpConection::pushReadMessage(const std::string &req_id, std::function<void(AbstractProtocol::s_ptr)> done)
     {
         m_read_dones.insert(std::make_pair(req_id, done));
     }
 
+    // 提交写事件请求，注册回调(参数为封装消息后的协议体)
     void TcpConection::pushSendMessage(AbstractProtocol::s_ptr message, std::function<void(AbstractProtocol::s_ptr)> done)
     {
         m_write_dones.push_back(std::make_pair(message, done));

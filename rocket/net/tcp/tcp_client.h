@@ -24,11 +24,11 @@ namespace rocket
         void readMessage(const std::string &req_id, std::function<void(AbstractProtocol::s_ptr)> done);
 
     private:
-        NetAddr::s_ptr m_peer_addr;
-        EventLoop *m_event_loop{NULL};
+        NetAddr::s_ptr m_peer_addr;    // 服务器地址
+        EventLoop *m_event_loop{NULL}; // 客户端eventlooop
 
-        int m_fd{-1};
-        FdEvent *m_fd_event{NULL};
-        TcpConection::s_ptr m_connection;
+        int m_fd{-1};                     // 客户端套接字
+        FdEvent *m_fd_event{NULL};        // 客户端fd_event
+        TcpConection::s_ptr m_connection; // 连接
     };
 }

@@ -8,9 +8,10 @@ namespace rocket
     IOThread::IOThread()
     {
 
+        // 创建线程
         pthread_create(&m_thread, NULL, &IOThread::Main, this);
 
-        // wait，直到Main线程初始化完毕
+        // wait，等待Main线程初始化完毕
         {
             std::unique_lock<std::mutex> lock(mtx);
             m_init_semaphore.wait(lock);
@@ -30,13 +31,16 @@ namespace rocket
         }
     }
 
+    // IO线程
     void *IOThread::Main(void *arg)
     {
         IOThread *thread = static_cast<IOThread *>(arg);
-        thread->m_event_loop = new EventLoop();
+        thread->m_event_loop = new EventLoop(); // 该线程创建event_loop();
         thread->m_thread_id = getThreadId();
 
         thread->m_init_semaphore.notify_one();
+
+        // 等待启动start() 之后再启动event_loop();
         DEBUGLOG("IOThread %d created, wait start semaphre", thread->m_thread_id);
         {
             std::unique_lock<std::mutex> lock(mtx);
@@ -44,12 +48,15 @@ namespace rocket
         }
         DEBUGLOG("IOThread %d start loop", thread->m_thread_id);
 
+        // 启动loop()循环
         thread->m_event_loop->loop();
 
         DEBUGLOG("IOThread %d end loop", thread->m_thread_id);
 
         return nullptr;
     }
+
+    // 启动loop()循环
     void IOThread::start()
     {
         DEBUGLOG("Now invoke IOThread %d", m_thread_id);

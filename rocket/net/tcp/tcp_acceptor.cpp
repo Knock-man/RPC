@@ -6,6 +6,7 @@
 
 namespace rocket
 {
+    // socket()  bind()  listen()
     TcpAcceptor::TcpAcceptor(NetAddr::s_ptr lcoal_addr) : m_local_addr(lcoal_addr)
     {
         // 检查地址有效性
@@ -50,11 +51,13 @@ namespace rocket
     {
     }
 
+    // 连接客户端
+    // 返回<客户端fd，客户端地址>
     std::pair<int, NetAddr::s_ptr> TcpAcceptor::accept()
     {
         if (m_family == AF_INET)
         {
-            sockaddr_in client_addr;
+            sockaddr_in client_addr; // 客户端地址
             memset(&client_addr, 0, sizeof(client_addr));
             socklen_t client_addr_len = sizeof(client_addr);
             int client_fd = ::accept(m_listenfd, reinterpret_cast<sockaddr *>(&client_addr), &client_addr_len);

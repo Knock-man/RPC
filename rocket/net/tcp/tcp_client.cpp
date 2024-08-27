@@ -6,9 +6,11 @@
 #include <unistd.h>
 namespace rocket
 {
+    // 构造函数 参数为服务器地址
     TcpClient::TcpClient(NetAddr::s_ptr peer_addr) : m_peer_addr(peer_addr)
     {
-        m_event_loop = EventLoop::GetCurrentEventLoop();       // 获取当前线程eventloop
+        // 获取当前线程eventloop
+        m_event_loop = EventLoop::GetCurrentEventLoop();
         m_fd = socket(peer_addr->getFamily(), SOCK_STREAM, 0); // 创建fd
         if (m_fd < 0)
         {
@@ -36,6 +38,7 @@ namespace rocket
     // 如果connect成功，done会执行
     void TcpClient::connect(std::function<void()> done)
     {
+        // 连接服务器
         int rt = ::connect(m_fd, m_peer_addr->getSockAddr(), m_peer_addr->getSockLen());
         if (rt == 0)
         {
@@ -44,12 +47,12 @@ namespace rocket
             if (done)
                 done();
         }
-        else if (rt == -1)
+        else if (rt == -1) // 注意可能正在三次握手的过程中
         {
             if (errno == EINPROGRESS) // 异步非阻塞connect 连接请求已经开始，连接尚未完成
             {
                 // epoll监听可写事件，如何判断错误码
-                m_fd_event->listen(FdEvent::OUT_EVENT, [this, done]()
+                m_fd_event->listen(FdEvent::OUT_EVENT, [this, done]() // 前两次握手成功，触发客户端套接字可写事件
                                    {
                                        int error = 0;
                                        socklen_t error_len = sizeof(error);
@@ -86,23 +89,25 @@ namespace rocket
         }
     }
 
-    // 异步的发送 Message
-    // 如果发送 message成功，会调用done 函数，函数的入参就是message对象
+    // 发送消息，提供消息+发送完成异步通知函数
+    //  异步的发送 Message
+    //  如果发送 message成功，会调用done 函数，函数的入参就是message对象
     void TcpClient::writeMessage(AbstractProtocol::s_ptr message, std::function<void(AbstractProtocol::s_ptr)> done)
     {
         // 1.把 message 对象写入 Connection 的 buffer,done 也写入
         // 2.启动connect可写事件
-        m_connection->pushSendMessage(message, done);
-        m_connection->listenWrite();
+        m_connection->pushSendMessage(message, done); // 注册消息和通知函数
+        m_connection->listenWrite();                  // 提交可写事件
     }
 
+    // 接收消息，提供消息ID+接收完成异步通知函数
     // 异步的读取 Message
     // 如果读取 message成功，会调用done 函数，函数的入参就是message对象
     void TcpClient::readMessage(const std::string &req_id, std::function<void(AbstractProtocol::s_ptr)> done)
     {
         // 1.监听可读事件
         // 2.从buffer里decode 得到message对象,判断是否 req_id相等，相等则读成功，执行其回调
-        m_connection->pushReadMessage(req_id, done);
-        m_connection->listenRead();
+        m_connection->pushReadMessage(req_id, done); // 注册消息和通知函数
+        m_connection->listenRead();                  // 提交可读事件
     }
 }

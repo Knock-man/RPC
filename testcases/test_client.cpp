@@ -46,7 +46,7 @@ void test_connect()
 
 void test_tcp_connect()
 {
-    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 12008);
+    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 11808);
     rocket::TcpClient client(addr);
     client.connect([addr, &client]()
                    {
