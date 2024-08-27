@@ -236,4 +236,6 @@ CMakeFiles/server.dir/testcases/test_tcp.cpp.o: \
  /home/xbj/projects/RPC/rocket/net/tcp/tcp_acceptor.h \
  /usr/include/assert.h \
  /home/xbj/projects/RPC/rocket/net/tcp/tcp_connection.h \
- /home/xbj/projects/RPC/rocket/net/tcp/tcp_buffer.h
+ /home/xbj/projects/RPC/rocket/net/tcp/tcp_buffer.h \
+ /home/xbj/projects/RPC/rocket/net/tcp/abstract_coder.h \
+ /home/xbj/projects/RPC/rocket/net/tcp/abstract_protocol.h

@@ -2697,7 +2697,8 @@ CMakeFiles/client.dir/rocket/net/tcp/tcp_client.cpp.o: /home/xbj/projects/RPC/ro
   /home/xbj/projects/RPC/rocket/net/fd_event.h \
   /home/xbj/projects/RPC/rocket/net/fd_event_group.h \
   /home/xbj/projects/RPC/rocket/net/io_thread.h \
-  /home/xbj/projects/RPC/rocket/net/tcp/abstact_protocol.h \
+  /home/xbj/projects/RPC/rocket/net/tcp/abstract_coder.h \
+  /home/xbj/projects/RPC/rocket/net/tcp/abstract_protocol.h \
   /home/xbj/projects/RPC/rocket/net/tcp/net_addr.h \
   /home/xbj/projects/RPC/rocket/net/tcp/tcp_buffer.h \
   /home/xbj/projects/RPC/rocket/net/tcp/tcp_client.h \
@@ -2984,6 +2985,9 @@ CMakeFiles/client.dir/rocket/net/tcp/tcp_connection.cpp.o: /home/xbj/projects/RP
   /home/xbj/projects/RPC/rocket/common/util.h \
   /home/xbj/projects/RPC/rocket/net/fd_event_group.h \
   /home/xbj/projects/RPC/rocket/net/io_thread.h \
+  /home/xbj/projects/RPC/rocket/net/string_coder.h \
+  /home/xbj/projects/RPC/rocket/net/tcp/abstract_coder.h \
+  /home/xbj/projects/RPC/rocket/net/tcp/abstract_protocol.h \
   /home/xbj/projects/RPC/rocket/net/tcp/net_addr.h \
   /home/xbj/projects/RPC/rocket/net/tcp/tcp_buffer.h \
   /home/xbj/projects/RPC/rocket/net/tcp/tcp_connection.h \
@@ -3265,6 +3269,8 @@ CMakeFiles/client.dir/rocket/net/tcp/tcp_server.cpp.o: /home/xbj/projects/RPC/ro
   /home/xbj/projects/RPC/rocket/net/io_thread_group.h \
   /home/xbj/projects/RPC/rocket/net/timer.h \
   /home/xbj/projects/RPC/rocket/net/wakeup_fd_event.h \
+  /home/xbj/projects/RPC/rocket/net/tcp/abstract_coder.h \
+  /home/xbj/projects/RPC/rocket/net/tcp/abstract_protocol.h \
   /home/xbj/projects/RPC/rocket/net/tcp/net_addr.h \
   /home/xbj/projects/RPC/rocket/net/tcp/tcp_acceptor.h \
   /home/xbj/projects/RPC/rocket/net/tcp/tcp_buffer.h \
@@ -4273,7 +4279,9 @@ CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.o: /home/xbj/projects/RPC/r
 CMakeFiles/client.dir/testcases/test_client.cpp.o: /home/xbj/projects/RPC/testcases/test_client.cpp \
   /home/xbj/projects/RPC/rocket/net/timer_event.h \
   /home/xbj/projects/RPC/rocket/net/io_thread_group.h \
-  /home/xbj/projects/RPC/rocket/net/tcp/abstact_protocol.h \
+  /home/xbj/projects/RPC/rocket/net/string_coder.h \
+  /home/xbj/projects/RPC/rocket/net/tcp/abstract_coder.h \
+  /home/xbj/projects/RPC/rocket/net/tcp/abstract_protocol.h \
   /home/xbj/projects/RPC/rocket/net/tcp/tcp_buffer.h \
   /home/xbj/projects/RPC/rocket/net/tcp/tcp_connection.h \
   /home/xbj/projects/RPC/rocket/common/config.h \
@@ -4577,7 +4585,11 @@ CMakeFiles/client.dir/testcases/test_client.cpp.o: /home/xbj/projects/RPC/testca
 
 /home/xbj/projects/RPC/rocket/net/tcp/tcp_server.cpp:
 
-/home/xbj/projects/RPC/rocket/net/tcp/abstact_protocol.h:
+/home/xbj/projects/RPC/rocket/net/string_coder.h:
+
+/home/xbj/projects/RPC/rocket/net/tcp/abstract_protocol.h:
+
+/home/xbj/projects/RPC/rocket/net/tcp/abstract_coder.h:
 
 /home/xbj/projects/RPC/rocket/net/tcp/tcp_client.cpp:
 

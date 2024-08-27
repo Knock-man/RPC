@@ -1,12 +1,13 @@
 #include <unistd.h>
+#include "rocket/common/log.h"
 #include "rocket/net/tcp/tcp_connection.h"
 #include "rocket/net/fd_event_group.h"
-#include "rocket/common/log.h"
+#include "rocket/net/string_coder.h"
 #include "tcp_connection.h"
 namespace rocket
 {
-    TcpConection::TcpConection(EventLoop *event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr)
-        : m_event_loop(event_loop), m_peer_addr(peer_addr), m_state(NotConenct), m_fd{fd}
+    TcpConection::TcpConection(EventLoop *event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr, TcpConnectionType type /*= TcpConectionByServer*/)
+        : m_event_loop(event_loop), m_peer_addr(peer_addr), m_state(NotConenct), m_fd{fd}, m_connection_type(type)
     {
         m_in_buffer = std::make_shared<TcpBuffer>(buffer_size);
         m_out_buffer = std::make_shared<TcpBuffer>(buffer_size);
@@ -14,12 +15,22 @@ namespace rocket
         // 该连接对应的事件
         m_fd_event = FdEventGroup::getFdEventGroup()->getFdEvent(fd);
         m_fd_event->setNonBlock(); // 设置非阻塞
-        m_fd_event->listen(FdEvent::IN_EVENT, std::bind(&TcpConection::onRead, this));
 
-        m_event_loop->addEpollEvent(m_fd_event);
+        // 客户端 在需要读message的时候再去监听
+        if (m_connection_type == TcpConectionByServer)
+        {
+            listenRead(); // 监听可读事件
+        }
+
+        m_coder = new StringCoder();
     }
     TcpConection::~TcpConection()
     {
+        if (m_coder)
+        {
+            delete m_coder;
+            m_coder = NULL;
+        }
     }
 
     void TcpConection::onRead()
@@ -86,26 +97,43 @@ namespace rocket
     }
     void TcpConection::excute()
     {
-        // 将 RPC 请求执行业务逻辑，获取 RPC 响应，再把 RPC 响应发送回去
-        std::vector<char> tmp;
-        int size = m_in_buffer->readAble();
-        tmp.resize(size);
-
-        // 读取缓冲区size大小的数据
-        m_in_buffer->readFromBuffer(tmp, size);
-
-        std::string msg;
-        for (size_t i = 0; i < tmp.size(); i++)
+        if (m_connection_type == TcpConectionByServer)
         {
-            msg += tmp[i];
+            // 将 RPC 请求执行业务逻辑，获取 RPC 响应，再把 RPC 响应发送回去
+            std::vector<char> tmp;
+            int size = m_in_buffer->readAble();
+            tmp.resize(size);
+
+            // 读取缓冲区size大小的数据
+            m_in_buffer->readFromBuffer(tmp, size);
+
+            std::string msg;
+            for (size_t i = 0; i < tmp.size(); i++)
+            {
+                msg += tmp[i];
+            }
+
+            INFOLOG("success get request[%s] from client[%s]", msg.c_str(), m_peer_addr->toString().c_str());
+
+            m_out_buffer->writeToBuffer(msg.c_str(), msg.length());
+
+            listenWrite();
         }
-
-        INFOLOG("success get request[%s] from client[%s]", msg.c_str(), m_peer_addr->toString().c_str());
-
-        m_out_buffer->writeToBuffer(msg.c_str(), msg.length());
-
-        m_fd_event->listen(FdEvent::OUT_EVENT, std::bind(&TcpConection::onWrite, this));
-        m_event_loop->addEpollEvent(m_fd_event);
+        else
+        {
+            // 从buffer 里 decode 的到 message 对象，判断是否为req_id 相等，相等则读成功，执行其回调
+            std::vector<AbstractProtocol::s_ptr> reuslt; // 临时协议数组
+            m_coder->decode(reuslt, m_in_buffer);
+            for (size_t i = 0; i < reuslt.size(); i++)
+            {
+                std::string req_id = reuslt[i]->getReqId(); // 获取协议序列号
+                auto it = m_read_dones.find(req_id);
+                if (it != m_read_dones.end())
+                {
+                    it->second(reuslt[i]); // 获取result[i]的智能指针
+                }
+            }
+        }
     }
 
     void TcpConection::onWrite()
@@ -117,6 +145,20 @@ namespace rocket
             return;
         }
 
+        if (m_connection_type == TcpConectionByClient)
+        {
+            // 1.将message ecode得到字节流
+            // 2.字节流写入到 buffer 里面，如何全部发送
+            std::vector<AbstractProtocol::s_ptr> messages;
+            for (int i = 0; i < m_write_dones.size(); i++)
+            {
+                messages.push_back(m_write_dones[i].first);
+            }
+            // 编码进发送缓冲区
+            m_coder->encode(messages, m_out_buffer);
+        }
+
+        // 取发送缓冲区字节流发送
         bool is_write_all = false;
         while (true)
         {
@@ -149,6 +191,16 @@ namespace rocket
         {
             m_fd_event->cancle(FdEvent::OUT_EVENT);
             m_event_loop->addEpollEvent(m_fd_event);
+        }
+
+        // 对于客户端，发送完数据之后需要调用回调
+        if (m_connection_type == TcpConectionByClient)
+        {
+            for (size_t i = 0; i < m_write_dones.size(); i++)
+            {
+                m_write_dones[i].second(m_write_dones[i].first); // 回调函数
+            }
+            m_write_dones.clear();
         }
     }
 
@@ -192,6 +244,28 @@ namespace rocket
     void TcpConection::setConectionType(TcpConnectionType type)
     {
         m_connection_type = type;
+    }
+
+    void TcpConection::listenWrite()
+    {
+        m_fd_event->listen(FdEvent::OUT_EVENT, std::bind(&TcpConection::onWrite, this));
+        m_event_loop->addEpollEvent(m_fd_event);
+    }
+
+    void TcpConection::listenRead()
+    {
+        m_fd_event->listen(FdEvent::IN_EVENT, std::bind(&TcpConection::onRead, this));
+        m_event_loop->addEpollEvent(m_fd_event);
+    }
+
+    void TcpConection::pushReadMessage(const std::string &req_id, std::function<void(AbstractProtocol::s_ptr)> done)
+    {
+        m_read_dones.insert(std::make_pair(req_id, done));
+    }
+
+    void TcpConection::pushSendMessage(AbstractProtocol::s_ptr message, std::function<void(AbstractProtocol::s_ptr)> done)
+    {
+        m_write_dones.push_back(std::make_pair(message, done));
     }
 
 } // namespace rocket

@@ -239,5 +239,7 @@ CMakeFiles/client.dir/testcases/test_client.cpp.o: \
  /usr/include/assert.h \
  /home/xbj/projects/RPC/rocket/net/tcp/tcp_connection.h \
  /home/xbj/projects/RPC/rocket/net/tcp/tcp_buffer.h \
+ /home/xbj/projects/RPC/rocket/net/tcp/abstract_coder.h \
+ /home/xbj/projects/RPC/rocket/net/tcp/abstract_protocol.h \
  /home/xbj/projects/RPC/testcases/../rocket/net/tcp/tcp_client.h \
- /home/xbj/projects/RPC/rocket/net/tcp/abstact_protocol.h
+ /home/xbj/projects/RPC/rocket/net/string_coder.h

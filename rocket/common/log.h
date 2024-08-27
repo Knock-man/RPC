@@ -2,9 +2,10 @@
 #include <string>
 #include <memory>
 #include <queue>
+#include <iostream>
+
 #include "config.h"
 #include "util.h"
-#include <iostream>
 
 #define DEBUGLOG(str, ...)                                                                                                                                                                                                           \
     if (rocket::Logger::GetGlobolLogger()->getLoglevel() <= rocket::Debug)                                                                                                                                                           \
@@ -34,7 +35,7 @@ namespace rocket
     template <typename... Args>
     std::string formatString(const char *str, Args &&...args)
     {
-        int size = snprintf(nullptr, 0, str, args...); // 获取格式化长度后的大小
+        size_t size = snprintf(nullptr, 0, str, args...); // 获取格式化长度后的大小
 
         std::string result;
         if (size > 0)
