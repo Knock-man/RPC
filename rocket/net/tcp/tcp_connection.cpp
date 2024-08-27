@@ -73,6 +73,7 @@ namespace rocket
         {
             DEBUGLOG("peer closed, peer addr [%d], clientfd [%d]", m_peer_addr->toString().c_str(), m_fd);
             clear(); // 关闭连接
+            return;
         }
 
         if (!is_read_all)
@@ -125,13 +126,15 @@ namespace rocket
                 is_write_all = true;
                 break;
             }
-            int write_size = m_out_buffer->readAble();
+            int read_size = m_out_buffer->readAble();
             int read_index = m_out_buffer->readIndex();
-            int rt = write(m_fd, &(m_out_buffer->m_buffer[read_index]), write_size);
-            if (rt >= write_size)
+            int rt = write(m_fd, &(m_out_buffer->m_buffer[read_index]), read_size);
+            if (rt >= read_size)
             {
                 m_out_buffer->moveReadIndex(rt); // 输出缓冲区可读索引移动
-                DEBUGLOG("no data need to send to client [%s]", m_peer_addr->toString().c_str());
+                // DEBUGLOG("no data need to send to client [%s]", m_peer_addr->toString().c_str());
+                std::string str(m_out_buffer->m_buffer.begin() + read_index, m_out_buffer->m_buffer.begin() + read_index + read_size);
+                INFOLOG("success send request[%s] to client[%s]", str.c_str(), m_peer_addr->toString().c_str());
                 is_write_all = true;
                 break;
             }
@@ -164,6 +167,8 @@ namespace rocket
         {
             return;
         }
+        m_fd_event->cancle(FdEvent::IN_EVENT);
+        m_fd_event->cancle(FdEvent::OUT_EVENT);
         // 从event_loop摘下
         m_io_thread->getEventLoop()->deleteEpollEvent(m_fd_event);
 

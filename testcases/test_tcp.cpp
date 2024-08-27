@@ -7,17 +7,17 @@
 #include <memory>
 #include <unistd.h>
 #include <filesystem>
-#include "../rocket/common/log.h"
-#include "../rocket/common/config.h"
-#include "../rocket/net/eventloop.h"
-#include "../rocket/net/timer_event.h"
-#include "../rocket/net/io_thread.h"
-#include "../rocket/net/io_thread_group.h"
-#include "../rocket/net/tcp/net_addr.h"
-#include "../rocket/net/tcp/tcp_server.h"
+#include "rocket/common/log.h"
+#include "rocket/common/config.h"
+#include "rocket/net/eventloop.h"
+#include "rocket/net/timer_event.h"
+#include "rocket/net/io_thread.h"
+#include "rocket/net/io_thread_group.h"
+#include "rocket/net/tcp/net_addr.h"
+#include "rocket/net/tcp/tcp_server.h"
 void test_tcp_server()
 {
-    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 20005);
+    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 10905);
     DEBUGLOG("create addr %s", addr->toString().c_str());
 
     rocket::TcpServer tcp_server(addr);

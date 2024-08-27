@@ -4238,8 +4238,6 @@ CMakeFiles/app.dir/testcases/test_log.cpp.o: /home/xbj/projects/RPC/testcases/te
 
 CMakeFiles/app.dir/testcases/test_tcp.cpp.o: /home/xbj/projects/RPC/testcases/test_tcp.cpp \
   /home/xbj/projects/RPC/rocket/net/timer_event.h \
-  /home/xbj/projects/RPC/rocket/net/tcp/tcp_buffer.h \
-  /home/xbj/projects/RPC/rocket/net/tcp/tcp_connection.h \
   /home/xbj/projects/RPC/rocket/common/config.h \
   /home/xbj/projects/RPC/rocket/common/log.h \
   /home/xbj/projects/RPC/rocket/common/util.h \
@@ -4249,6 +4247,8 @@ CMakeFiles/app.dir/testcases/test_tcp.cpp.o: /home/xbj/projects/RPC/testcases/te
   /home/xbj/projects/RPC/rocket/net/io_thread_group.h \
   /home/xbj/projects/RPC/rocket/net/tcp/net_addr.h \
   /home/xbj/projects/RPC/rocket/net/tcp/tcp_acceptor.h \
+  /home/xbj/projects/RPC/rocket/net/tcp/tcp_buffer.h \
+  /home/xbj/projects/RPC/rocket/net/tcp/tcp_connection.h \
   /home/xbj/projects/RPC/rocket/net/tcp/tcp_server.h \
   /home/xbj/projects/RPC/rocket/net/timer.h \
   /home/xbj/projects/RPC/rocket/net/wakeup_fd_event.h \
