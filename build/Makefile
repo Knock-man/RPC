@@ -223,6 +223,60 @@ rocket/common/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/util.cpp.s
 .PHONY : rocket/common/util.cpp.s
 
+rocket/net/coder/tinypb_coder.o: rocket/net/coder/tinypb_coder.cpp.o
+.PHONY : rocket/net/coder/tinypb_coder.o
+
+# target to build an object file
+rocket/net/coder/tinypb_coder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/coder/tinypb_coder.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/coder/tinypb_coder.cpp.o
+.PHONY : rocket/net/coder/tinypb_coder.cpp.o
+
+rocket/net/coder/tinypb_coder.i: rocket/net/coder/tinypb_coder.cpp.i
+.PHONY : rocket/net/coder/tinypb_coder.i
+
+# target to preprocess a source file
+rocket/net/coder/tinypb_coder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/coder/tinypb_coder.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/coder/tinypb_coder.cpp.i
+.PHONY : rocket/net/coder/tinypb_coder.cpp.i
+
+rocket/net/coder/tinypb_coder.s: rocket/net/coder/tinypb_coder.cpp.s
+.PHONY : rocket/net/coder/tinypb_coder.s
+
+# target to generate assembly for a file
+rocket/net/coder/tinypb_coder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/coder/tinypb_coder.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/coder/tinypb_coder.cpp.s
+.PHONY : rocket/net/coder/tinypb_coder.cpp.s
+
+rocket/net/coder/tinypb_protocol.o: rocket/net/coder/tinypb_protocol.cpp.o
+.PHONY : rocket/net/coder/tinypb_protocol.o
+
+# target to build an object file
+rocket/net/coder/tinypb_protocol.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/coder/tinypb_protocol.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/coder/tinypb_protocol.cpp.o
+.PHONY : rocket/net/coder/tinypb_protocol.cpp.o
+
+rocket/net/coder/tinypb_protocol.i: rocket/net/coder/tinypb_protocol.cpp.i
+.PHONY : rocket/net/coder/tinypb_protocol.i
+
+# target to preprocess a source file
+rocket/net/coder/tinypb_protocol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/coder/tinypb_protocol.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/coder/tinypb_protocol.cpp.i
+.PHONY : rocket/net/coder/tinypb_protocol.cpp.i
+
+rocket/net/coder/tinypb_protocol.s: rocket/net/coder/tinypb_protocol.cpp.s
+.PHONY : rocket/net/coder/tinypb_protocol.s
+
+# target to generate assembly for a file
+rocket/net/coder/tinypb_protocol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/net/coder/tinypb_protocol.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/coder/tinypb_protocol.cpp.s
+.PHONY : rocket/net/coder/tinypb_protocol.cpp.s
+
 rocket/net/eventloop.o: rocket/net/eventloop.cpp.o
 .PHONY : rocket/net/eventloop.o
 
@@ -668,6 +722,12 @@ help:
 	@echo "... rocket/common/util.o"
 	@echo "... rocket/common/util.i"
 	@echo "... rocket/common/util.s"
+	@echo "... rocket/net/coder/tinypb_coder.o"
+	@echo "... rocket/net/coder/tinypb_coder.i"
+	@echo "... rocket/net/coder/tinypb_coder.s"
+	@echo "... rocket/net/coder/tinypb_protocol.o"
+	@echo "... rocket/net/coder/tinypb_protocol.i"
+	@echo "... rocket/net/coder/tinypb_protocol.s"
 	@echo "... rocket/net/eventloop.o"
 	@echo "... rocket/net/eventloop.i"
 	@echo "... rocket/net/eventloop.s"

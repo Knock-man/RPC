@@ -11,6 +11,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/xbj/projects/RPC/rocket/common/config.cpp" "CMakeFiles/server.dir/rocket/common/config.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/common/config.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/common/log.cpp" "CMakeFiles/server.dir/rocket/common/log.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/common/log.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/common/util.cpp" "CMakeFiles/server.dir/rocket/common/util.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/common/util.cpp.o.d"
+  "/home/xbj/projects/RPC/rocket/net/coder/tinypb_coder.cpp" "CMakeFiles/server.dir/rocket/net/coder/tinypb_coder.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/net/coder/tinypb_coder.cpp.o.d"
+  "/home/xbj/projects/RPC/rocket/net/coder/tinypb_protocol.cpp" "CMakeFiles/server.dir/rocket/net/coder/tinypb_protocol.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/net/coder/tinypb_protocol.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/net/eventloop.cpp" "CMakeFiles/server.dir/rocket/net/eventloop.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/net/eventloop.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/net/fd_event.cpp" "CMakeFiles/server.dir/rocket/net/fd_event.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/net/fd_event.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/net/fd_event_group.cpp" "CMakeFiles/server.dir/rocket/net/fd_event_group.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/net/fd_event_group.cpp.o.d"

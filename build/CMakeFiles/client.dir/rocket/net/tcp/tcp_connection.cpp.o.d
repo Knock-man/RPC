@@ -229,7 +229,9 @@ CMakeFiles/client.dir/rocket/net/tcp/tcp_connection.cpp.o: \
  /usr/include/c++/13/bits/stl_multimap.h \
  /home/xbj/projects/RPC/conf/../rocket/net/timer_event.h \
  /usr/include/c++/13/condition_variable \
- /home/xbj/projects/RPC/rocket/net/tcp/abstract_coder.h \
- /home/xbj/projects/RPC/rocket/net/tcp/abstract_protocol.h \
+ /home/xbj/projects/RPC/rocket/net/coder/abstract_protocol.h \
+ /home/xbj/projects/RPC/rocket/net/coder/tinypb_coder.h \
+ /home/xbj/projects/RPC/rocket/net/coder/abstract_coder.h \
+ /home/xbj/projects/RPC/rocket/net/coder/tinypb_protocol.h \
  /home/xbj/projects/RPC/rocket/net/fd_event_group.h \
- /home/xbj/projects/RPC/rocket/net/string_coder.h
+ /home/xbj/projects/RPC/rocket/net/coder/string_coder.h
