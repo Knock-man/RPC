@@ -80,23 +80,23 @@ namespace rocket
                 TinyPBProtocol::s_ptr message = std::make_shared<TinyPBProtocol>();
                 message->m_pk_len = pk_len; // 包长
 
-                int req_id_len_index = start_index + sizeof(char) + sizeof(message->m_pk_len); // 消息ID长度
-                if (req_id_len_index >= end_index)
+                int msg_id_len_index = start_index + sizeof(char) + sizeof(message->m_pk_len); // 消息ID长度
+                if (msg_id_len_index >= end_index)
                 {
                     message->parase_success = false;
-                    ERRORLOG("parase error, req_id_len_index[%d] > end_index[%d]", req_id_len_index, end_index);
+                    ERRORLOG("parase error, msg_id_len_index[%d] > end_index[%d]", msg_id_len_index, end_index);
                     continue;
                 }
-                message->m_req_id_len = getInt32FromNetByte(&tmp[req_id_len_index]); // 消息ID长度
-                DEBUGLOG("parase req_id_len=%d", message->m_req_id_len);
+                message->m_msg_id_len = getInt32FromNetByte(&tmp[msg_id_len_index]); // 消息ID长度
+                DEBUGLOG("parase msg_id_len=%d", message->m_msg_id_len);
 
-                int req_id_index = req_id_len_index + sizeof(message->m_req_id_len);
-                char req_id[100] = {0};
-                memcpy(&req_id[0], &tmp[req_id_index], message->m_req_id_len);
-                message->m_req_id = std::string(req_id); // 消息ID
-                DEBUGLOG("parase req_id=%s", message->m_req_id.c_str());
+                int msg_id_index = msg_id_len_index + sizeof(message->m_msg_id_len);
+                char msg_id[100] = {0};
+                memcpy(&msg_id[0], &tmp[msg_id_index], message->m_msg_id_len);
+                message->m_msg_id = std::string(msg_id); // 消息ID
+                DEBUGLOG("parase msg_id=%s", message->m_msg_id.c_str());
 
-                int method_name_len_index = req_id_index + message->m_req_id_len;
+                int method_name_len_index = msg_id_index + message->m_msg_id_len;
                 if (method_name_len_index >= end_index)
                 {
                     message->parase_success = false;
@@ -136,7 +136,7 @@ namespace rocket
                 DEBUGLOG("parase m_err_info=%s", message->m_err_info.c_str());
 
                 // 数据段长度
-                int pd_data_len = message->m_pk_len - message->m_method_name_len - message->m_req_id_len - message->m_err_info_len - 24 - 2;
+                int pd_data_len = message->m_pk_len - message->m_method_name_len - message->m_msg_id_len - message->m_err_info_len - 24 - 2;
                 int pd_data_index = err_info_index + message->m_err_info_len;
                 message->m_pd_data = std::string(&tmp[pd_data_index], pd_data_len); // 数据段
 
@@ -151,16 +151,16 @@ namespace rocket
     const char *TinyPBCoder::encodeTinyPB(TinyPBProtocol::s_ptr message, int &len)
     {
         // 消息ID
-        if (message->m_req_id.empty())
+        if (message->m_msg_id.empty())
         {
-            message->m_req_id = "123456789";
+            message->m_msg_id = "123456789";
         }
         // getchar();
-        //  printf("%s\n", message->m_req_id.c_str());
-        DEBUGLOG("req_id = %s", message->m_req_id.c_str());
+        //  printf("%s\n", message->m_msg_id.c_str());
+        DEBUGLOG("msg_id = %s", message->m_msg_id.c_str());
 
         // 整包长度
-        int pk_len = 2 + 24 + message->m_req_id.length() + message->m_method_name.length() + message->m_err_info.length() + message->m_pd_data.length();
+        int pk_len = 2 + 24 + message->m_msg_id.length() + message->m_method_name.length() + message->m_err_info.length() + message->m_pd_data.length();
         DEBUGLOG("pk_len=%d", pk_len);
 
         char *buf = reinterpret_cast<char *>(malloc(pk_len)); // 申请一段内存
@@ -175,16 +175,16 @@ namespace rocket
         tmp += sizeof(pk_len_net);
 
         // 消息ID长度
-        int req_id_len = message->m_req_id.length();
-        int32_t req_id_len_net = htonl(req_id_len);
-        memcpy(tmp, &req_id_len_net, sizeof(req_id_len_net));
-        tmp += sizeof(req_id_len_net);
+        int msg_id_len = message->m_msg_id.length();
+        int32_t msg_id_len_net = htonl(msg_id_len);
+        memcpy(tmp, &msg_id_len_net, sizeof(msg_id_len_net));
+        tmp += sizeof(msg_id_len_net);
 
         // 消息ID
-        if (!message->m_req_id.empty())
+        if (!message->m_msg_id.empty())
         {
-            memcpy(tmp, &(message->m_req_id[0]), req_id_len);
-            tmp += req_id_len;
+            memcpy(tmp, &(message->m_msg_id[0]), msg_id_len);
+            tmp += msg_id_len;
         }
 
         // 方法名长度
@@ -235,14 +235,14 @@ namespace rocket
 
         // 防止这些长度信息为空
         message->m_pk_len = pk_len;
-        message->m_req_id_len = req_id_len;
+        message->m_msg_id_len = msg_id_len;
         message->m_method_name_len = methon_name_len;
         message->m_err_info_len = err_info_len;
 
         message->parase_success = true;
         len = pk_len; // 出参 解析出来的长度
 
-        DEBUGLOG("encode message[%s] success", message->m_req_id.c_str());
+        DEBUGLOG("encode message[%s] success", message->m_msg_id.c_str());
         return buf;
     }
 }

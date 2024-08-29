@@ -15,9 +15,9 @@ namespace rocket
 
     public:
         int32_t m_pk_len{0};     // 整包长度  4B
-        int32_t m_req_id_len{0}; // 消息ID长度 4B
+        int32_t m_msg_id_len{0}; // 消息ID长度 4B
 
-        // req_id 继承父类　／／消息ID
+        // msg_id 继承父类　／／消息ID
 
         int32_t m_method_name_len{0}; // 方法名长度 4B
         std::string m_method_name;    // 方法名

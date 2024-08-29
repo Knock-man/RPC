@@ -21,8 +21,8 @@ file(GLOB TCP ${CMAKE_CURRENT_SOURCE_DIR}/rocket/net/tcp/*.c*)
 file(GLOB CODER ${CMAKE_CURRENT_SOURCE_DIR}/rocket/net/coder/*.c*)
 file(GLOB RPC ${CMAKE_CURRENT_SOURCE_DIR}/rocket/rpc/*.c*)
 
-file(GLOB TEST_server ${CMAKE_CURRENT_SOURCE_DIR}/testcases/test_tcp.cpp)
-file(GLOB TEST_client ${CMAKE_CURRENT_SOURCE_DIR}/testcases/test_client.cpp)
+file(GLOB TEST_server ${CMAKE_CURRENT_SOURCE_DIR}/testcases/test_rpc_server.c*)
+file(GLOB TEST_client ${CMAKE_CURRENT_SOURCE_DIR}/testcases/test_rpc_client.c*)
 
 add_executable(server ${SRC} ${CODER} ${NET} ${TCP} ${TEST_server} ${RPC})
 add_executable(client ${SRC} ${CODER} ${NET} ${TCP} ${TEST_client} ${RPC})

@@ -57,7 +57,7 @@ namespace rocket
         void pushSendMessage(AbstractProtocol::s_ptr, std::function<void(AbstractProtocol::s_ptr)>);
 
         // 异步接收
-        void pushReadMessage(const std::string &req_id, std::function<void(AbstractProtocol::s_ptr)>);
+        void pushReadMessage(const std::string &msg_id, std::function<void(AbstractProtocol::s_ptr)>);
 
         NetAddr::s_ptr getLocalAddr() const
 
@@ -92,10 +92,8 @@ namespace rocket
         std::vector<std::pair<AbstractProtocol::s_ptr, std::function<void(AbstractProtocol::s_ptr)>>> m_write_dones;
 
         // 读消息读回调
-        //  key 为 req_id
+        //  key 为 msg_id
         std::map<std::string, std::function<void(AbstractProtocol::s_ptr)>> m_read_dones;
-
-        std::shared_ptr<RpcDispatcher> m_dispatcher;
     };
 
 } // namespace rocket

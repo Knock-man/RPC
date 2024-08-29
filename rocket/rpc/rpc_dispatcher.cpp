@@ -23,11 +23,11 @@ namespace rocket
         std::string service_name;                                   // 服务名
         std::string method_name;                                    // 方法名
 
-        rsp_protocol->m_req_id = rsp_protocol->m_req_id;
-        rsp_protocol->m_method_name = rsp_protocol->m_method_name;
+        rsp_protocol->m_msg_id = req_protocol->m_msg_id;
+        rsp_protocol->m_method_name = req_protocol->m_method_name;
 
         // 解析出服务名 方法名
-        if (parse_ServiceFullName(method_full_name, service_name, method_name))
+        if (!parse_ServiceFullName(method_full_name, service_name, method_name))
         {
             setTinyPBError(rsp_protocol, ERROR_PARSE_SERVICE_NAME, "parase service name error");
             return;
@@ -37,7 +37,7 @@ namespace rocket
         auto it = m_service_map.find(service_name); //<服务名，服务智能指针>
         if (it == m_service_map.end())
         {
-            ERRORLOG("%s | service name[%s] not found", rsp_protocol->m_req_id.c_str(), service_name.c_str());
+            ERRORLOG("%s | service name[%s] not found", rsp_protocol->m_msg_id.c_str(), service_name.c_str());
             setTinyPBError(rsp_protocol, ERROR_SERVICE_NIT_FOUND, "service not found");
             return;
         }
@@ -47,7 +47,7 @@ namespace rocket
         const google::protobuf::MethodDescriptor *method = service->GetDescriptor()->FindMethodByName(method_name);
         if (method == NULL) // 没有找到方法
         {
-            ERRORLOG("%s | method name[%s] not found in service[%s]", rsp_protocol->m_req_id.c_str(), method_name.c_str(), service_name.c_str());
+            ERRORLOG("%s | method name[%s] not found in service[%s]", rsp_protocol->m_msg_id.c_str(), method_name.c_str(), service_name.c_str());
             setTinyPBError(rsp_protocol, ERROR_SERVICE_NIT_FOUND, "method not found");
             return;
         }
@@ -56,9 +56,9 @@ namespace rocket
         google::protobuf::Message *req_msg = service->GetRequestPrototype(method).New();
 
         // 反序列化 将pd_data反序列化为 request 对象
-        if (req_msg->ParseFromString(req_protocol->m_pd_data))
+        if (!req_msg->ParseFromString(req_protocol->m_pd_data))
         {
-            ERRORLOG("%s |deserlize error", rsp_protocol->m_req_id.c_str(), method_name.c_str(), service_name.c_str());
+            ERRORLOG("%s |deserlize error", rsp_protocol->m_msg_id.c_str(), method_name.c_str(), service_name.c_str());
             setTinyPBError(rsp_protocol, ERROR_FAILED_DESERIALIZE, "deserlize error");
             if (req_msg != NULL)
             {
@@ -67,7 +67,7 @@ namespace rocket
             }
             return;
         }
-        INFOLOG("%s | get rpc request[%s]", req_protocol->m_req_id.c_str(), req_msg->ShortDebugString().c_str());
+        INFOLOG("%s | get rpc request[%s]", req_protocol->m_msg_id.c_str(), req_msg->ShortDebugString().c_str());
 
         // 声明一个response Message对象
         google::protobuf::Message *rsp_msg = service->GetResponsePrototype(method).New();
@@ -76,13 +76,13 @@ namespace rocket
         RpcController rpcController; // RPC控制器
         rpcController.SetLocalAddr(connection->getLocalAddr());
         rpcController.SetPeerAddr(connection->getPeerAddr());
-        rpcController.SetReqId(req_protocol->m_req_id);
+        rpcController.SetMsgId(req_protocol->m_msg_id);
         service->CallMethod(method, &rpcController, req_msg, rsp_msg, NULL); // RPC方法
 
         // 序列化为字节流
         if (rsp_msg->SerializeToString(&(rsp_protocol->m_pd_data)))
         {
-            ERRORLOG("%s |serlize error,origin message", rsp_protocol->m_req_id.c_str(), rsp_msg->ShortDebugString().c_str());
+            ERRORLOG("%s |serlize error,origin message", rsp_protocol->m_msg_id.c_str(), rsp_msg->ShortDebugString().c_str());
             setTinyPBError(rsp_protocol, ERROR_SERVICE_NIT_FOUND, "serilize error");
             if (req_msg != NULL)
             {
@@ -93,7 +93,7 @@ namespace rocket
         }
 
         rsp_protocol->m_err_code = 0; // 设置错误码
-        INFOLOG("%s | dispatch sucess,requesut[%s],reponse[%s]", req_protocol->m_req_id.c_str(), req_msg->ShortDebugString().c_str(), rsp_msg->ShortDebugString().c_str());
+        INFOLOG("%s | dispatch sucess,requesut[%s],reponse[%s]", req_protocol->m_msg_id.c_str(), req_msg->ShortDebugString().c_str(), rsp_msg->ShortDebugString().c_str());
         delete req_msg;
         delete rsp_msg;
         req_msg = nullptr;
@@ -102,13 +102,13 @@ namespace rocket
 
     // full_name = 服务名.方法名  解析  service_name=服务名  method_name=方法名
     bool RpcDispatcher::parse_ServiceFullName(const std::string &full_name, std::string &service_name, std::string &method_name)
-    {
+    { // full_name="Order.makeOrder"
         if (full_name.empty())
         {
             ERRORLOG("full name empty()");
             return false;
         }
-        size_t i = full_name.find_first_not_of(".");
+        size_t i = full_name.find_first_of('.');
         if (i == full_name.npos)
         {
             ERRORLOG("not find, is full name [%s]", full_name.c_str());
@@ -123,7 +123,7 @@ namespace rocket
 
     void RpcDispatcher::registerService(service_s_ptr service)
     {
-        std::string service_name = service->GetDescriptor()->full_name();
+        std::string service_name = service->GetDescriptor()->full_name(); // 通过服务获取服务名
         m_service_map[service_name] = service;
     }
 

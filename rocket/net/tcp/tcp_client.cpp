@@ -103,11 +103,11 @@ namespace rocket
     // 接收消息，提供消息ID+接收完成异步通知函数
     // 异步的读取 Message
     // 如果读取 message成功，会调用done 函数，函数的入参就是message对象
-    void TcpClient::readMessage(const std::string &req_id, std::function<void(AbstractProtocol::s_ptr)> done)
+    void TcpClient::readMessage(const std::string &msg_id, std::function<void(AbstractProtocol::s_ptr)> done)
     {
         // 1.监听可读事件
-        // 2.从buffer里decode 得到message对象,判断是否 req_id相等，相等则读成功，执行其回调
-        m_connection->pushReadMessage(req_id, done); // 注册消息和通知函数
+        // 2.从buffer里decode 得到message对象,判断是否 msg_id相等，相等则读成功，执行其回调
+        m_connection->pushReadMessage(msg_id, done); // 注册消息和通知函数
         m_connection->listenRead();                  // 提交可读事件
     }
 }

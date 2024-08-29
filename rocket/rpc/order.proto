@@ -1,0 +1,21 @@
+syntax = "proto3";
+option cc_generic_services = true; //生成services
+
+//下单
+message makeOrderRequest
+{
+    int32 price = 1;//价格
+    string goods = 2;//货物
+}
+
+//下单响应
+message makeOrderResponse{
+    int32 ret_code = 1;//返回码
+    string res_info = 2;//返回信息
+    string order_id = 3;//订单号
+}
+
+//服务
+service Order{
+    rpc makeOrder(makeOrderRequest) returns (makeOrderResponse);
+}

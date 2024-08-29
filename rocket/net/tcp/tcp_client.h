@@ -21,7 +21,7 @@ namespace rocket
 
         // 异步的读取 Message
         // 如果读取 message成功，会调用done 函数，函数的入参就是message对象
-        void readMessage(const std::string &req_id, std::function<void(AbstractProtocol::s_ptr)> done);
+        void readMessage(const std::string &msg_id, std::function<void(AbstractProtocol::s_ptr)> done);
 
     private:
         NetAddr::s_ptr m_peer_addr;    // 服务器地址
