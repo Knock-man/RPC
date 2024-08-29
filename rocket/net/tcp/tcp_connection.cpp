@@ -2,12 +2,12 @@
 #include "rocket/common/log.h"
 #include "rocket/net/tcp/tcp_connection.h"
 #include "rocket/net/fd_event_group.h"
-#include "rocket/net/string_coder.h"
+#include "rocket/net/coder/string_coder.h"
 #include "tcp_connection.h"
 namespace rocket
 {
-    TcpConection::TcpConection(EventLoop *event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr, TcpConnectionType type /*= TcpConectionByServer*/)
-        : m_event_loop(event_loop), m_peer_addr(peer_addr), m_state(NotConenct), m_fd{fd}, m_connection_type(type)
+    TcpConection::TcpConection(EventLoop *event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr, NetAddr::s_ptr local_addr, TcpConnectionType type /*= TcpConectionByServer*/)
+        : m_event_loop(event_loop), m_local_addr(local_addr), m_peer_addr(peer_addr), m_state(NotConenct), m_fd{fd}, m_connection_type(type)
     {
         // 创建用户读写缓冲区
         m_in_buffer = std::make_shared<TcpBuffer>(buffer_size);
@@ -21,9 +21,10 @@ namespace rocket
         if (m_connection_type == TcpConectionByServer)
         {
             listenRead(); // 监听可读事件
+            m_dispatcher = std::make_shared<RpcDispatcher>();
         }
 
-        m_coder = new StringCoder(); // 创建一个编解码器
+        m_coder = new TinyPBCoder(); // 创建一个编解码器
     }
     TcpConection::~TcpConection()
     {
@@ -54,7 +55,7 @@ namespace rocket
 
             int read_count = m_in_buffer->writeAble();   // 可写字节数
             int write_index = m_in_buffer->writeIndex(); // 可写索引
-            printf("read_count=%d write_index=%d\n", read_count, write_index);
+            DEBUGLOG("read_count=%d write_index=%d\n", read_count, write_index);
             int rt = read(m_fd, &(m_in_buffer->m_buffer[write_index]), read_count);
             DEBUGLOG("success read %d bytes from addr[%s],client fd[%d]", rt, m_peer_addr->toString().c_str(), m_fd);
             if (rt > 0)
@@ -105,23 +106,34 @@ namespace rocket
         if (m_connection_type == TcpConectionByServer)
         {
             // 将 RPC 请求执行业务逻辑，获取 RPC 响应，再把 RPC 响应发送回去
-            std::vector<char> tmp;
-            int size = m_in_buffer->readAble();
-            tmp.resize(size);
+            // std::vector<char> tmp;
+            // int size = m_in_buffer->readAble();
+            // tmp.resize(size);
 
-            // 读取缓冲区size大小的数据
-            m_in_buffer->readFromBuffer(tmp, size);
+            // // 读取缓冲区size大小的数据
+            // m_in_buffer->readFromBuffer(tmp, size);
 
-            std::string msg;
-            for (size_t i = 0; i < tmp.size(); i++)
+            // std::string msg;
+            // for (size_t i = 0; i < tmp.size(); i++)
+            // {
+            //     msg += tmp[i];
+            // }
+            std::vector<AbstractProtocol::s_ptr> result;
+            std::vector<AbstractProtocol::s_ptr> replay_messages;
+            m_coder->decode(result, m_in_buffer);
+            for (size_t i = 0; i < result.size(); i++)
             {
-                msg += tmp[i];
+                // 针对每一个请求，调用rpc方法，获取相应
+                // 将相应msg放入到发送缓冲区，监听可写事件回包
+                INFOLOG("success get request[%s] from client[%s]", result[i]->m_req_id.c_str(), m_peer_addr->toString().c_str());
+
+                std::shared_ptr<TinyPBProtocol> message = std::make_shared<TinyPBProtocol>();
+                // message->m_pd_data = "hello,this is rock rpc test data";
+                // message->m_req_id = result[i]->m_req_id;
+                m_dispatcher->dispatch(result[i], message, this); // 分发协议，获得响应协议
+                replay_messages.emplace_back(message);
             }
-
-            INFOLOG("success get request[%s] from client[%s]", msg.c_str(), m_peer_addr->toString().c_str());
-
-            m_out_buffer->writeToBuffer(msg.c_str(), msg.length());
-
+            m_coder->encode(replay_messages, m_out_buffer);
             listenWrite(); // 服务器监听可写事件
         }
         else // 客户端将接收数据 解码 解码之后调用对应回调函数(解码后协议作为入参)
@@ -131,7 +143,7 @@ namespace rocket
             m_coder->decode(reuslt, m_in_buffer);
             for (size_t i = 0; i < reuslt.size(); i++)
             {
-                std::string req_id = reuslt[i]->getReqId(); // 获取协议序列号
+                std::string req_id = reuslt[i]->m_req_id; // 获取协议序列号
                 auto it = m_read_dones.find(req_id);
                 if (it != m_read_dones.end())
                 {

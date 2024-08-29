@@ -23,7 +23,7 @@ namespace rocket
         m_fd_event->setNonBlock();
 
         // 创建connection
-        m_connection = std::make_shared<TcpConection>(m_event_loop, m_fd, 128, peer_addr, TcpConectionByClient);
+        m_connection = std::make_shared<TcpConection>(m_event_loop, m_fd, 128, peer_addr, nullptr, TcpConectionByClient);
         m_connection->setConectionType(TcpConectionByClient);
     }
     TcpClient::~TcpClient()

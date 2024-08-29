@@ -243,5 +243,24 @@ CMakeFiles/client.dir/testcases/test_client.cpp.o: \
  /home/xbj/projects/RPC/rocket/net/coder/tinypb_coder.h \
  /home/xbj/projects/RPC/rocket/net/coder/abstract_coder.h \
  /home/xbj/projects/RPC/rocket/net/coder/tinypb_protocol.h \
+ /home/xbj/projects/RPC/rocket/rpc/rpc_dispatcher.h \
+ /usr/local/include/google/protobuf/service.h \
+ /usr/local/include/google/protobuf/stubs/callback.h \
+ /usr/local/include/google/protobuf/stubs/macros.h \
+ /usr/local/include/google/protobuf/port_def.inc \
+ /usr/local/include/google/protobuf/port_undef.inc \
+ /usr/local/include/google/protobuf/stubs/common.h \
+ /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
+ /usr/include/c++/13/bits/algorithmfwd.h \
+ /usr/include/c++/13/bits/uniform_int_dist.h \
+ /usr/local/include/google/protobuf/stubs/platform_macros.h \
+ /usr/local/include/google/protobuf/stubs/port.h \
+ /usr/include/c++/13/stdlib.h /usr/include/c++/13/cstddef \
+ /usr/include/byteswap.h \
+ /usr/local/include/google/protobuf/stubs/stringpiece.h \
+ /usr/local/include/google/protobuf/stubs/hash.h \
+ /usr/include/c++/13/cstring /usr/include/c++/13/unordered_set \
+ /usr/include/c++/13/bits/unordered_set.h \
+ /home/xbj/projects/RPC/rocket/rpc/rpc_controller.h \
  /home/xbj/projects/RPC/testcases/../rocket/net/tcp/tcp_client.h \
  /home/xbj/projects/RPC/rocket/net/coder/string_coder.h

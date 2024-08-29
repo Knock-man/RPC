@@ -39,6 +39,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/client.dir/rocket/net/timer_event.cpp.o.d"
   "CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.o"
   "CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.o.d"
+  "CMakeFiles/client.dir/rocket/rpc/rpc_controller.cpp.o"
+  "CMakeFiles/client.dir/rocket/rpc/rpc_controller.cpp.o.d"
+  "CMakeFiles/client.dir/rocket/rpc/rpc_dispatcher.cpp.o"
+  "CMakeFiles/client.dir/rocket/rpc/rpc_dispatcher.cpp.o.d"
   "CMakeFiles/client.dir/testcases/test_client.cpp.o"
   "CMakeFiles/client.dir/testcases/test_client.cpp.o.d"
 )

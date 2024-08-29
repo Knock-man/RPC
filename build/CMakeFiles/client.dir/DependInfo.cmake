@@ -27,6 +27,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/xbj/projects/RPC/rocket/net/timer.cpp" "CMakeFiles/client.dir/rocket/net/timer.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/net/timer.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/net/timer_event.cpp" "CMakeFiles/client.dir/rocket/net/timer_event.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/net/timer_event.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/net/wakeup_fd_event.cpp" "CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.o.d"
+  "/home/xbj/projects/RPC/rocket/rpc/rpc_controller.cpp" "CMakeFiles/client.dir/rocket/rpc/rpc_controller.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/rpc/rpc_controller.cpp.o.d"
+  "/home/xbj/projects/RPC/rocket/rpc/rpc_dispatcher.cpp" "CMakeFiles/client.dir/rocket/rpc/rpc_dispatcher.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/rpc/rpc_dispatcher.cpp.o.d"
   "/home/xbj/projects/RPC/testcases/test_client.cpp" "CMakeFiles/client.dir/testcases/test_client.cpp.o" "gcc" "CMakeFiles/client.dir/testcases/test_client.cpp.o.d"
   )
 

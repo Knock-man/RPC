@@ -655,6 +655,60 @@ rocket/net/wakeup_fd_event.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.s
 .PHONY : rocket/net/wakeup_fd_event.cpp.s
 
+rocket/rpc/rpc_controller.o: rocket/rpc/rpc_controller.cpp.o
+.PHONY : rocket/rpc/rpc_controller.o
+
+# target to build an object file
+rocket/rpc/rpc_controller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/rpc_controller.cpp.o
+.PHONY : rocket/rpc/rpc_controller.cpp.o
+
+rocket/rpc/rpc_controller.i: rocket/rpc/rpc_controller.cpp.i
+.PHONY : rocket/rpc/rpc_controller.i
+
+# target to preprocess a source file
+rocket/rpc/rpc_controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/rpc_controller.cpp.i
+.PHONY : rocket/rpc/rpc_controller.cpp.i
+
+rocket/rpc/rpc_controller.s: rocket/rpc/rpc_controller.cpp.s
+.PHONY : rocket/rpc/rpc_controller.s
+
+# target to generate assembly for a file
+rocket/rpc/rpc_controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/rpc_controller.cpp.s
+.PHONY : rocket/rpc/rpc_controller.cpp.s
+
+rocket/rpc/rpc_dispatcher.o: rocket/rpc/rpc_dispatcher.cpp.o
+.PHONY : rocket/rpc/rpc_dispatcher.o
+
+# target to build an object file
+rocket/rpc/rpc_dispatcher.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/rpc_dispatcher.cpp.o
+.PHONY : rocket/rpc/rpc_dispatcher.cpp.o
+
+rocket/rpc/rpc_dispatcher.i: rocket/rpc/rpc_dispatcher.cpp.i
+.PHONY : rocket/rpc/rpc_dispatcher.i
+
+# target to preprocess a source file
+rocket/rpc/rpc_dispatcher.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/rpc_dispatcher.cpp.i
+.PHONY : rocket/rpc/rpc_dispatcher.cpp.i
+
+rocket/rpc/rpc_dispatcher.s: rocket/rpc/rpc_dispatcher.cpp.s
+.PHONY : rocket/rpc/rpc_dispatcher.s
+
+# target to generate assembly for a file
+rocket/rpc/rpc_dispatcher.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/rpc_dispatcher.cpp.s
+.PHONY : rocket/rpc/rpc_dispatcher.cpp.s
+
 testcases/test_client.o: testcases/test_client.cpp.o
 .PHONY : testcases/test_client.o
 
@@ -770,6 +824,12 @@ help:
 	@echo "... rocket/net/wakeup_fd_event.o"
 	@echo "... rocket/net/wakeup_fd_event.i"
 	@echo "... rocket/net/wakeup_fd_event.s"
+	@echo "... rocket/rpc/rpc_controller.o"
+	@echo "... rocket/rpc/rpc_controller.i"
+	@echo "... rocket/rpc/rpc_controller.s"
+	@echo "... rocket/rpc/rpc_dispatcher.o"
+	@echo "... rocket/rpc/rpc_dispatcher.i"
+	@echo "... rocket/rpc/rpc_dispatcher.s"
 	@echo "... testcases/test_client.o"
 	@echo "... testcases/test_client.i"
 	@echo "... testcases/test_client.s"

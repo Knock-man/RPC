@@ -5,7 +5,10 @@
 #include "rocket/net/tcp/net_addr.h"
 #include "rocket/net/tcp/tcp_buffer.h"
 #include "rocket/net/io_thread.h"
-#include "rocket/net/tcp/abstract_coder.h"
+#include "rocket/net/coder/abstract_protocol.h"
+#include "rocket/net/coder/tinypb_coder.h"
+#include "rocket/net/coder/abstract_coder.h"
+#include "rocket/rpc/rpc_dispatcher.h"
 namespace rocket
 {
     enum TcpState
@@ -20,11 +23,14 @@ namespace rocket
         TcpConectionByServer = 1, // 作为服务器端使用，代表和对端客户端连接
         TcpConectionByClient = 2  // 作为客户端使用，代表和对端服务端连接
     };
+
+    class RpcDispatcher;
+
     class TcpConection
     {
     public:
         typedef std::shared_ptr<TcpConection> s_ptr;
-        TcpConection(EventLoop *event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr, TcpConnectionType type = TcpConectionByServer);
+        TcpConection(EventLoop *event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr, NetAddr::s_ptr local_addr, TcpConnectionType type = TcpConectionByServer);
         ~TcpConection();
 
         void onRead();
@@ -53,6 +59,17 @@ namespace rocket
         // 异步接收
         void pushReadMessage(const std::string &req_id, std::function<void(AbstractProtocol::s_ptr)>);
 
+        NetAddr::s_ptr getLocalAddr() const
+
+        {
+            return m_local_addr;
+        }
+
+        NetAddr::s_ptr getPeerAddr() const
+        {
+            return m_peer_addr;
+        }
+
     private:
         EventLoop *m_event_loop{NULL}; // 该连接对应的event_loop
 
@@ -77,6 +94,8 @@ namespace rocket
         // 读消息读回调
         //  key 为 req_id
         std::map<std::string, std::function<void(AbstractProtocol::s_ptr)>> m_read_dones;
+
+        std::shared_ptr<RpcDispatcher> m_dispatcher;
     };
 
 } // namespace rocket
