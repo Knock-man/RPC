@@ -27,9 +27,10 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/xbj/projects/RPC/rocket/net/timer.cpp" "CMakeFiles/server.dir/rocket/net/timer.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/net/timer.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/net/timer_event.cpp" "CMakeFiles/server.dir/rocket/net/timer_event.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/net/timer_event.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/net/wakeup_fd_event.cpp" "CMakeFiles/server.dir/rocket/net/wakeup_fd_event.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/net/wakeup_fd_event.cpp.o.d"
+  "/home/xbj/projects/RPC/rocket/rpc/order.pb.cc" "CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o" "gcc" "CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o.d"
   "/home/xbj/projects/RPC/rocket/rpc/rpc_controller.cpp" "CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/rpc/rpc_dispatcher.cpp" "CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o" "gcc" "CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o.d"
-  "/home/xbj/projects/RPC/testcases/test_tcp.cpp" "CMakeFiles/server.dir/testcases/test_tcp.cpp.o" "gcc" "CMakeFiles/server.dir/testcases/test_tcp.cpp.o.d"
+  "/home/xbj/projects/RPC/testcases/test_rpc_server.cc" "CMakeFiles/server.dir/testcases/test_rpc_server.cc.o" "gcc" "CMakeFiles/server.dir/testcases/test_rpc_server.cc.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

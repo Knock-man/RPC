@@ -39,12 +39,14 @@ file(REMOVE_RECURSE
   "CMakeFiles/server.dir/rocket/net/timer_event.cpp.o.d"
   "CMakeFiles/server.dir/rocket/net/wakeup_fd_event.cpp.o"
   "CMakeFiles/server.dir/rocket/net/wakeup_fd_event.cpp.o.d"
+  "CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o"
+  "CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o.d"
   "CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o"
   "CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o.d"
   "CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o"
   "CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o.d"
-  "CMakeFiles/server.dir/testcases/test_tcp.cpp.o"
-  "CMakeFiles/server.dir/testcases/test_tcp.cpp.o.d"
+  "CMakeFiles/server.dir/testcases/test_rpc_server.cc.o"
+  "CMakeFiles/server.dir/testcases/test_rpc_server.cc.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -335,24 +335,38 @@ CMakeFiles/server.dir/rocket/net/tcp/tcp_server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/rocket/net/tcp/tcp_server.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xbj/projects/RPC/rocket/net/tcp/tcp_server.cpp -o CMakeFiles/server.dir/rocket/net/tcp/tcp_server.cpp.s
 
-CMakeFiles/server.dir/testcases/test_tcp.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/testcases/test_tcp.cpp.o: /home/xbj/projects/RPC/testcases/test_tcp.cpp
-CMakeFiles/server.dir/testcases/test_tcp.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/server.dir/testcases/test_tcp.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/testcases/test_tcp.cpp.o -MF CMakeFiles/server.dir/testcases/test_tcp.cpp.o.d -o CMakeFiles/server.dir/testcases/test_tcp.cpp.o -c /home/xbj/projects/RPC/testcases/test_tcp.cpp
+CMakeFiles/server.dir/testcases/test_rpc_server.cc.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/testcases/test_rpc_server.cc.o: /home/xbj/projects/RPC/testcases/test_rpc_server.cc
+CMakeFiles/server.dir/testcases/test_rpc_server.cc.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/server.dir/testcases/test_rpc_server.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/testcases/test_rpc_server.cc.o -MF CMakeFiles/server.dir/testcases/test_rpc_server.cc.o.d -o CMakeFiles/server.dir/testcases/test_rpc_server.cc.o -c /home/xbj/projects/RPC/testcases/test_rpc_server.cc
 
-CMakeFiles/server.dir/testcases/test_tcp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/testcases/test_tcp.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xbj/projects/RPC/testcases/test_tcp.cpp > CMakeFiles/server.dir/testcases/test_tcp.cpp.i
+CMakeFiles/server.dir/testcases/test_rpc_server.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/testcases/test_rpc_server.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xbj/projects/RPC/testcases/test_rpc_server.cc > CMakeFiles/server.dir/testcases/test_rpc_server.cc.i
 
-CMakeFiles/server.dir/testcases/test_tcp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/testcases/test_tcp.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xbj/projects/RPC/testcases/test_tcp.cpp -o CMakeFiles/server.dir/testcases/test_tcp.cpp.s
+CMakeFiles/server.dir/testcases/test_rpc_server.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/testcases/test_rpc_server.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xbj/projects/RPC/testcases/test_rpc_server.cc -o CMakeFiles/server.dir/testcases/test_rpc_server.cc.s
+
+CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o: /home/xbj/projects/RPC/rocket/rpc/order.pb.cc
+CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o: CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o -MF CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o.d -o CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o -c /home/xbj/projects/RPC/rocket/rpc/order.pb.cc
+
+CMakeFiles/server.dir/rocket/rpc/order.pb.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/server.dir/rocket/rpc/order.pb.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/xbj/projects/RPC/rocket/rpc/order.pb.cc > CMakeFiles/server.dir/rocket/rpc/order.pb.cc.i
+
+CMakeFiles/server.dir/rocket/rpc/order.pb.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/server.dir/rocket/rpc/order.pb.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/xbj/projects/RPC/rocket/rpc/order.pb.cc -o CMakeFiles/server.dir/rocket/rpc/order.pb.cc.s
 
 CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o: /home/xbj/projects/RPC/rocket/rpc/rpc_controller.cpp
 CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o -MF CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o.d -o CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o -c /home/xbj/projects/RPC/rocket/rpc/rpc_controller.cpp
 
 CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.i: cmake_force
@@ -366,7 +380,7 @@ CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.s: cmake_force
 CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o: /home/xbj/projects/RPC/rocket/rpc/rpc_dispatcher.cpp
 CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o: CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o -MF CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o.d -o CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o -c /home/xbj/projects/RPC/rocket/rpc/rpc_dispatcher.cpp
 
 CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.i: cmake_force
@@ -398,7 +412,8 @@ server_OBJECTS = \
 "CMakeFiles/server.dir/rocket/net/tcp/tcp_client.cpp.o" \
 "CMakeFiles/server.dir/rocket/net/tcp/tcp_connection.cpp.o" \
 "CMakeFiles/server.dir/rocket/net/tcp/tcp_server.cpp.o" \
-"CMakeFiles/server.dir/testcases/test_tcp.cpp.o" \
+"CMakeFiles/server.dir/testcases/test_rpc_server.cc.o" \
+"CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o" \
 "CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o" \
 "CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o"
 
@@ -424,12 +439,13 @@ server_EXTERNAL_OBJECTS =
 /home/xbj/projects/RPC/bin/server: CMakeFiles/server.dir/rocket/net/tcp/tcp_client.cpp.o
 /home/xbj/projects/RPC/bin/server: CMakeFiles/server.dir/rocket/net/tcp/tcp_connection.cpp.o
 /home/xbj/projects/RPC/bin/server: CMakeFiles/server.dir/rocket/net/tcp/tcp_server.cpp.o
-/home/xbj/projects/RPC/bin/server: CMakeFiles/server.dir/testcases/test_tcp.cpp.o
+/home/xbj/projects/RPC/bin/server: CMakeFiles/server.dir/testcases/test_rpc_server.cc.o
+/home/xbj/projects/RPC/bin/server: CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o
 /home/xbj/projects/RPC/bin/server: CMakeFiles/server.dir/rocket/rpc/rpc_controller.cpp.o
 /home/xbj/projects/RPC/bin/server: CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o
 /home/xbj/projects/RPC/bin/server: CMakeFiles/server.dir/build.make
 /home/xbj/projects/RPC/bin/server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable /home/xbj/projects/RPC/bin/server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/xbj/projects/RPC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX executable /home/xbj/projects/RPC/bin/server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -655,6 +655,33 @@ rocket/net/wakeup_fd_event.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.s
 .PHONY : rocket/net/wakeup_fd_event.cpp.s
 
+rocket/rpc/order.pb.o: rocket/rpc/order.pb.cc.o
+.PHONY : rocket/rpc/order.pb.o
+
+# target to build an object file
+rocket/rpc/order.pb.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/order.pb.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/order.pb.cc.o
+.PHONY : rocket/rpc/order.pb.cc.o
+
+rocket/rpc/order.pb.i: rocket/rpc/order.pb.cc.i
+.PHONY : rocket/rpc/order.pb.i
+
+# target to preprocess a source file
+rocket/rpc/order.pb.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/order.pb.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/order.pb.cc.i
+.PHONY : rocket/rpc/order.pb.cc.i
+
+rocket/rpc/order.pb.s: rocket/rpc/order.pb.cc.s
+.PHONY : rocket/rpc/order.pb.s
+
+# target to generate assembly for a file
+rocket/rpc/order.pb.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/order.pb.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/order.pb.cc.s
+.PHONY : rocket/rpc/order.pb.cc.s
+
 rocket/rpc/rpc_controller.o: rocket/rpc/rpc_controller.cpp.o
 .PHONY : rocket/rpc/rpc_controller.o
 
@@ -709,53 +736,53 @@ rocket/rpc/rpc_dispatcher.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/rpc_dispatcher.cpp.s
 .PHONY : rocket/rpc/rpc_dispatcher.cpp.s
 
-testcases/test_client.o: testcases/test_client.cpp.o
-.PHONY : testcases/test_client.o
+testcases/test_rpc_client.o: testcases/test_rpc_client.cc.o
+.PHONY : testcases/test_rpc_client.o
 
 # target to build an object file
-testcases/test_client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/testcases/test_client.cpp.o
-.PHONY : testcases/test_client.cpp.o
+testcases/test_rpc_client.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/testcases/test_rpc_client.cc.o
+.PHONY : testcases/test_rpc_client.cc.o
 
-testcases/test_client.i: testcases/test_client.cpp.i
-.PHONY : testcases/test_client.i
+testcases/test_rpc_client.i: testcases/test_rpc_client.cc.i
+.PHONY : testcases/test_rpc_client.i
 
 # target to preprocess a source file
-testcases/test_client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/testcases/test_client.cpp.i
-.PHONY : testcases/test_client.cpp.i
+testcases/test_rpc_client.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/testcases/test_rpc_client.cc.i
+.PHONY : testcases/test_rpc_client.cc.i
 
-testcases/test_client.s: testcases/test_client.cpp.s
-.PHONY : testcases/test_client.s
+testcases/test_rpc_client.s: testcases/test_rpc_client.cc.s
+.PHONY : testcases/test_rpc_client.s
 
 # target to generate assembly for a file
-testcases/test_client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/testcases/test_client.cpp.s
-.PHONY : testcases/test_client.cpp.s
+testcases/test_rpc_client.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/testcases/test_rpc_client.cc.s
+.PHONY : testcases/test_rpc_client.cc.s
 
-testcases/test_tcp.o: testcases/test_tcp.cpp.o
-.PHONY : testcases/test_tcp.o
+testcases/test_rpc_server.o: testcases/test_rpc_server.cc.o
+.PHONY : testcases/test_rpc_server.o
 
 # target to build an object file
-testcases/test_tcp.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/testcases/test_tcp.cpp.o
-.PHONY : testcases/test_tcp.cpp.o
+testcases/test_rpc_server.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/testcases/test_rpc_server.cc.o
+.PHONY : testcases/test_rpc_server.cc.o
 
-testcases/test_tcp.i: testcases/test_tcp.cpp.i
-.PHONY : testcases/test_tcp.i
+testcases/test_rpc_server.i: testcases/test_rpc_server.cc.i
+.PHONY : testcases/test_rpc_server.i
 
 # target to preprocess a source file
-testcases/test_tcp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/testcases/test_tcp.cpp.i
-.PHONY : testcases/test_tcp.cpp.i
+testcases/test_rpc_server.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/testcases/test_rpc_server.cc.i
+.PHONY : testcases/test_rpc_server.cc.i
 
-testcases/test_tcp.s: testcases/test_tcp.cpp.s
-.PHONY : testcases/test_tcp.s
+testcases/test_rpc_server.s: testcases/test_rpc_server.cc.s
+.PHONY : testcases/test_rpc_server.s
 
 # target to generate assembly for a file
-testcases/test_tcp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/testcases/test_tcp.cpp.s
-.PHONY : testcases/test_tcp.cpp.s
+testcases/test_rpc_server.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/testcases/test_rpc_server.cc.s
+.PHONY : testcases/test_rpc_server.cc.s
 
 # Help Target
 help:
@@ -824,18 +851,21 @@ help:
 	@echo "... rocket/net/wakeup_fd_event.o"
 	@echo "... rocket/net/wakeup_fd_event.i"
 	@echo "... rocket/net/wakeup_fd_event.s"
+	@echo "... rocket/rpc/order.pb.o"
+	@echo "... rocket/rpc/order.pb.i"
+	@echo "... rocket/rpc/order.pb.s"
 	@echo "... rocket/rpc/rpc_controller.o"
 	@echo "... rocket/rpc/rpc_controller.i"
 	@echo "... rocket/rpc/rpc_controller.s"
 	@echo "... rocket/rpc/rpc_dispatcher.o"
 	@echo "... rocket/rpc/rpc_dispatcher.i"
 	@echo "... rocket/rpc/rpc_dispatcher.s"
-	@echo "... testcases/test_client.o"
-	@echo "... testcases/test_client.i"
-	@echo "... testcases/test_client.s"
-	@echo "... testcases/test_tcp.o"
-	@echo "... testcases/test_tcp.i"
-	@echo "... testcases/test_tcp.s"
+	@echo "... testcases/test_rpc_client.o"
+	@echo "... testcases/test_rpc_client.i"
+	@echo "... testcases/test_rpc_client.s"
+	@echo "... testcases/test_rpc_server.o"
+	@echo "... testcases/test_rpc_server.i"
+	@echo "... testcases/test_rpc_server.s"
 .PHONY : help
 
 
