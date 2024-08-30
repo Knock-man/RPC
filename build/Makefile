@@ -196,6 +196,33 @@ rocket/common/log.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/log.cpp.s
 .PHONY : rocket/common/log.cpp.s
 
+rocket/common/msg_id_util.o: rocket/common/msg_id_util.cpp.o
+.PHONY : rocket/common/msg_id_util.o
+
+# target to build an object file
+rocket/common/msg_id_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/msg_id_util.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/msg_id_util.cpp.o
+.PHONY : rocket/common/msg_id_util.cpp.o
+
+rocket/common/msg_id_util.i: rocket/common/msg_id_util.cpp.i
+.PHONY : rocket/common/msg_id_util.i
+
+# target to preprocess a source file
+rocket/common/msg_id_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/msg_id_util.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/msg_id_util.cpp.i
+.PHONY : rocket/common/msg_id_util.cpp.i
+
+rocket/common/msg_id_util.s: rocket/common/msg_id_util.cpp.s
+.PHONY : rocket/common/msg_id_util.s
+
+# target to generate assembly for a file
+rocket/common/msg_id_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/common/msg_id_util.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/common/msg_id_util.cpp.s
+.PHONY : rocket/common/msg_id_util.cpp.s
+
 rocket/common/util.o: rocket/common/util.cpp.o
 .PHONY : rocket/common/util.o
 
@@ -682,6 +709,33 @@ rocket/rpc/order.pb.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/order.pb.cc.s
 .PHONY : rocket/rpc/order.pb.cc.s
 
+rocket/rpc/rpc_channel.o: rocket/rpc/rpc_channel.cpp.o
+.PHONY : rocket/rpc/rpc_channel.o
+
+# target to build an object file
+rocket/rpc/rpc_channel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/rpc_channel.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/rpc_channel.cpp.o
+.PHONY : rocket/rpc/rpc_channel.cpp.o
+
+rocket/rpc/rpc_channel.i: rocket/rpc/rpc_channel.cpp.i
+.PHONY : rocket/rpc/rpc_channel.i
+
+# target to preprocess a source file
+rocket/rpc/rpc_channel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/rpc_channel.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/rpc_channel.cpp.i
+.PHONY : rocket/rpc/rpc_channel.cpp.i
+
+rocket/rpc/rpc_channel.s: rocket/rpc/rpc_channel.cpp.s
+.PHONY : rocket/rpc/rpc_channel.s
+
+# target to generate assembly for a file
+rocket/rpc/rpc_channel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/rocket/rpc/rpc_channel.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/rocket/rpc/rpc_channel.cpp.s
+.PHONY : rocket/rpc/rpc_channel.cpp.s
+
 rocket/rpc/rpc_controller.o: rocket/rpc/rpc_controller.cpp.o
 .PHONY : rocket/rpc/rpc_controller.o
 
@@ -800,6 +854,9 @@ help:
 	@echo "... rocket/common/log.o"
 	@echo "... rocket/common/log.i"
 	@echo "... rocket/common/log.s"
+	@echo "... rocket/common/msg_id_util.o"
+	@echo "... rocket/common/msg_id_util.i"
+	@echo "... rocket/common/msg_id_util.s"
 	@echo "... rocket/common/util.o"
 	@echo "... rocket/common/util.i"
 	@echo "... rocket/common/util.s"
@@ -854,6 +911,9 @@ help:
 	@echo "... rocket/rpc/order.pb.o"
 	@echo "... rocket/rpc/order.pb.i"
 	@echo "... rocket/rpc/order.pb.s"
+	@echo "... rocket/rpc/rpc_channel.o"
+	@echo "... rocket/rpc/rpc_channel.i"
+	@echo "... rocket/rpc/rpc_channel.s"
 	@echo "... rocket/rpc/rpc_controller.o"
 	@echo "... rocket/rpc/rpc_controller.i"
 	@echo "... rocket/rpc/rpc_controller.s"

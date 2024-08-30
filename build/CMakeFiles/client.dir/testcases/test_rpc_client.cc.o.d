@@ -312,4 +312,6 @@ CMakeFiles/client.dir/testcases/test_rpc_client.cc.o: \
  /usr/local/include/google/protobuf/map.h \
  /usr/local/include/google/protobuf/map_type_handler.h \
  /usr/local/include/google/protobuf/extension_set.h \
- /usr/include/c++/13/cassert
+ /usr/include/c++/13/cassert \
+ /home/xbj/projects/RPC/rocket/rpc/rpc_channel.h \
+ /home/xbj/projects/RPC/rocket/rpc/rpc_closeure.h

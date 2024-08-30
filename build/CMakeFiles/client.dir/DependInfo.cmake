@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/xbj/projects/RPC/rocket/common/config.cpp" "CMakeFiles/client.dir/rocket/common/config.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/common/config.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/common/log.cpp" "CMakeFiles/client.dir/rocket/common/log.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/common/log.cpp.o.d"
+  "/home/xbj/projects/RPC/rocket/common/msg_id_util.cpp" "CMakeFiles/client.dir/rocket/common/msg_id_util.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/common/msg_id_util.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/common/util.cpp" "CMakeFiles/client.dir/rocket/common/util.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/common/util.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/net/coder/tinypb_coder.cpp" "CMakeFiles/client.dir/rocket/net/coder/tinypb_coder.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/net/coder/tinypb_coder.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/net/coder/tinypb_protocol.cpp" "CMakeFiles/client.dir/rocket/net/coder/tinypb_protocol.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/net/coder/tinypb_protocol.cpp.o.d"
@@ -28,6 +29,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/xbj/projects/RPC/rocket/net/timer_event.cpp" "CMakeFiles/client.dir/rocket/net/timer_event.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/net/timer_event.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/net/wakeup_fd_event.cpp" "CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/net/wakeup_fd_event.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/rpc/order.pb.cc" "CMakeFiles/client.dir/rocket/rpc/order.pb.cc.o" "gcc" "CMakeFiles/client.dir/rocket/rpc/order.pb.cc.o.d"
+  "/home/xbj/projects/RPC/rocket/rpc/rpc_channel.cpp" "CMakeFiles/client.dir/rocket/rpc/rpc_channel.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/rpc/rpc_channel.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/rpc/rpc_controller.cpp" "CMakeFiles/client.dir/rocket/rpc/rpc_controller.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/rpc/rpc_controller.cpp.o.d"
   "/home/xbj/projects/RPC/rocket/rpc/rpc_dispatcher.cpp" "CMakeFiles/client.dir/rocket/rpc/rpc_dispatcher.cpp.o" "gcc" "CMakeFiles/client.dir/rocket/rpc/rpc_dispatcher.cpp.o.d"
   "/home/xbj/projects/RPC/testcases/test_rpc_client.cc" "CMakeFiles/client.dir/testcases/test_rpc_client.cc.o" "gcc" "CMakeFiles/client.dir/testcases/test_rpc_client.cc.o.d"
