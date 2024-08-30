@@ -105,7 +105,7 @@ void test_rpc_channel()
                                                                                         }
                                                                                        
                                                                                         INFOLOG("now exit eventloop");
-                                                                                        channel->getTcpClient()->stop();
+                                                                                        //channel->getTcpClient()->stop();
                                                                                         channel.reset(); });
 
     // channel->Init(controller, request, response, closure);
@@ -117,7 +117,7 @@ void test_rpc_channel()
 }
 int main()
 {
-    rocket::Config::SetGlobalConfig("rocket.xml");
+    rocket::Config::SetGlobalConfig("rocket_client.xml");
 
     test_rpc_channel();
     return 0;

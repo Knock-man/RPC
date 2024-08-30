@@ -6,6 +6,7 @@
 namespace rocket
 {
     static std::mutex mtx;
+    static std::mutex mtx_app;
     pid_t getPid();      // 获取进程ID
     pid_t getThreadId(); // 获取线程ID
 

@@ -9,6 +9,7 @@
 #include "rocket/common/error_code.h"
 #include "rocket/net/tcp/net_addr.h"
 #include "rocket/net/tcp/tcp_connection.h"
+#include "rocket/common/run_time.h"
 
 namespace rocket
 {
@@ -77,6 +78,11 @@ namespace rocket
         rpcController.SetLocalAddr(connection->getLocalAddr());
         rpcController.SetPeerAddr(connection->getPeerAddr());
         rpcController.SetMsgId(req_protocol->m_msg_id);
+
+        // 保存关键信息打印日志
+        RunTime::GetRunTime()->m_msgid = req_protocol->m_msg_id;
+        RunTime::GetRunTime()->m_method_name = method_name;
+        // 下面这句，调用了服务器业务方法 OrderImpl::makeOrder()
         service->CallMethod(method, &rpcController, req_msg, rsp_msg, NULL); // RPC方法
 
         // 序列化为字节流

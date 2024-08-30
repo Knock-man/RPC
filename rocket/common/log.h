@@ -28,6 +28,24 @@
         rocket::Logger::GetGlobolLogger()->pushLog((rocket::LogEvent(rocket::LogLevel::Error).toString()) + "[" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "]\t" + rocket::formatString(str, ##__VA_ARGS__) + '\n'); \
     }
 
+#define APPDEBUGLOG(str, ...)                                                                                                                                                                                                           \
+    if (rocket::Logger::GetGlobolLogger()->getLoglevel() <= rocket::Debug)                                                                                                                                                              \
+    {                                                                                                                                                                                                                                   \
+        rocket::Logger::GetGlobolLogger()->pushApplog((rocket::LogEvent(rocket::LogLevel::Debug).toString()) + "[" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "]\t" + rocket::formatString(str, ##__VA_ARGS__) + '\n'); \
+    }
+
+#define APPINFOLOG(str, ...)                                                                                                                                                                                                           \
+    if (rocket::Logger::GetGlobolLogger()->getLoglevel() <= rocket::Info)                                                                                                                                                              \
+    {                                                                                                                                                                                                                                  \
+        rocket::Logger::GetGlobolLogger()->pushApplog((rocket::LogEvent(rocket::LogLevel::Info).toString()) + "[" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "]\t" + rocket::formatString(str, ##__VA_ARGS__) + '\n'); \
+    }
+
+#define APPERRORLOG(str, ...)                                                                                                                                                                                                           \
+    if (rocket::Logger::GetGlobolLogger()->getLoglevel() <= rocket::Error)                                                                                                                                                              \
+    {                                                                                                                                                                                                                                   \
+        rocket::Logger::GetGlobolLogger()->pushApplog((rocket::LogEvent(rocket::LogLevel::Error).toString()) + "[" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "]\t" + rocket::formatString(str, ##__VA_ARGS__) + '\n'); \
+    }
+
 namespace rocket
 {
     // std::mutex log_mtx;
@@ -64,7 +82,7 @@ namespace rocket
     {
     public:
         typedef std::shared_ptr<AsynLogger> s_ptr;
-        AsynLogger(std::string file_name, std::string file_path, int max_size);
+        AsynLogger(const std::string &file_name, const std::string &file_path, int max_size);
 
         static void loop(AsynLogger *);
 
@@ -104,6 +122,8 @@ namespace rocket
         Logger(LogLevel level);
 
         void pushLog(const std::string &msg); // 提交日志入队
+
+        void pushApplog(const std::string &msg);
 
         LogLevel getLoglevel() const
         {
@@ -146,8 +166,10 @@ namespace rocket
         LogLevel m_set_level;              // 最低打印日志级别
         std::vector<std::string> m_logQue; // 日志消息队列
         std::vector<std::string> m_app_buffer;
-        AsynLogger::s_ptr m_asnyc_logger; // 异步日志
-        TimerEvent::s_ptr m_timer_event;  // 定时器
+        TimerEvent::s_ptr m_timer_event; // 定时器
+
+        AsynLogger::s_ptr m_asnyc_app_logger; // 异步日志
+        AsynLogger::s_ptr m_asnyc_logger;
     };
 
     // 日志

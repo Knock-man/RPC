@@ -7,14 +7,24 @@
 #include "rocket/net/eventloop.h"
 #include "log.h"
 #include "util.h"
+#include "rocket/common/run_time.h"
 
 namespace rocket
 {
     Logger *Logger::g_logger = nullptr;
 
-    Logger::Logger(LogLevel level) : m_set_level(level) {
+    Logger::Logger(LogLevel level) : m_set_level(level)
+    {
+        m_asnyc_logger = std::make_shared<AsynLogger>(
+            Config::GetGlobalConfig()->m_log_file_name + " rpc",
+            Config::GetGlobalConfig()->m_log_file_path,
+            Config::GetGlobalConfig()->m_log_max_file_size);
 
-                                     };
+        m_asnyc_app_logger = std::make_shared<AsynLogger>(
+            Config::GetGlobalConfig()->m_log_file_name + "_app",
+            Config::GetGlobalConfig()->m_log_file_path,
+            Config::GetGlobalConfig()->m_log_max_file_size);
+    };
 
     std::string LogLevelToString(LogLevel level)
     {
@@ -90,6 +100,18 @@ namespace rocket
            << "[" << time_str << "]\t"
            << "[" << m_pid << ":" << m_thread_id << "]\t";
 
+        // 获取当前线程处理请求的msgid
+        std::string msgid = RunTime::GetRunTime()->m_msgid;
+        std::string method_name = RunTime::GetRunTime()->m_method_name;
+        if (!msgid.empty())
+        {
+            ss << "[" << msgid << "]\t";
+        }
+
+        if (!method_name.empty())
+        {
+            ss << "[" << method_name << "]\t";
+        }
         return ss.str();
     }
 
@@ -99,6 +121,14 @@ namespace rocket
         printf("%s", msg.c_str());
         std::lock_guard<std::mutex> lock(mtx);
         m_logQue.push_back(msg);
+    }
+
+    // 日志入队
+    void Logger::pushApplog(const std::string &msg)
+    {
+        printf("%s", msg.c_str());
+        std::lock_guard<std::mutex> lock(mtx_app);
+        m_app_buffer.push_back(msg);
     }
 
     void Logger::log()
@@ -125,33 +155,36 @@ namespace rocket
     // 同步m_buf到async_logger 的buffer队尾
     void Logger::syncLoop()
     {
-        // printf("同步异步队列\n");
         std::vector<std::string> tmp_vec;
         {
             std::lock_guard<std::mutex> lock(mtx);
             m_logQue.swap(tmp_vec);
         }
-        // printf("同步队列大小%d\n", tmp_vec.size());
         if (!tmp_vec.empty())
         {
             m_asnyc_logger->pushLogBuffer(tmp_vec);
+        }
+
+        std::vector<std::string> tmp_vec2;
+        {
+            std::lock_guard<std::mutex> lock(mtx_app);
+            m_app_buffer.swap(tmp_vec2);
+        }
+        if (!tmp_vec2.empty())
+        {
+            m_asnyc_app_logger->pushLogBuffer(tmp_vec2);
         }
     }
 
     void Logger::init()
     {
-        m_asnyc_logger = std::make_shared<AsynLogger>(
-            Config::GetGlobalConfig()->m_log_file_name,
-            Config::GetGlobalConfig()->m_log_file_path,
-            Config::GetGlobalConfig()->m_log_max_file_size);
-
         m_timer_event = std::make_shared<TimerEvent>(Config::GetGlobalConfig()->m_log_sync_inteval, true, std::bind(&Logger::syncLoop, this));
 
         EventLoop::GetCurrentEventLoop()->addTimerEvent(m_timer_event);
         // printf("安装定时器成功，时间间隔%d\n", Config::GetGlobalConfig()->m_log_sync_inteval);
     }
 
-    AsynLogger::AsynLogger(std::string file_name, std::string file_path, int max_size)
+    AsynLogger::AsynLogger(const std::string &file_name, const std::string &file_path, int max_size)
         : m_file_name(file_name), m_file_path(file_path), m_max_file_size(max_size)
     {
         printf("构造异步对象\n");
@@ -208,7 +241,7 @@ namespace rocket
 
             // 生成日志文件名
             std::stringstream ss;
-            ss << thiz->m_file_path << thiz->m_file_name << "_" << std::string(date) << "_rpc_log.";
+            ss << thiz->m_file_path << thiz->m_file_name << "_" << std::string(date) << "_log.";
             std::string log_file_name = ss.str() + std::to_string(thiz->m_no);
 
             if (thiz->m_reopen_flag) // 需要重新打开新的日志文件

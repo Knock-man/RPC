@@ -227,6 +227,7 @@ CMakeFiles/server.dir/rocket/common/log.cpp.o: /home/xbj/projects/RPC/rocket/com
   /home/xbj/projects/RPC/rocket/net/timer_event.h \
   /home/xbj/projects/RPC/rocket/common/config.h \
   /home/xbj/projects/RPC/rocket/common/log.h \
+  /home/xbj/projects/RPC/rocket/common/run_time.h \
   /home/xbj/projects/RPC/rocket/common/util.h \
   /home/xbj/projects/RPC/rocket/net/eventloop.h \
   /home/xbj/projects/RPC/rocket/net/fd_event.h \
@@ -6072,6 +6073,7 @@ CMakeFiles/server.dir/rocket/rpc/rpc_dispatcher.cpp.o: /home/xbj/projects/RPC/ro
   /home/xbj/projects/RPC/rocket/common/config.h \
   /home/xbj/projects/RPC/rocket/common/error_code.h \
   /home/xbj/projects/RPC/rocket/common/log.h \
+  /home/xbj/projects/RPC/rocket/common/run_time.h \
   /home/xbj/projects/RPC/rocket/common/util.h \
   /home/xbj/projects/RPC/rocket/net/coder/abstract_coder.h \
   /home/xbj/projects/RPC/rocket/net/coder/abstract_protocol.h \
@@ -7078,6 +7080,8 @@ CMakeFiles/server.dir/testcases/test_rpc_server.cc.o: /home/xbj/projects/RPC/tes
 /usr/include/c++/13/bits/range_access.h:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/home/xbj/projects/RPC/rocket/common/run_time.h:
 
 /usr/include/c++/13/ostream:
 

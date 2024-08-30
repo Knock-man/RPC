@@ -34,7 +34,9 @@ class OrderImpl : public Order
                            ::makeOrderResponse *response,
                            ::google::protobuf::Closure *done)
     {
+        APPDEBUGLOG("start sleep 5s");
         sleep(5);
+        APPDEBUGLOG("end sleep 5s");
         if (request->price() < 10)
         {
             response->set_ret_code(-1);
@@ -44,6 +46,7 @@ class OrderImpl : public Order
         else
         {
             response->set_order_id("20230404");
+            APPDEBUGLOG("call makeOrder success");
         }
     }
 };
