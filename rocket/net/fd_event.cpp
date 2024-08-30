@@ -36,25 +36,40 @@ namespace rocket
         {
             return m_read_callback;
         }
-        else
+        else if (event_type == TriggerEvent::OUT_EVENT)
         {
             return m_write_callback;
         }
+        else if (event_type == TriggerEvent::ERROR_EVENT)
+        {
+            return m_error_callback;
+        }
+        return nullptr;
     }
 
     // 绑定该fd读写事件对应的事件处理器
-    void FdEvent::listen(TriggerEvent event_type, std::function<void()> callback)
+    void FdEvent::listen(TriggerEvent event_type, std::function<void()> callback, std::function<void()> error_callback /*= nullptr*/)
     {
-        if (event_type == TriggerEvent::IN_EVENT)
+        if (event_type == TriggerEvent::IN_EVENT) // 注册读回调
         {
             m_listen_events.events |= EPOLLIN;
             m_read_callback = callback;
         }
         else
         {
-            m_listen_events.events |= EPOLLOUT;
+            m_listen_events.events |= EPOLLOUT; // 注册写回调
             m_write_callback = callback;
         }
+
+        if (error_callback != nullptr) // 注册错误回调
+        {
+            m_error_callback = error_callback;
+        }
+        else
+        {
+            m_error_callback = nullptr;
+        }
+
         m_listen_events.data.ptr = this;
     }
 

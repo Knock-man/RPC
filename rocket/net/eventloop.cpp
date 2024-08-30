@@ -177,10 +177,19 @@ namespace rocket
                         DEBUGLOG("fd %d trigger EPOLLIN event", fd_event->getFd());
                         addTask(fd_event->handler(FdEvent::IN_EVENT)); // 套接字的读回调函数添加进任务队列
                     }
-                    if (trrigger_event.events & EPOLLOUT)
+                    if (trrigger_event.events & EPOLLOUT) // 写事件
                     {
                         DEBUGLOG("fd %d trigger EPOLLIN event", fd_event->getFd());
                         addTask(fd_event->handler(FdEvent::OUT_EVENT)); // 套接字的写回调函数添加进任务队列
+                    }
+                    if (trrigger_event.events & EPOLLERR) // 错误事件
+                    {
+                        DEBUGLOG("fd %d trigger EPOLLEROR event", fd_event->getFd());
+                        deleteEpollEvent(fd_event);
+                        if (fd_event->handler(FdEvent::ERROR_EVENT) != nullptr)
+                        {
+                            addTask(fd_event->handler(FdEvent::OUT_EVENT));
+                        }
                     }
                 }
             }

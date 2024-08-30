@@ -9,8 +9,9 @@ namespace rocket
     public:
         enum TriggerEvent
         {
-            IN_EVENT = EPOLLIN,  // 读事件
-            OUT_EVENT = EPOLLOUT // 写事件
+            IN_EVENT = EPOLLIN,   // 读事件
+            OUT_EVENT = EPOLLOUT, // 写事件
+            ERROR_EVENT = EPOLLERR,
         };
 
         FdEvent(int fd);
@@ -25,7 +26,7 @@ namespace rocket
         std::function<void()> handler(TriggerEvent event_type);
 
         // 绑定该fd读写事件对应的事件处理器
-        void listen(TriggerEvent event_type, std::function<void()> callback);
+        void listen(TriggerEvent event_type, std::function<void()> callback, std::function<void()> error_callback = nullptr);
 
         // 取消该fd对应读写事件对应的监听
         void cancle(TriggerEvent event_type);
@@ -44,8 +45,9 @@ namespace rocket
     protected:
         int m_fd{-1}; // 套接字
         epoll_event m_listen_events;
-        std::function<void()> m_read_callback;  // 读回调
-        std::function<void()> m_write_callback; // 写回调
+        std::function<void()> m_read_callback{nullptr};  // 读回调
+        std::function<void()> m_write_callback{nullptr}; // 写回调
+        std::function<void()> m_error_callback{nullptr};
     };
 
 }; // namespace rocket

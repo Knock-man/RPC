@@ -5,6 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "tcp_client.h"
+#include "rocket/common/error_code.h"
 namespace rocket
 {
     // 构造函数 参数为服务器地址
@@ -43,7 +44,8 @@ namespace rocket
         int rt = ::connect(m_fd, m_peer_addr->getSockAddr(), m_peer_addr->getSockLen());
         if (rt == 0)
         {
-            DEBUGLOG("connect success");
+            DEBUGLOG("connect [%s] success", m_peer_addr->getSockAddr(), m_peer_addr->getSockLen());
+            initLocalAddr();
             m_connection->setState(Conected);
             if (done)
                 done();
@@ -58,25 +60,40 @@ namespace rocket
                                        int error = 0;
                                        socklen_t error_len = sizeof(error);
                                        getsockopt(m_fd, SOL_SOCKET, SO_ERROR, &error, &error_len);
-                                       bool is_connect_succ = false;
+                                   
                                        if (error == 0)
                                        {
                                            DEBUGLOG("connect [%s] success", m_peer_addr->toString().c_str());
-                                           is_connect_succ = true;
+                                           initLocalAddr();
                                            m_connection->setState(Conected);
                                        }
                                        else
                                        {
+                                           m_connect_err_code = ERROR_FAILED_CONNECT;
+                                           m_connect_error_info = "connect error,sys error=" + std::string(strerror(errno));
                                            ERRORLOG("connect error, error=%d, error=%s", errno, strerror(errno));
                                        }
                                        // 连接完后需要去掉可写事件的监听，不然会一直触发
-                                       m_fd_event->cancle(FdEvent::OUT_EVENT);
-                                       m_event_loop->addEpollEvent(m_fd_event);
-                                       //如果连接成功，才会执行回调函数
-                                       if (is_connect_succ && done)
+                                       m_event_loop->deleteEpollEvent(m_fd_event);
+                                       //    m_fd_event->cancle(FdEvent::OUT_EVENT);
+                                       //    m_event_loop->addEpollEvent(m_fd_event);
+                                       // 如果连接成功，才会执行回调函数
+                                       if (done)
                                        {
                                            done();
-                                       } });
+                                       } }, [this, done]()                // 注册错误事件回调
+                                   {
+                                    //     m_fd_event->cancle(FdEvent::OUT_EVENT);
+                                    //    m_event_loop->addEpollEvent(m_fd_event);
+                                        if(errno==ECONNREFUSED){//连接失败，对端没有服务器监听
+                                                m_connect_err_code = ERROR_FAILED_CONNECT;
+                                                m_connect_error_info = "connect refused,sys error=" + std::string(strerror(errno));
+                                                
+                                        }else{
+                                            m_connect_err_code = ERROR_FAILED_CONNECT;
+                                            m_connect_error_info = "connect unkonwn,sys error=" + std::string(strerror(errno));
+                                        }
+                                        ERRORLOG("connect error, error=%d, error=%s", errno, strerror(errno)); });
                 m_event_loop->addEpollEvent(m_fd_event);
                 if (!m_event_loop->isLooping())
                 {
@@ -85,7 +102,14 @@ namespace rocket
             }
             else
             {
+
+                m_connect_err_code = ERROR_FAILED_CONNECT;
+                m_connect_error_info = "connect error,sys error=" + std::string(strerror(errno));
                 ERRORLOG("connect error, error=%d, error=%s", errno, strerror(errno));
+                if (done)
+                {
+                    done();
+                }
             }
         }
     }
@@ -111,12 +135,44 @@ namespace rocket
         m_connection->pushReadMessage(msg_id, done); // 注册消息和通知函数
         m_connection->listenRead();                  // 提交可读事件
     }
-}
-
-void rocket::TcpClient::stop()
-{
-    if (m_event_loop->isLooping())
+    void TcpClient::stop()
     {
-        m_event_loop->stop();
+        if (m_event_loop->isLooping())
+        {
+            m_event_loop->stop();
+        }
+    }
+
+    int TcpClient::getConnectErrorCode()
+    {
+        return m_connect_err_code;
+    }
+
+    std::string TcpClient::getConnectErrorInfo()
+    {
+        return m_connect_error_info;
+    }
+
+    NetAddr::s_ptr TcpClient::getPeerAddr()
+    {
+        return m_peer_addr;
+    }
+    NetAddr::s_ptr TcpClient::getlocalAddr()
+    {
+        return m_local_addr;
+    }
+    void TcpClient::initLocalAddr()
+    {
+        sockaddr_in local_addr;
+        socklen_t len = sizeof(local_addr);
+
+        int ret = getsockname(m_fd, reinterpret_cast<sockaddr *>(&local_addr), &len);
+        if (ret != 0)
+        {
+            ERRORLOG("initLocalAddr error, getsockname error, errno=%d, error=%s", errno, strerror(errno));
+            return;
+        }
+
+        m_local_addr = std::make_shared<IPNetAddr>(local_addr);
     }
 }

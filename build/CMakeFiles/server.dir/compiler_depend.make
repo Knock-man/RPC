@@ -3415,6 +3415,7 @@ CMakeFiles/server.dir/rocket/net/tcp/tcp_buffer.cpp.o: /home/xbj/projects/RPC/ro
 CMakeFiles/server.dir/rocket/net/tcp/tcp_client.cpp.o: /home/xbj/projects/RPC/rocket/net/tcp/tcp_client.cpp \
   /home/xbj/projects/RPC/rocket/net/timer_event.h \
   /home/xbj/projects/RPC/rocket/common/config.h \
+  /home/xbj/projects/RPC/rocket/common/error_code.h \
   /home/xbj/projects/RPC/rocket/common/log.h \
   /home/xbj/projects/RPC/rocket/common/util.h \
   /home/xbj/projects/RPC/rocket/net/coder/abstract_coder.h \
@@ -6755,8 +6756,6 @@ CMakeFiles/server.dir/testcases/test_rpc_server.cc.o: /home/xbj/projects/RPC/tes
 
 /home/xbj/projects/RPC/testcases/test_rpc_server.cc:
 
-/home/xbj/projects/RPC/rocket/common/error_code.h:
-
 /home/xbj/projects/RPC/rocket/rpc/rpc_channel.cpp:
 
 /usr/local/include/google/protobuf/unknown_field_set.h:
@@ -6862,6 +6861,8 @@ CMakeFiles/server.dir/testcases/test_rpc_server.cc.o: /home/xbj/projects/RPC/tes
 /home/xbj/projects/RPC/rocket/rpc/rpc_dispatcher.h:
 
 /home/xbj/projects/RPC/rocket/rpc/rpc_controller.h:
+
+/home/xbj/projects/RPC/rocket/common/error_code.h:
 
 /home/xbj/projects/RPC/rocket/net/tcp/tcp_client.cpp:
 
