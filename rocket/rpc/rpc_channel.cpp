@@ -9,6 +9,8 @@
 #include "rocket/common/error_code.h"
 #include "rocket/net/tcp/tcp_client.h"
 #include "rpc_channel.h"
+#include "rocket/net/timer_event.h"
+
 namespace rocket
 {
     RpcChannel::RpcChannel(NetAddr::s_ptr peer_addr) : m_peer_addr(peer_addr)
@@ -81,6 +83,18 @@ namespace rocket
 
         s_ptr channel = shared_from_this(); // 获取当前对象的智能指针
 
+        m_timer_event = std::make_shared<TimerEvent>(my_controller->GetTimeout(), false, [my_controller, channel]() mutable
+                                                     {
+                                                                         my_controller->StartCancel();
+                                                                         my_controller->SetError(ERROR_RPC_CALL_TIMEOUT, "rpc call timeout " + std::to_string(my_controller->GetTimeout()));
+                                                                         if(channel->getClosure())//有rpc关闭回调
+                                                                         {
+                                                                             channel->getClosure()->Run();
+                                                                         }
+                                                                         channel.reset(); });
+
+        m_client->addTimerEvent(m_timer_event); // 添加超时事件
+
         // 连接服务器
         channel->getTcpClient()->connect([req_protocol, channel]() mutable
                                          {
@@ -106,7 +120,7 @@ namespace rocket
                                                         //解析响应
                                                          std::shared_ptr<rocket::TinyPBProtocol> rsp_protocol = std::dynamic_pointer_cast<rocket::TinyPBProtocol>(msg_ptr);
                                               INFOLOG("%s | success get response,call method name [%s], peer addr[%s], local addr[%s]", rsp_protocol->m_msg_id.c_str(), rsp_protocol->m_method_name.c_str(),channel->getTcpClient()->getPeerAddr()->toString().c_str(),channel->getTcpClient()->getlocalAddr()->toString().c_str());
-                                             
+                                             channel->getTimerEvent()->setCancled(true);//当成功读取回包，取消定时器
                                               if(!(channel->getResponse()->ParseFromString(rsp_protocol->m_pd_data))){
                                                   ERRORLOG("%s | deserialize error",rsp_protocol->m_msg_id.c_str());
                                                   my_controller->SetError(ERROR_FAILED_SERIALIZE, "serialize error");
@@ -119,9 +133,10 @@ namespace rocket
                                                   return;
                                               }
                                             INFOLOG("%s | call rpc success, call method name[%s], peer addr[%s], local addr[%s]",rsp_protocol->m_msg_id.c_str(), rsp_protocol->m_method_name.c_str(),channel->getTcpClient()->getPeerAddr()->toString().c_str(),channel->getTcpClient()->getlocalAddr()->toString().c_str())
-                                              if(channel->getClosure())
-                                              channel->getClosure()->Run();//rpc请求完成回调
-                                              channel.reset(); }); }); });
+                                            
+                                            if (!my_controller->IsCanceled()&&channel->getClosure())
+                                                channel->getClosure()->Run(); // rpc请求完成回调
+                                            channel.reset(); }); }); });
     }
 
     google::protobuf::RpcController *RpcChannel::getController() const
@@ -143,5 +158,9 @@ namespace rocket
     TcpClient *rocket::RpcChannel::getTcpClient()
     {
         return m_client.get();
+    }
+    TimerEvent::s_ptr RpcChannel::getTimerEvent()
+    {
+        return m_timer_event;
     }
 }

@@ -60,7 +60,15 @@ namespace rocket
         READ_SML_NODE(log, root_node); //<log></log>
 
         READ_STR_FROM_SML_NOOE(log_level, log_node); //<log_level></log_level>
+        READ_STR_FROM_SML_NOOE(log_file_name, log_node);
+        READ_STR_FROM_SML_NOOE(log_file_path, log_node);
+        READ_STR_FROM_SML_NOOE(log_max_file_size, log_node);
+        READ_STR_FROM_SML_NOOE(log_sync_interval, log_node);
 
-        m_log_level = log_level_str;
+        m_log_level = log_level_str;                                    // 日志等级
+        m_log_file_name = log_file_name_str;                            // 日志文件名
+        m_log_file_path = log_file_path_str;                            // 日志文件路径
+        m_log_max_file_size = std::atoi(log_max_file_size_str.c_str()); // 日志文件最大
+        m_log_sync_inteval = std::atoi(log_sync_interval_str.c_str());  // 日志同步间隔（毫秒）
     }
 }

@@ -59,7 +59,7 @@ namespace rocket
         NetAddr::s_ptr m_local_addr;
         NetAddr::s_ptr m_peer_addr;
 
-        int m_timeout{1000};
+        int m_timeout{1000}; // 超时时间
     };
 
 } // namespace rocket

@@ -29,9 +29,10 @@
 #include "rocket/rpc/rpc_controller.h"
 #include "rocket/rpc/rpc_closeure.h"
 
+#define IP_PORT "127.0.0.1:17311"
 void test_tcp_client()
 {
-    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 18010);
+    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 19110);
     rocket::TcpClient client(addr);
     client.connect([addr, &client]()
                    {
@@ -71,34 +72,48 @@ void test_rpc_channel()
 {
 
     // 构建请求对象
-    std::shared_ptr<makeOrderRequest> request = std::make_shared<makeOrderRequest>();
+    // std::shared_ptr<makeOrderRequest> request = std::make_shared<makeOrderRequest>();
+    NEWMESSAGE(makeOrderRequest, request);
     request->set_price(100);
     request->set_goods("app");
 
     // 响应对象
-    std::shared_ptr<makeOrderResponse> response = std::make_shared<makeOrderResponse>();
+    // std::shared_ptr<makeOrderResponse> response = std::make_shared<makeOrderResponse>();
+    NEWMESSAGE(makeOrderResponse, response);
 
     // 控制器
-    std::shared_ptr<rocket::RpcController> controller = std::make_shared<rocket::RpcController>();
+    // std::shared_ptr<rocket::RpcController> controller = std::make_shared<rocket::RpcController>();
+    NEWRPCCONTROLLER(controller);
+    controller->SetTimeout(100000);
     controller->SetMsgId("123456789");
 
     // channel
-    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 10010);
-    std::shared_ptr<rocket::RpcChannel> channel = std::make_shared<rocket::RpcChannel>(addr);
+    // rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 18110);
+    // std::shared_ptr<rocket::RpcChannel> channel = std::make_shared<rocket::RpcChannel>(addr);
+    // NEWCHANNEL("127.0.0.1:18110", channel);
+    NEWCHANNEL(IP_PORT, channel);
 
     // 回调函数
-    std::shared_ptr<rocket::RpcClosure> closure = std::make_shared<rocket::RpcClosure>([request, response, channel]() mutable
+    std::shared_ptr<rocket::RpcClosure> closure = std::make_shared<rocket::RpcClosure>([request, response, channel, controller]() mutable
                                                                                        { 
-                                                                                        INFOLOG("call rpc success,resuest[%s],response[%s]", request->ShortDebugString().c_str(), response->ShortDebugString().c_str());
+                                                                                        if(controller->GetErrorCode()==0)
+                                                                                        {
+                                                                                            INFOLOG("call rpc success,resuest[%s],response[%s]", request->ShortDebugString().c_str(), response->ShortDebugString().c_str());
+                                                                                            //业务逻辑
+                                                                                        }else{
+                                                                                            ERRORLOG("call rpc failed,resuest[%s],error code[%d],error info[%s]", request->ShortDebugString().c_str(), controller->GetErrorCode(),controller->GetErrorInfo().c_str());
+                                                                                        }
+                                                                                       
                                                                                         INFOLOG("now exit eventloop");
                                                                                         channel->getTcpClient()->stop();
                                                                                         channel.reset(); });
 
-    channel->Init(controller, request, response, closure);
+    // channel->Init(controller, request, response, closure);
 
     // stub.makeOrder 底层调用RpcChannel::CallMethod()方法
-    Order_Stub stub(channel.get());
-    stub.makeOrder(controller.get(), request.get(), response.get(), closure.get());
+    // Order_Stub stub(channel.get());
+    // stub.makeOrder(controller.get(), request.get(), response.get(), closure.get());
+    CALLRPC(IP_PORT, makeOrder, controller, request, response, closure);
 }
 int main()
 {
