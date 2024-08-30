@@ -1,3 +1,0 @@
-[Debug]	[24-08-30 21:01:55.74]	[71151:71154]	[123456789]	[makeOrder]	[/home/xbj/projects/RPC/testcases/test_rpc_server.cc:37]	start sleep 5s
-[Debug]	[24-08-30 21:02:00.77]	[71151:71154]	[123456789]	[makeOrder]	[/home/xbj/projects/RPC/testcases/test_rpc_server.cc:39]	end sleep 5s
-[Debug]	[24-08-30 21:02:00.77]	[71151:71154]	[123456789]	[makeOrder]	[/home/xbj/projects/RPC/testcases/test_rpc_server.cc:49]	call makeOrder success
