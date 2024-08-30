@@ -80,14 +80,14 @@ namespace rocket
         service->CallMethod(method, &rpcController, req_msg, rsp_msg, NULL); // RPC方法
 
         // 序列化为字节流
-        if (rsp_msg->SerializeToString(&(rsp_protocol->m_pd_data)))
+        if (!rsp_msg->SerializeToString(&(rsp_protocol->m_pd_data)))
         {
             ERRORLOG("%s |serlize error,origin message", rsp_protocol->m_msg_id.c_str(), rsp_msg->ShortDebugString().c_str());
             setTinyPBError(rsp_protocol, ERROR_SERVICE_NIT_FOUND, "serilize error");
-            if (req_msg != NULL)
+            if (rsp_msg != NULL)
             {
-                delete req_msg;
-                req_msg = NULL;
+                delete rsp_msg;
+                rsp_msg = NULL;
             }
             return;
         }

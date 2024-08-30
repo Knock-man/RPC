@@ -25,6 +25,9 @@
 #include "rocket/net/tcp/net_addr.h"
 #include "rocket/net/tcp/tcp_server.h"
 #include "rocket/rpc/rpc_dispatcher.h"
+#include "rocket/rpc/rpc_channel.h"
+#include "rocket/rpc/rpc_controller.h"
+#include "rocket/rpc/rpc_closeure.h"
 
 void test_tcp_client()
 {
@@ -34,7 +37,7 @@ void test_tcp_client()
                    {
                        DEBUGLOG("conenct to [%s] success", addr->toString().c_str());
                        std::shared_ptr<rocket::TinyPBProtocol> message = std::make_shared<rocket::TinyPBProtocol>();
-                       message->m_req_id = "123456789";
+                       message->m_msg_id = "123456789";
                        message->m_pd_data = "test pd data";
 
                        makeOrderRequest request; // 请求对象
@@ -63,10 +66,44 @@ void test_tcp_client()
                                               DEBUGLOG("get response success, response[%s]", response.ShortDebugString().c_str());
                                               }); });
 }
+
+void test_rpc_channel()
+{
+
+    // 构建请求对象
+    std::shared_ptr<makeOrderRequest> request = std::make_shared<makeOrderRequest>();
+    request->set_price(100);
+    request->set_goods("app");
+
+    // 响应对象
+    std::shared_ptr<makeOrderResponse> response = std::make_shared<makeOrderResponse>();
+
+    // 控制器
+    std::shared_ptr<rocket::RpcController> controller = std::make_shared<rocket::RpcController>();
+    controller->SetMsgId("123456789");
+
+    // channel
+    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 10010);
+    std::shared_ptr<rocket::RpcChannel> channel = std::make_shared<rocket::RpcChannel>(addr);
+
+    // 回调函数
+    std::shared_ptr<rocket::RpcClosure> closure = std::make_shared<rocket::RpcClosure>([request, response, channel]() mutable
+                                                                                       { 
+                                                                                        INFOLOG("call rpc success,resuest[%s],response[%s]", request->ShortDebugString().c_str(), response->ShortDebugString().c_str());
+                                                                                        INFOLOG("now exit eventloop");
+                                                                                        channel->getTcpClient()->stop();
+                                                                                        channel.reset(); });
+
+    channel->Init(controller, request, response, closure);
+
+    // stub.makeOrder 底层调用RpcChannel::CallMethod()方法
+    Order_Stub stub(channel.get());
+    stub.makeOrder(controller.get(), request.get(), response.get(), closure.get());
+}
 int main()
 {
     rocket::Config::SetGlobalConfig("rocket.xml");
 
-    test_tcp_client();
+    test_rpc_channel();
     return 0;
 }

@@ -48,7 +48,7 @@ class OrderImpl : public Order
 };
 void test_tcp_server()
 {
-    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 18010);
+    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 10010);
     DEBUGLOG("create addr %s", addr->toString().c_str());
 
     rocket::TcpServer tcp_server(addr);

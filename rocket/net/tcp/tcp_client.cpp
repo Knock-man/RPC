@@ -4,6 +4,7 @@
 #include <sys/socket.h>
 #include <string.h>
 #include <unistd.h>
+#include "tcp_client.h"
 namespace rocket
 {
     // 构造函数 参数为服务器地址
@@ -109,5 +110,13 @@ namespace rocket
         // 2.从buffer里decode 得到message对象,判断是否 msg_id相等，相等则读成功，执行其回调
         m_connection->pushReadMessage(msg_id, done); // 注册消息和通知函数
         m_connection->listenRead();                  // 提交可读事件
+    }
+}
+
+void rocket::TcpClient::stop()
+{
+    if (m_event_loop->isLooping())
+    {
+        m_event_loop->stop();
     }
 }

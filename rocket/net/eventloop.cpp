@@ -210,6 +210,7 @@ namespace rocket
     void EventLoop::stop()
     {
         m_stop_flag = true;
+        wakeup(); // 防止退出延时，while(flag){}  需要等待epoll_wait返回
     }
     // epoll_ctl 添加/修改事件
     void EventLoop::addEpollEvent(FdEvent *event)

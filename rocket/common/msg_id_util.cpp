@@ -9,7 +9,7 @@ namespace rocket
     static int g_random_fd = -1;                      // 随机文件句柄
     static thread_local std::string t_msg_id_num;     // 当前线程的msg_id
     static thread_local std::string t_max_msg_id_num; // 当前线程的最大msg_id
-    std::string GenMsgID()
+    std::string MsgIdUtil::GenMsgID()
     {
         if (t_msg_id_num.empty() || t_msg_id_num == t_max_msg_id_num) // 还没有生成msg_id
         {
@@ -33,7 +33,7 @@ namespace rocket
         }
         else
         {
-            int i = t_msg_id_num.length() - 1;
+            size_t i = t_msg_id_num.length() - 1;
             while (t_msg_id_num[i] == '9' && i >= 0)
             {
                 i--;
