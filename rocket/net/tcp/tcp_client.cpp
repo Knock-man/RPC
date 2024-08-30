@@ -56,11 +56,11 @@ namespace rocket
             {
                 // epoll监听可写事件，如何判断错误码
                 m_fd_event->listen(FdEvent::OUT_EVENT, [this, done]() // 前两次握手成功，触发客户端套接字可写事件
-                                   {
+                                   {    
                                        int error = 0;
                                        socklen_t error_len = sizeof(error);
                                        getsockopt(m_fd, SOL_SOCKET, SO_ERROR, &error, &error_len);
-                                   
+                                     
                                        if (error == 0)
                                        {
                                            DEBUGLOG("connect [%s] success", m_peer_addr->toString().c_str());
